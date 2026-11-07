@@ -1,0 +1,74 @@
+plugins {
+    java
+    id("org.springframework.boot") version "4.0.0"
+    id("io.spring.dependency-management") version "1.1.7"
+}
+
+group = "com.businesspilot"
+version = "0.1.0-SNAPSHOT"
+
+java {
+    toolchain {
+        languageVersion = JavaLanguageVersion.of(25)
+    }
+}
+
+configurations {
+    compileOnly {
+        extendsFrom(configurations.annotationProcessor.get())
+    }
+}
+
+repositories {
+    mavenCentral()
+}
+
+extra["jjwtVersion"] = "0.12.6"
+extra["springdocVersion"] = "2.8.0"
+extra["testcontainersVersion"] = "1.20.4"
+
+dependencies {
+    // Web
+    implementation("org.springframework.boot:spring-boot-starter-web")
+
+    // Security
+    implementation("org.springframework.boot:spring-boot-starter-security")
+
+    // JPA / Persistence
+    implementation("org.springframework.boot:spring-boot-starter-data-jpa")
+
+    // Validation
+    implementation("org.springframework.boot:spring-boot-starter-validation")
+
+    // Actuator
+    implementation("org.springframework.boot:spring-boot-starter-actuator")
+
+    // PostgreSQL
+    runtimeOnly("org.postgresql:postgresql")
+
+    // Flyway
+    implementation("org.flywaydb:flyway-core")
+    implementation("org.flywaydb:flyway-database-postgresql")
+
+    // JWT
+    implementation("io.jsonwebtoken:jjwt-api:${extra["jjwtVersion"]}")
+    runtimeOnly("io.jsonwebtoken:jjwt-impl:${extra["jjwtVersion"]}")
+    runtimeOnly("io.jsonwebtoken:jjwt-jackson:${extra["jjwtVersion"]}")
+
+    // Swagger / OpenAPI
+    implementation("org.springdoc:springdoc-openapi-starter-webmvc-ui:${extra["springdocVersion"]}")
+
+    // Lombok
+    compileOnly("org.projectlombok:lombok")
+    annotationProcessor("org.projectlombok:lombok")
+
+    // Tests
+    testImplementation("org.springframework.boot:spring-boot-starter-test")
+    testImplementation("org.springframework.security:spring-security-test")
+    testImplementation("org.testcontainers:junit-jupiter:${extra["testcontainersVersion"]}")
+    testImplementation("org.testcontainers:postgresql:${extra["testcontainersVersion"]}")
+}
+
+tasks.withType<Test> {
+    useJUnitPlatform()
+}
