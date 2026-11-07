@@ -1,12 +1,13 @@
-# ===== Java / Maven =====
-target/
+# ===== Java / Gradle =====
+build/
+.gradle/
 *.class
 *.jar
 *.war
 *.ear
-.mvn/wrapper/maven-wrapper.jar
-!**/src/main/**/target/
-!**/src/test/**/target/
+!gradle/wrapper/gradle-wrapper.jar
+!**/src/main/**/build/
+!**/src/test/**/build/
 
 # ===== Spring Boot =====
 *.log

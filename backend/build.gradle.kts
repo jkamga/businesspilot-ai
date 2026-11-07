@@ -23,9 +23,9 @@ repositories {
     mavenCentral()
 }
 
-extra["jjwtVersion"] = "0.12.6"
-extra["springdocVersion"] = "2.8.0"
-extra["testcontainersVersion"] = "1.20.4"
+val jjwtVersion = "0.12.6"
+val springdocVersion = "2.8.0"
+val testcontainersVersion = "1.20.4"
 
 dependencies {
     // Web
@@ -51,12 +51,12 @@ dependencies {
     implementation("org.flywaydb:flyway-database-postgresql")
 
     // JWT
-    implementation("io.jsonwebtoken:jjwt-api:${extra["jjwtVersion"]}")
-    runtimeOnly("io.jsonwebtoken:jjwt-impl:${extra["jjwtVersion"]}")
-    runtimeOnly("io.jsonwebtoken:jjwt-jackson:${extra["jjwtVersion"]}")
+    implementation("io.jsonwebtoken:jjwt-api:$jjwtVersion")
+    runtimeOnly("io.jsonwebtoken:jjwt-impl:$jjwtVersion")
+    runtimeOnly("io.jsonwebtoken:jjwt-jackson:$jjwtVersion")
 
     // Swagger / OpenAPI
-    implementation("org.springdoc:springdoc-openapi-starter-webmvc-ui:${extra["springdocVersion"]}")
+    implementation("org.springdoc:springdoc-openapi-starter-webmvc-ui:$springdocVersion")
 
     // Lombok
     compileOnly("org.projectlombok:lombok")
@@ -65,8 +65,8 @@ dependencies {
     // Tests
     testImplementation("org.springframework.boot:spring-boot-starter-test")
     testImplementation("org.springframework.security:spring-security-test")
-    testImplementation("org.testcontainers:junit-jupiter:${extra["testcontainersVersion"]}")
-    testImplementation("org.testcontainers:postgresql:${extra["testcontainersVersion"]}")
+    testImplementation("org.testcontainers:junit-jupiter:$testcontainersVersion")
+    testImplementation("org.testcontainers:postgresql:$testcontainersVersion")
 }
 
 tasks.withType<Test> {
