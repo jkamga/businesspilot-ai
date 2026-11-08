@@ -107,6 +107,17 @@ public class ConversationService {
         return ConversationResponse.from(conversationRepo.save(conv));
     }
 
+    public MessageResponse addFeedback(UUID conversationId, UUID messageId, MessageFeedbackRequest request) {
+        String orgId = TenantContext.getCurrentTenant();
+        conversationRepo.findByIdAndOrganizationId(conversationId, orgId)
+                .orElseThrow(() -> new NotFoundException("Conversation introuvable"));
+        Message msg = messageRepo.findById(messageId)
+                .filter(m -> m.getOrganizationId().equals(UUID.fromString(orgId)))
+                .orElseThrow(() -> new NotFoundException("Message introuvable"));
+        msg.setFeedback(request.feedback());
+        return MessageResponse.from(messageRepo.save(msg));
+    }
+
     public void delete(UUID id) {
         String orgId = TenantContext.getCurrentTenant();
         Conversation conv = conversationRepo.findByIdAndOrganizationId(id, orgId)

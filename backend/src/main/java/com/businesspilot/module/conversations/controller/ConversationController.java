@@ -52,6 +52,14 @@ public class ConversationController {
         return service.addMessage(id, request);
     }
 
+    @PutMapping("/{id}/messages/{msgId}/feedback")
+    public MessageResponse addFeedback(
+            @PathVariable UUID id,
+            @PathVariable UUID msgId,
+            @Valid @RequestBody MessageFeedbackRequest request) {
+        return service.addFeedback(id, msgId, request);
+    }
+
     @PostMapping("/{id}/resolve")
     public ConversationResponse resolve(@PathVariable UUID id) {
         return service.resolve(id);

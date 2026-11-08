@@ -29,6 +29,9 @@ export class DashboardComponent implements OnInit {
     { key: 'CLOSED_LOST' },
   ];
 
+  readonly barRowHeight = 38;
+  readonly chartBarMaxPx = 340;
+
   ngOnInit(): void {
     this.service.getStats().subscribe({
       next: d => { this.data.set(d); this.loading.set(false); },
@@ -44,6 +47,15 @@ export class DashboardComponent implements OnInit {
   funnelWidth(key: string): number {
     const val = this.data()?.prospects.byStatus[key] ?? 0;
     return Math.round((val / this.funnelMax()) * 100);
+  }
+
+  funnelPx(key: string): number {
+    const val = this.data()?.prospects.byStatus[key] ?? 0;
+    return Math.max(4, Math.round((val / this.funnelMax()) * this.chartBarMaxPx));
+  }
+
+  chartHeight(): number {
+    return this.funnelSteps.length * this.barRowHeight + 8;
   }
 
   prospectName(p: { firstName: string | null; lastName: string | null }): string {

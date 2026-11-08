@@ -11,9 +11,10 @@ public record MessageResponse(
         UUID conversationId,
         MessageRole role,
         String content,
+        String feedback,
         Instant createdAt
 ) {
     public static MessageResponse from(Message m) {
-        return new MessageResponse(m.getId(), m.getConversationId(), m.getRole(), m.getContent(), m.getCreatedAt());
+        return new MessageResponse(m.getId(), m.getConversationId(), m.getRole(), m.getContent(), m.getFeedback(), m.getCreatedAt());
     }
 }

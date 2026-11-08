@@ -86,6 +86,21 @@ export class ConversationDetailComponent implements OnInit, AfterViewChecked {
     }
   }
 
+  setFeedback(msg: import('../conversations.service').Message, feedback: 'POSITIVE' | 'NEGATIVE'): void {
+    const next = msg.feedback === feedback ? null : feedback;
+    this.service.addFeedback(this.conversationId, msg.id, next).subscribe({
+      next: updated => {
+        const d = this.detail();
+        if (d) {
+          this.detail.set({
+            ...d,
+            messages: d.messages.map(m => m.id === updated.id ? updated : m)
+          });
+        }
+      }
+    });
+  }
+
   private scrollToBottom(): void {
     this.messagesEnd?.nativeElement.scrollIntoView({ behavior: 'smooth' });
   }

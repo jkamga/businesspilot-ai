@@ -33,6 +33,9 @@ public class Message {
     @Column(name = "external_id", length = 255)
     private String externalId;
 
+    @Column(name = "feedback", length = 10)
+    private String feedback;
+
     @Column(name = "created_at", nullable = false, updatable = false)
     private Instant createdAt = Instant.now();
 
@@ -55,6 +58,9 @@ public class Message {
 
     public String getExternalId() { return externalId; }
     public void setExternalId(String externalId) { this.externalId = externalId; }
+
+    public String getFeedback() { return feedback; }
+    public void setFeedback(String feedback) { this.feedback = feedback; }
 
     public Instant getCreatedAt() { return createdAt; }
 }

@@ -28,6 +28,7 @@ export interface Message {
   conversationId: string;
   role: MessageRole;
   content: string;
+  feedback: 'POSITIVE' | 'NEGATIVE' | null;
   createdAt: string;
 }
 
@@ -61,6 +62,10 @@ export class ConversationsService {
 
   resolve(id: string): Observable<Conversation> {
     return this.http.post<Conversation>(`${this.api}/${id}/resolve`, {});
+  }
+
+  addFeedback(conversationId: string, messageId: string, feedback: 'POSITIVE' | 'NEGATIVE' | null): Observable<Message> {
+    return this.http.put<Message>(`${this.api}/${conversationId}/messages/${messageId}/feedback`, { feedback });
   }
 
   delete(id: string): Observable<void> {

@@ -25,6 +25,17 @@ spring:
     enabled: true
     locations: classpath:db/migration
     baseline-on-migrate: false
+  mail:
+    host: ${MAIL_HOST:smtp.mailgun.org}
+    port: ${MAIL_PORT:587}
+    username: ${MAIL_USERNAME:}
+    password: ${MAIL_PASSWORD:}
+    properties:
+      mail:
+        smtp:
+          auth: true
+          starttls:
+            enable: true
   security:
     oauth2:
       client:
@@ -77,6 +88,8 @@ app:
   alerts:
     cron: ${ALERTS_CRON:0 0 9 * * *}
     stale-threshold-days: ${ALERTS_STALE_THRESHOLD_DAYS:7}
+  mail:
+    from: ${MAIL_FROM:noreply@businesspilot.app}
 
 ---
 spring:

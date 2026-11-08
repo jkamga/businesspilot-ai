@@ -55,26 +55,34 @@
     <!-- Main content -->
     <div class="main-grid">
 
-      <!-- Prospect funnel -->
+      <!-- Prospect funnel chart -->
       <div class="card mat-elevation-z1">
         <div class="card-header">
           <h3>{{ 'dashboard.pipeline_title' | translate }}</h3>
           <a mat-button routerLink="/prospects">{{ 'common.see_all' | translate }}</a>
         </div>
-        <div class="funnel">
-          @for (step of funnelSteps; track step.key) {
-            <div class="funnel-row">
-              <div class="funnel-label">{{ 'dashboard.funnel.' + step.key | translate }}</div>
-              <div class="funnel-bar-wrap">
-                <div class="funnel-bar"
-                     [class.won]="step.key === 'CLOSED_WON'"
-                     [class.lost]="step.key === 'CLOSED_LOST'"
-                     [style.width.%]="funnelWidth(step.key)">
-                </div>
-              </div>
-              <div class="funnel-count">{{ data()!.prospects.byStatus[step.key] ?? 0 }}</div>
-            </div>
-          }
+        <div class="chart-wrap">
+          <svg class="pipeline-chart" [attr.viewBox]="'0 0 480 ' + chartHeight()" preserveAspectRatio="xMidYMid meet">
+            @for (step of funnelSteps; track step.key; let i = $index) {
+              <g [attr.transform]="'translate(0,' + (i * barRowHeight) + ')'">
+                <!-- label -->
+                <text x="88" y="20" text-anchor="end" class="chart-label">
+                  {{ 'dashboard.funnel.' + step.key | translate }}
+                </text>
+                <!-- track -->
+                <rect x="96" y="6" width="340" height="22" rx="4" class="chart-track"/>
+                <!-- bar -->
+                <rect x="96" y="6"
+                      [attr.width]="funnelPx(step.key)"
+                      height="22" rx="4"
+                      [class]="'chart-bar ' + step.key"/>
+                <!-- count -->
+                <text [attr.x]="444" y="20" text-anchor="start" class="chart-count">
+                  {{ data()!.prospects.byStatus[step.key] ?? 0 }}
+                </text>
+              </g>
+            }
+          </svg>
         </div>
       </div>
 
@@ -167,14 +175,15 @@
   .card-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 16px; }
   .card-header h3 { margin: 0; font-size: 15px; font-weight: 600; }
 
-  /* Funnel */
-  .funnel { display: flex; flex-direction: column; gap: 10px; }
-  .funnel-row { display: flex; align-items: center; gap: 10px; }
-  .funnel-label { width: 90px; font-size: 13px; color: #616161; flex-shrink: 0; }
-  .funnel-bar-wrap { flex: 1; height: 20px; background: #f5f5f5; border-radius: 4px; overflow: hidden; }
-  .funnel-bar { height: 100%; background: #1976d2; border-radius: 4px; min-width: 4px; transition: width 0.4s ease; }
-  .funnel-bar.won { background: #2e7d32; }
-  .funnel-bar.lost { background: #c62828; }
+  /* Pipeline chart */
+  .chart-wrap { overflow: visible; }
+  .pipeline-chart { width: 100%; display: block; }
+  .chart-label { font-size: 12px; fill: #616161; dominant-baseline: middle; }
+  .chart-track { fill: #f5f5f5; }
+  .chart-bar { fill: #1976d2; transition: width 0.4s ease; }
+  .chart-bar.CLOSED_WON { fill: #2e7d32; }
+  .chart-bar.CLOSED_LOST { fill: #c62828; }
+  .chart-count { font-size: 12px; fill: #424242; font-weight: 600; dominant-baseline: middle; }
   .funnel-count { width: 32px; text-align: right; font-size: 13px; font-weight: 600; color: #424242; }
 
   /* Activity */

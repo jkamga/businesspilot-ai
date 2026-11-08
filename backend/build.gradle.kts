@@ -61,6 +61,9 @@ dependencies {
     // OAuth2 Client (Google)
     implementation("org.springframework.boot:spring-boot-starter-oauth2-client")
 
+    // Mail
+    implementation("org.springframework.boot:spring-boot-starter-mail")
+
     // Stripe
     implementation("com.stripe:stripe-java:$stripeVersion")
 
