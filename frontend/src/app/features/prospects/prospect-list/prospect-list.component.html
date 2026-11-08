@@ -1,0 +1,116 @@
+<div class="page-container">
+  <div class="page-header">
+    <div>
+      <h1>Prospects</h1>
+      <p class="subtitle">Gérez votre pipeline commercial</p>
+    </div>
+    <a mat-flat-button color="primary" routerLink="new">
+      <mat-icon>person_add</mat-icon> Nouveau prospect
+    </a>
+  </div>
+
+  <div class="toolbar">
+    <mat-form-field appearance="outline" class="search-field">
+      <mat-label>Rechercher</mat-label>
+      <mat-icon matPrefix>search</mat-icon>
+      <input matInput [formControl]="searchCtrl" placeholder="Nom, email, entreprise…">
+    </mat-form-field>
+
+    <mat-form-field appearance="outline" class="filter-select">
+      <mat-label>Statut</mat-label>
+      <mat-select [(ngModel)]="statusFilter" (selectionChange)="load()">
+        <mat-option [value]="undefined">Tous</mat-option>
+        <mat-option value="LEAD">Lead</mat-option>
+        <mat-option value="CONTACTED">Contacté</mat-option>
+        <mat-option value="QUALIFIED">Qualifié</mat-option>
+        <mat-option value="PROPOSAL">Proposition</mat-option>
+        <mat-option value="CLOSED_WON">Gagné</mat-option>
+        <mat-option value="CLOSED_LOST">Perdu</mat-option>
+      </mat-select>
+    </mat-form-field>
+  </div>
+
+  @if (loading()) {
+    <div class="loading-center"><mat-spinner diameter="40"></mat-spinner></div>
+  } @else if (page()?.content?.length === 0) {
+    <div class="empty-state">
+      <mat-icon>people_outline</mat-icon>
+      <p>Aucun prospect. Ajoutez votre premier contact.</p>
+      <a mat-stroked-button routerLink="new">Ajouter un prospect</a>
+    </div>
+  } @else {
+    <table mat-table [dataSource]="page()!.content" class="mat-elevation-z1 clickable-table">
+
+      <ng-container matColumnDef="name">
+        <th mat-header-cell *matHeaderCellDef>Nom</th>
+        <td mat-cell *matCellDef="let row">
+          <div class="name-cell">
+            <span class="full-name">{{ fullName(row) }}</span>
+            @if (row.phone) { <span class="phone">{{ row.phone }}</span> }
+          </div>
+        </td>
+      </ng-container>
+
+      <ng-container matColumnDef="company">
+        <th mat-header-cell *matHeaderCellDef>Entreprise</th>
+        <td mat-cell *matCellDef="let row">{{ row.company ?? '—' }}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="email">
+        <th mat-header-cell *matHeaderCellDef>Email</th>
+        <td mat-cell *matCellDef="let row">{{ row.email ?? '—' }}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="status">
+        <th mat-header-cell *matHeaderCellDef>Statut</th>
+        <td mat-cell *matCellDef="let row">
+          <mat-chip [color]="statusColor(row.status)" highlighted>{{ statusLabel(row.status) }}</mat-chip>
+        </td>
+      </ng-container>
+
+      <ng-container matColumnDef="updatedAt">
+        <th mat-header-cell *matHeaderCellDef>Mis à jour</th>
+        <td mat-cell *matCellDef="let row">{{ row.updatedAt | date:'dd/MM/yyyy' }}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="actions">
+        <th mat-header-cell *matHeaderCellDef></th>
+        <td mat-cell *matCellDef="let row">
+          <div class="actions">
+            <a mat-icon-button [routerLink]="[row.id, 'edit']" matTooltip="Modifier" (click)="$event.stopPropagation()">
+              <mat-icon>edit</mat-icon>
+            </a>
+            <button mat-icon-button color="warn" (click)="delete(row, $event)" matTooltip="Supprimer">
+              <mat-icon>delete</mat-icon>
+            </button>
+          </div>
+        </td>
+      </ng-container>
+
+      <tr mat-header-row *matHeaderRowDef="columns"></tr>
+      <tr mat-row *matRowDef="let row; columns: columns;" [routerLink]="[row.id]"></tr>
+    </table>
+
+    <mat-paginator [length]="page()!.totalElements" [pageSize]="pageSize"
+                   [pageSizeOptions]="[10, 20, 50]" (page)="onPage($event)"></mat-paginator>
+  }
+</div>
+
+<style>
+  .page-container { padding: 24px; max-width: 1200px; margin: 0 auto; }
+  .page-header { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 24px; }
+  .subtitle { color: #757575; margin: 4px 0 0; }
+  .toolbar { display: flex; gap: 12px; margin-bottom: 16px; flex-wrap: wrap; }
+  .search-field { flex: 1; min-width: 200px; }
+  .filter-select { width: 160px; }
+  .loading-center { display: flex; justify-content: center; padding: 48px; }
+  .empty-state { display: flex; flex-direction: column; align-items: center; gap: 16px; padding: 64px; color: #757575; }
+  .empty-state mat-icon { font-size: 48px; height: 48px; width: 48px; }
+  .name-cell { display: flex; flex-direction: column; }
+  .full-name { font-weight: 500; }
+  .phone { font-size: 12px; color: #757575; }
+  .actions { display: flex; gap: 4px; }
+  table { width: 100%; }
+  .clickable-table tr[mat-row] { cursor: pointer; }
+  .clickable-table tr[mat-row]:hover { background: rgba(0,0,0,0.04); }
+</style>

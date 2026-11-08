@@ -1,0 +1,134 @@
+<div class="page-container">
+  <div class="page-header">
+    <a mat-icon-button routerLink="/prospects"><mat-icon>arrow_back</mat-icon></a>
+    @if (detail()) {
+      <div class="header-info">
+        <h1>{{ [detail()!.prospect.firstName, detail()!.prospect.lastName].filter(Boolean).join(' ') || 'Prospect anonyme' }}</h1>
+        @if (detail()!.prospect.company) { <span class="company">{{ detail()!.prospect.company }}</span> }
+      </div>
+      <a mat-stroked-button [routerLink]="['/prospects', detail()!.prospect.id, 'edit']">
+        <mat-icon>edit</mat-icon> Modifier
+      </a>
+    }
+  </div>
+
+  @if (loading()) {
+    <div class="loading-center"><mat-spinner diameter="40"></mat-spinner></div>
+  } @else if (detail()) {
+    <div class="detail-layout">
+
+      <div class="left-panel">
+        <div class="card mat-elevation-z1">
+          <h3>Informations</h3>
+          <div class="info-grid">
+            @if (detail()!.prospect.email) {
+              <mat-icon>email</mat-icon><span>{{ detail()!.prospect.email }}</span>
+            }
+            @if (detail()!.prospect.phone) {
+              <mat-icon>phone</mat-icon><span>{{ detail()!.prospect.phone }}</span>
+            }
+            @if (detail()!.prospect.company) {
+              <mat-icon>business</mat-icon><span>{{ detail()!.prospect.company }}</span>
+            }
+            @if (detail()!.prospect.notes) {
+              <mat-icon>notes</mat-icon><span class="notes">{{ detail()!.prospect.notes }}</span>
+            }
+          </div>
+        </div>
+
+        <div class="card mat-elevation-z1">
+          <h3>Statut pipeline</h3>
+          <div class="status-steps">
+            @for (s of statuses; track s) {
+              <button class="status-btn" [class.active]="detail()!.prospect.status === s"
+                      (click)="changeStatus(s)" [disabled]="savingStatus()">
+                {{ statusLabel(s) }}
+              </button>
+            }
+          </div>
+        </div>
+      </div>
+
+      <div class="right-panel">
+        <div class="card mat-elevation-z1">
+          <h3>Ajouter une interaction</h3>
+          <form [formGroup]="interactionForm" (ngSubmit)="submitInteraction()" class="interaction-form">
+            <mat-form-field appearance="outline">
+              <mat-label>Type</mat-label>
+              <mat-select formControlName="type">
+                @for (t of interactionTypes; track t) {
+                  <mat-option [value]="t">
+                    <mat-icon>{{ typeIcon(t) }}</mat-icon> {{ t }}
+                  </mat-option>
+                }
+              </mat-select>
+            </mat-form-field>
+            <mat-form-field appearance="outline" class="content-field">
+              <mat-label>Notes</mat-label>
+              <textarea matInput formControlName="content" rows="3"></textarea>
+            </mat-form-field>
+            <button mat-flat-button color="primary" type="submit" [disabled]="addingInteraction() || interactionForm.invalid">
+              @if (addingInteraction()) { <mat-spinner diameter="20"></mat-spinner> } @else { Enregistrer }
+            </button>
+          </form>
+        </div>
+
+        <div class="card mat-elevation-z1">
+          <h3>Historique ({{ detail()!.interactions.length }})</h3>
+          @if (detail()!.interactions.length === 0) {
+            <p class="empty-interactions">Aucune interaction enregistrée.</p>
+          } @else {
+            <div class="timeline">
+              @for (i of detail()!.interactions; track i.id) {
+                <div class="timeline-item">
+                  <div class="timeline-icon"><mat-icon>{{ typeIcon(i.type) }}</mat-icon></div>
+                  <div class="timeline-body">
+                    <div class="timeline-meta">
+                      <span class="type-label">{{ i.type }}</span>
+                      <span class="time">{{ i.createdAt | date:'dd/MM/yyyy HH:mm' }}</span>
+                    </div>
+                    <p class="timeline-content">{{ i.content }}</p>
+                  </div>
+                </div>
+              }
+            </div>
+          }
+        </div>
+      </div>
+
+    </div>
+  }
+</div>
+
+<style>
+  .page-container { padding: 24px; max-width: 1200px; margin: 0 auto; }
+  .page-header { display: flex; align-items: center; gap: 12px; margin-bottom: 24px; }
+  .header-info { flex: 1; }
+  .header-info h1 { margin: 0; }
+  .company { color: #757575; font-size: 14px; }
+  .loading-center { display: flex; justify-content: center; padding: 48px; }
+  .detail-layout { display: grid; grid-template-columns: 320px 1fr; gap: 24px; }
+  .left-panel, .right-panel { display: flex; flex-direction: column; gap: 16px; }
+  .card { padding: 20px; border-radius: 8px; }
+  .card h3 { margin: 0 0 16px; font-size: 16px; }
+  .info-grid { display: grid; grid-template-columns: 24px 1fr; gap: 8px 12px; align-items: start; }
+  .info-grid mat-icon { color: #757575; font-size: 20px; height: 20px; width: 20px; margin-top: 2px; }
+  .notes { white-space: pre-wrap; }
+  .status-steps { display: flex; flex-direction: column; gap: 6px; }
+  .status-btn { width: 100%; padding: 8px 12px; border: 1px solid rgba(0,0,0,0.12); border-radius: 6px; background: transparent; cursor: pointer; text-align: left; font-size: 14px; transition: background 0.2s; }
+  .status-btn:hover { background: rgba(0,0,0,0.04); }
+  .status-btn.active { background: #1976d2; color: white; border-color: #1976d2; }
+  .interaction-form { display: flex; flex-direction: column; gap: 12px; }
+  .content-field textarea { resize: vertical; }
+  .empty-interactions { color: #757575; font-size: 14px; }
+  .timeline { display: flex; flex-direction: column; gap: 0; }
+  .timeline-item { display: flex; gap: 12px; padding: 12px 0; border-bottom: 1px solid rgba(0,0,0,0.06); }
+  .timeline-item:last-child { border-bottom: none; }
+  .timeline-icon { flex-shrink: 0; color: #1976d2; }
+  .timeline-body { flex: 1; }
+  .timeline-meta { display: flex; justify-content: space-between; align-items: center; margin-bottom: 4px; }
+  .type-label { font-weight: 600; font-size: 12px; text-transform: uppercase; letter-spacing: 0.5px; color: #1976d2; }
+  .time { font-size: 12px; color: #757575; }
+  .timeline-content { margin: 0; white-space: pre-wrap; }
+  @media (max-width: 768px) { .detail-layout { grid-template-columns: 1fr; } }
+</style>

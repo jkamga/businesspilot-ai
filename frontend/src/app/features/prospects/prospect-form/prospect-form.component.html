@@ -1,0 +1,60 @@
+<div class="page-container">
+  <div class="page-header">
+    <a mat-icon-button routerLink="/prospects"><mat-icon>arrow_back</mat-icon></a>
+    <h1>{{ isEdit() ? 'Modifier' : 'Nouveau' }} prospect</h1>
+  </div>
+
+  <form [formGroup]="form" (ngSubmit)="submit()" class="prospect-form mat-elevation-z1">
+    <div class="form-row">
+      <mat-form-field appearance="outline">
+        <mat-label>Prénom</mat-label>
+        <input matInput formControlName="firstName">
+      </mat-form-field>
+      <mat-form-field appearance="outline">
+        <mat-label>Nom</mat-label>
+        <input matInput formControlName="lastName">
+      </mat-form-field>
+    </div>
+
+    <div class="form-row">
+      <mat-form-field appearance="outline">
+        <mat-label>Email</mat-label>
+        <input matInput formControlName="email" type="email">
+        @if (form.get('email')?.hasError('email')) { <mat-error>Email invalide</mat-error> }
+      </mat-form-field>
+      <mat-form-field appearance="outline">
+        <mat-label>Téléphone</mat-label>
+        <input matInput formControlName="phone">
+      </mat-form-field>
+    </div>
+
+    <mat-form-field appearance="outline">
+      <mat-label>Entreprise</mat-label>
+      <input matInput formControlName="company">
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
+      <mat-label>Notes</mat-label>
+      <textarea matInput formControlName="notes" rows="4"></textarea>
+    </mat-form-field>
+
+    @if (error()) { <p class="form-error">{{ error() }}</p> }
+
+    <div class="form-actions">
+      <a mat-stroked-button routerLink="/prospects">Annuler</a>
+      <button mat-flat-button color="primary" type="submit" [disabled]="saving()">
+        @if (saving()) { <mat-spinner diameter="20"></mat-spinner> } @else { {{ isEdit() ? 'Enregistrer' : 'Créer' }} }
+      </button>
+    </div>
+  </form>
+</div>
+
+<style>
+  .page-container { padding: 24px; max-width: 700px; margin: 0 auto; }
+  .page-header { display: flex; align-items: center; gap: 8px; margin-bottom: 24px; }
+  .prospect-form { display: flex; flex-direction: column; gap: 16px; padding: 24px; border-radius: 8px; }
+  .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+  .form-error { color: #d32f2f; font-size: 14px; margin: 0; }
+  .form-actions { display: flex; justify-content: flex-end; gap: 12px; }
+  @media (max-width: 600px) { .form-row { grid-template-columns: 1fr; } }
+</style>
