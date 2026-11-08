@@ -22,10 +22,10 @@ public class AiService {
     @Value("${app.ai.provider-api-key:}")
     private String apiKey;
 
-    @Value("${app.ai.provider-url:https://api.anthropic.com}")
+    @Value("${app.ai.provider-url:https://api.openai.com}")
     private String providerUrl;
 
-    @Value("${app.ai.model:claude-sonnet-4-6}")
+    @Value("${app.ai.model:gpt-4o-mini}")
     private String model;
 
     @Value("${app.ai.max-tokens:1024}")
@@ -46,27 +46,26 @@ public class AiService {
 
         String kbContext = buildKbContext(orgId, userMessage);
         String systemPrompt = buildSystemPrompt(kbContext);
-
-        List<Map<String, String>> messages = buildMessages(history, userMessage);
+        List<Map<String, String>> messages = buildMessages(systemPrompt, history, userMessage);
 
         try {
             Map<?, ?> response = restClient.post()
-                    .uri(providerUrl + "/v1/messages")
-                    .header("x-api-key", apiKey)
-                    .header("anthropic-version", "2023-06-01")
+                    .uri(providerUrl + "/v1/chat/completions")
+                    .header("Authorization", "Bearer " + apiKey)
                     .contentType(MediaType.APPLICATION_JSON)
                     .body(Map.of(
                             "model", model,
                             "max_tokens", maxTokens,
-                            "system", systemPrompt,
                             "messages", messages
                     ))
                     .retrieve()
                     .body(Map.class);
 
             @SuppressWarnings("unchecked")
-            List<Map<String, Object>> content = (List<Map<String, Object>>) response.get("content");
-            return (String) content.get(0).get("text");
+            List<Map<String, Object>> choices = (List<Map<String, Object>>) response.get("choices");
+            @SuppressWarnings("unchecked")
+            Map<String, Object> message = (Map<String, Object>) choices.get(0).get("message");
+            return (String) message.get("content");
 
         } catch (Exception e) {
             log.error("Erreur lors de l'appel à l'API AI: {}", e.getMessage());
@@ -96,8 +95,11 @@ public class AiService {
         return base + "\n\nContexte de la base de connaissances :\n" + kbContext;
     }
 
-    private List<Map<String, String>> buildMessages(List<MessageResponse> history, String userMessage) {
+    private List<Map<String, String>> buildMessages(String systemPrompt,
+                                                    List<MessageResponse> history,
+                                                    String userMessage) {
         List<Map<String, String>> messages = new ArrayList<>();
+        messages.add(Map.of("role", "system", "content", systemPrompt));
         int start = Math.max(0, history.size() - 10);
         for (int i = start; i < history.size(); i++) {
             MessageResponse msg = history.get(i);
