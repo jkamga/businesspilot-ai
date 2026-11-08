@@ -1,0 +1,69 @@
+<div class="page-container">
+  <div class="page-header">
+    <a mat-icon-button routerLink="/knowledge">
+      <mat-icon>arrow_back</mat-icon>
+    </a>
+    <h1>{{ isEdit() ? 'Modifier' : 'Nouvelle' }} entrée</h1>
+  </div>
+
+  @if (loading()) {
+    <div class="loading-center"><mat-spinner diameter="40"></mat-spinner></div>
+  } @else {
+    <form [formGroup]="form" (ngSubmit)="submit()" class="knowledge-form mat-elevation-z1">
+
+      <mat-form-field appearance="outline">
+        <mat-label>Type de contenu</mat-label>
+        <mat-select formControlName="type">
+          <mat-option value="TEXT">Texte libre</mat-option>
+          <mat-option value="FAQ">Question / Réponse</mat-option>
+          <mat-option value="URL">Lien URL</mat-option>
+        </mat-select>
+      </mat-form-field>
+
+      <mat-form-field appearance="outline">
+        <mat-label>Titre</mat-label>
+        <input matInput formControlName="title" placeholder="Ex: Politique de retour">
+        @if (form.get('title')?.hasError('required')) {
+          <mat-error>Titre requis</mat-error>
+        }
+        @if (form.get('title')?.hasError('maxlength')) {
+          <mat-error>255 caractères maximum</mat-error>
+        }
+      </mat-form-field>
+
+      <mat-form-field appearance="outline" class="content-field">
+        <mat-label>Contenu</mat-label>
+        <textarea matInput formControlName="content" rows="12"
+                  placeholder="Saisissez le contenu que l'assistant devra connaître..."></textarea>
+        @if (form.get('content')?.hasError('required')) {
+          <mat-error>Contenu requis</mat-error>
+        }
+      </mat-form-field>
+
+      @if (error()) {
+        <p class="form-error">{{ error() }}</p>
+      }
+
+      <div class="form-actions">
+        <a mat-stroked-button routerLink="/knowledge">Annuler</a>
+        <button mat-flat-button color="primary" type="submit" [disabled]="saving()">
+          @if (saving()) {
+            <mat-spinner diameter="20"></mat-spinner>
+          } @else {
+            {{ isEdit() ? 'Enregistrer' : 'Créer' }}
+          }
+        </button>
+      </div>
+    </form>
+  }
+</div>
+
+<style>
+  .page-container { padding: 24px; max-width: 800px; margin: 0 auto; }
+  .page-header { display: flex; align-items: center; gap: 8px; margin-bottom: 24px; }
+  .knowledge-form { display: flex; flex-direction: column; gap: 16px; padding: 24px; border-radius: 8px; }
+  .content-field textarea { resize: vertical; }
+  .loading-center { display: flex; justify-content: center; padding: 48px; }
+  .form-error { color: #d32f2f; font-size: 14px; margin: 0; }
+  .form-actions { display: flex; justify-content: flex-end; gap: 12px; }
+</style>
