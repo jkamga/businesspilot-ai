@@ -46,6 +46,9 @@ public class User {
     @Column(name = "is_super_admin", nullable = false)
     private boolean superAdmin;
 
+    @Column(name = "preferred_locale", nullable = false, length = 5)
+    private String preferredLocale = "fr";
+
     @CreatedDate
     @Column(name = "created_at", updatable = false, nullable = false)
     private Instant createdAt;

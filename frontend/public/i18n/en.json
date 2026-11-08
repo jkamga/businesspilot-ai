@@ -1,0 +1,190 @@
+{
+  "common": {
+    "or": "or",
+    "see_all": "See all",
+    "retry": "Retry",
+    "save": "Save",
+    "cancel": "Cancel",
+    "delete": "Delete",
+    "edit": "Edit",
+    "create": "Create",
+    "search": "Search",
+    "loading": "Loading...",
+    "empty": "No items",
+    "error_load": "Unable to load data"
+  },
+  "auth": {
+    "login": {
+      "title": "Sign in",
+      "subtitle": "Access your BusinessPilot workspace",
+      "email_label": "Email",
+      "email_required": "Email is required",
+      "email_invalid": "Invalid email",
+      "password_label": "Password",
+      "password_required": "Password is required",
+      "submit": "Sign in",
+      "google": "Continue with Google",
+      "no_account": "Don't have an account?",
+      "create_account": "Create an account",
+      "error_default": "Sign-in error"
+    },
+    "register": {
+      "title": "Create your account",
+      "subtitle": "Get started for free with BusinessPilot",
+      "first_name": "First name",
+      "first_name_required": "First name is required",
+      "last_name": "Last name",
+      "last_name_required": "Last name is required",
+      "org_name": "Company name",
+      "org_name_required": "Company name is required",
+      "email": "Professional email",
+      "email_invalid": "Invalid email",
+      "password": "Password",
+      "password_min": "Minimum 8 characters",
+      "submit": "Create my account",
+      "google": "Continue with Google",
+      "has_account": "Already have an account?",
+      "sign_in": "Sign in",
+      "error_default": "Account creation error"
+    }
+  },
+  "nav": {
+    "dashboard": "Dashboard",
+    "prospects": "Prospects",
+    "conversations": "Conversations",
+    "knowledge": "Knowledge base",
+    "subscriptions": "Subscription",
+    "admin": "Administration",
+    "logout": "Sign out",
+    "settings": "Settings"
+  },
+  "dashboard": {
+    "title": "Dashboard",
+    "subtitle": "Overview of your business activity",
+    "error_load": "Unable to load dashboard.",
+    "prospects_label": "Prospects",
+    "prospects_won": "won",
+    "prospects_leads": "leads",
+    "conversations_open": "Open conversations",
+    "conversations_resolved": "resolved",
+    "conversations_total": "total",
+    "kb_active": "Active KB entries",
+    "kb_drafts": "drafts",
+    "kb_total": "total",
+    "pipeline_title": "Prospect pipeline",
+    "recent_conversations": "Recent conversations",
+    "recent_prospects": "Recent prospects",
+    "no_conversations": "No conversations yet.",
+    "no_prospects": "No prospects yet.",
+    "anonymous": "Anonymous",
+    "funnel": {
+      "LEAD": "Lead",
+      "CONTACTED": "Contacted",
+      "QUALIFIED": "Qualified",
+      "PROPOSAL": "Proposal",
+      "CLOSED_WON": "Won",
+      "CLOSED_LOST": "Lost"
+    }
+  },
+  "prospects": {
+    "title": "Prospects",
+    "new": "New prospect",
+    "search": "Search a prospect...",
+    "empty": "No prospects yet.",
+    "status": {
+      "LEAD": "Lead",
+      "CONTACTED": "Contacted",
+      "QUALIFIED": "Qualified",
+      "PROPOSAL": "Proposal",
+      "CLOSED_WON": "Won",
+      "CLOSED_LOST": "Lost"
+    },
+    "form": {
+      "first_name": "First name",
+      "last_name": "Last name",
+      "email": "Email",
+      "phone": "Phone",
+      "company": "Company",
+      "status": "Status",
+      "notes": "Notes",
+      "save": "Save"
+    }
+  },
+  "conversations": {
+    "title": "Conversations",
+    "new": "New conversation",
+    "empty": "No conversations yet.",
+    "status": {
+      "OPEN": "Open",
+      "RESOLVED": "Resolved",
+      "CLOSED": "Closed"
+    },
+    "placeholder": "Your message...",
+    "send": "Send"
+  },
+  "knowledge": {
+    "title": "Knowledge base",
+    "new": "New entry",
+    "search": "Search...",
+    "empty": "No entries in the knowledge base.",
+    "type": {
+      "TEXT": "Text",
+      "URL": "URL",
+      "FAQ": "FAQ"
+    },
+    "status": {
+      "DRAFT": "Draft",
+      "ACTIVE": "Active",
+      "ARCHIVED": "Archived"
+    },
+    "form": {
+      "title": "Title",
+      "content": "Content",
+      "type": "Type",
+      "question": "Question",
+      "answer": "Answer",
+      "url": "URL",
+      "save": "Save",
+      "title_required": "Title is required",
+      "content_required": "Content is required"
+    }
+  },
+  "subscriptions": {
+    "title": "Subscription",
+    "current_plan": "Current plan",
+    "upgrade": "Upgrade",
+    "billed_monthly": "Billed monthly",
+    "billed_yearly": "Billed annually",
+    "save_yearly": "Save 2 months",
+    "free": "Free",
+    "per_month": "/ month",
+    "per_year": "/ year",
+    "features": "Features",
+    "current": "Current plan",
+    "select": "Choose this plan",
+    "contact_sales": "Contact sales"
+  },
+  "admin": {
+    "title": "Platform administration",
+    "stats": {
+      "total_orgs": "Total organizations",
+      "active_orgs": "active",
+      "users": "Users",
+      "subscriptions": "Subscriptions"
+    },
+    "orgs_table": {
+      "name": "Name",
+      "email": "Email",
+      "country": "Country",
+      "plan": "Plan",
+      "status": "Status",
+      "created": "Created",
+      "active": "Active",
+      "inactive": "Inactive"
+    }
+  },
+  "lang": {
+    "switch_to_en": "Switch to English",
+    "switch_to_fr": "Passer en français"
+  }
+}

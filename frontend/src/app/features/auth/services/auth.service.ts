@@ -28,6 +28,8 @@ export interface AuthResponse {
   organizationId: string;
   role: string;
   onboardingRequired: boolean;
+  superAdmin?: boolean;
+  preferredLocale?: string;
 }
 
 @Injectable({ providedIn: 'root' })
@@ -92,7 +94,9 @@ export class AuthService {
       firstName: res.firstName,
       lastName: res.lastName,
       organizationId: res.organizationId ?? '',
-      role: res.role
+      role: res.role,
+      superAdmin: res.superAdmin,
+      preferredLocale: res.preferredLocale
     });
   }
 }

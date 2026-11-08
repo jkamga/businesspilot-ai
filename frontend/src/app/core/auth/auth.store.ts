@@ -1,4 +1,5 @@
-import { Injectable, signal, computed } from '@angular/core';
+import { Injectable, signal, computed, inject } from '@angular/core';
+import { I18nService } from '../i18n/i18n.service';
 
 export interface AuthUser {
   id: string;
@@ -8,10 +9,13 @@ export interface AuthUser {
   organizationId: string;
   role: string;
   superAdmin?: boolean;
+  preferredLocale?: string;
 }
 
 @Injectable({ providedIn: 'root' })
 export class AuthStore {
+  private readonly i18n = inject(I18nService);
+
   private readonly _token = signal<string | null>(
     localStorage.getItem('bp_token')
   );
@@ -29,6 +33,9 @@ export class AuthStore {
     localStorage.setItem('bp_user', JSON.stringify(user));
     this._token.set(token);
     this._user.set(user);
+    if (user.preferredLocale === 'en' || user.preferredLocale === 'fr') {
+      this.i18n.setLang(user.preferredLocale);
+    }
   }
 
   clearAuth(): void {

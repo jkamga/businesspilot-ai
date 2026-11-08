@@ -12,5 +12,6 @@ public record AuthResponse(
     UUID organizationId,
     String role,
     boolean onboardingRequired,
-    boolean superAdmin
+    boolean superAdmin,
+    String preferredLocale
 ) {}

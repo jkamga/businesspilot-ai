@@ -4,12 +4,13 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { DatePipe } from '@angular/common';
+import { TranslateModule, TranslateService } from '@ngx-translate/core';
 import { DashboardService, DashboardData } from './dashboard.service';
 
 @Component({
   selector: 'bp-dashboard',
   standalone: true,
-  imports: [RouterLink, DatePipe, MatIconModule, MatButtonModule, MatProgressSpinnerModule],
+  imports: [RouterLink, DatePipe, TranslateModule, MatIconModule, MatButtonModule, MatProgressSpinnerModule],
   templateUrl: './dashboard.component.html'
 })
 export class DashboardComponent implements OnInit {
@@ -19,12 +20,12 @@ export class DashboardComponent implements OnInit {
   readonly loading = signal(true);
 
   readonly funnelSteps = [
-    { key: 'LEAD', label: 'Lead' },
-    { key: 'CONTACTED', label: 'Contacté' },
-    { key: 'QUALIFIED', label: 'Qualifié' },
-    { key: 'PROPOSAL', label: 'Proposition' },
-    { key: 'CLOSED_WON', label: 'Gagné' },
-    { key: 'CLOSED_LOST', label: 'Perdu' },
+    { key: 'LEAD' },
+    { key: 'CONTACTED' },
+    { key: 'QUALIFIED' },
+    { key: 'PROPOSAL' },
+    { key: 'CLOSED_WON' },
+    { key: 'CLOSED_LOST' },
   ];
 
   ngOnInit(): void {

@@ -1,7 +1,7 @@
 <div class="dashboard">
   <div class="page-header">
-    <h1>Tableau de bord</h1>
-    <span class="greeting">Vue d'ensemble de votre activité commerciale</span>
+    <h1>{{ 'dashboard.title' | translate }}</h1>
+    <span class="greeting">{{ 'dashboard.subtitle' | translate }}</span>
   </div>
 
   @if (loading()) {
@@ -14,10 +14,10 @@
         <div class="stat-icon prospects-icon"><mat-icon>people</mat-icon></div>
         <div class="stat-body">
           <div class="stat-value">{{ data()!.prospects.total }}</div>
-          <div class="stat-label">Prospects</div>
+          <div class="stat-label">{{ 'dashboard.prospects_label' | translate }}</div>
           <div class="stat-sub">
-            {{ data()!.prospects.byStatus['CLOSED_WON'] ?? 0 }} gagnés ·
-            {{ data()!.prospects.byStatus['LEAD'] ?? 0 }} leads
+            {{ data()!.prospects.byStatus['CLOSED_WON'] ?? 0 }} {{ 'dashboard.prospects_won' | translate }} ·
+            {{ data()!.prospects.byStatus['LEAD'] ?? 0 }} {{ 'dashboard.prospects_leads' | translate }}
           </div>
         </div>
         <a mat-icon-button routerLink="/prospects" class="stat-link"><mat-icon>arrow_forward</mat-icon></a>
@@ -27,8 +27,11 @@
         <div class="stat-icon conv-icon"><mat-icon>chat</mat-icon></div>
         <div class="stat-body">
           <div class="stat-value">{{ data()!.conversations.open }}</div>
-          <div class="stat-label">Conversations ouvertes</div>
-          <div class="stat-sub">{{ data()!.conversations.resolved }} résolues · {{ data()!.conversations.total }} total</div>
+          <div class="stat-label">{{ 'dashboard.conversations_open' | translate }}</div>
+          <div class="stat-sub">
+            {{ data()!.conversations.resolved }} {{ 'dashboard.conversations_resolved' | translate }} ·
+            {{ data()!.conversations.total }} {{ 'dashboard.conversations_total' | translate }}
+          </div>
         </div>
         <a mat-icon-button routerLink="/conversations" class="stat-link"><mat-icon>arrow_forward</mat-icon></a>
       </div>
@@ -37,8 +40,11 @@
         <div class="stat-icon kb-icon"><mat-icon>library_books</mat-icon></div>
         <div class="stat-body">
           <div class="stat-value">{{ data()!.knowledge.active }}</div>
-          <div class="stat-label">Entrées KB actives</div>
-          <div class="stat-sub">{{ data()!.knowledge.draft }} brouillons · {{ data()!.knowledge.total }} total</div>
+          <div class="stat-label">{{ 'dashboard.kb_active' | translate }}</div>
+          <div class="stat-sub">
+            {{ data()!.knowledge.draft }} {{ 'dashboard.kb_drafts' | translate }} ·
+            {{ data()!.knowledge.total }} {{ 'dashboard.kb_total' | translate }}
+          </div>
         </div>
         <a mat-icon-button routerLink="/knowledge" class="stat-link"><mat-icon>arrow_forward</mat-icon></a>
       </div>
@@ -50,13 +56,13 @@
       <!-- Prospect funnel -->
       <div class="card mat-elevation-z1">
         <div class="card-header">
-          <h3>Pipeline prospects</h3>
-          <a mat-button routerLink="/prospects">Voir tout</a>
+          <h3>{{ 'dashboard.pipeline_title' | translate }}</h3>
+          <a mat-button routerLink="/prospects">{{ 'common.see_all' | translate }}</a>
         </div>
         <div class="funnel">
           @for (step of funnelSteps; track step.key) {
             <div class="funnel-row">
-              <div class="funnel-label">{{ step.label }}</div>
+              <div class="funnel-label">{{ 'dashboard.funnel.' + step.key | translate }}</div>
               <div class="funnel-bar-wrap">
                 <div class="funnel-bar"
                      [class.won]="step.key === 'CLOSED_WON'"
@@ -75,11 +81,11 @@
 
         <div class="card mat-elevation-z1">
           <div class="card-header">
-            <h3>Conversations récentes</h3>
-            <a mat-button routerLink="/conversations">Voir tout</a>
+            <h3>{{ 'dashboard.recent_conversations' | translate }}</h3>
+            <a mat-button routerLink="/conversations">{{ 'common.see_all' | translate }}</a>
           </div>
           @if (data()!.recentConversations.length === 0) {
-            <p class="empty">Aucune conversation.</p>
+            <p class="empty">{{ 'dashboard.no_conversations' | translate }}</p>
           } @else {
             <div class="activity-list">
               @for (c of data()!.recentConversations; track c.id) {
@@ -97,11 +103,11 @@
 
         <div class="card mat-elevation-z1">
           <div class="card-header">
-            <h3>Prospects récents</h3>
-            <a mat-button routerLink="/prospects">Voir tout</a>
+            <h3>{{ 'dashboard.recent_prospects' | translate }}</h3>
+            <a mat-button routerLink="/prospects">{{ 'common.see_all' | translate }}</a>
           </div>
           @if (data()!.recentProspects.length === 0) {
-            <p class="empty">Aucun prospect.</p>
+            <p class="empty">{{ 'dashboard.no_prospects' | translate }}</p>
           } @else {
             <div class="activity-list">
               @for (p of data()!.recentProspects; track p.id) {
@@ -123,8 +129,8 @@
   } @else {
     <div class="empty-dash">
       <mat-icon>dashboard</mat-icon>
-      <p>Impossible de charger le tableau de bord.</p>
-      <button mat-stroked-button (click)="ngOnInit()">Réessayer</button>
+      <p>{{ 'dashboard.error_load' | translate }}</p>
+      <button mat-stroked-button (click)="ngOnInit()">{{ 'common.retry' | translate }}</button>
     </div>
   }
 </div>

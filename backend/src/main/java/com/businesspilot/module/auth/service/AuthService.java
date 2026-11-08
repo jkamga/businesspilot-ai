@@ -158,7 +158,8 @@ public class AuthService {
             orgId,
             role != null ? role.name() : null,
             onboardingRequired,
-            user.isSuperAdmin()
+            user.isSuperAdmin(),
+            user.getPreferredLocale() != null ? user.getPreferredLocale() : "fr"
         );
     }
 

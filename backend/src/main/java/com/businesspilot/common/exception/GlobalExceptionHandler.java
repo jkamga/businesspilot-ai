@@ -1,7 +1,10 @@
 package com.businesspilot.common.exception;
 
+import jakarta.servlet.http.HttpServletRequest;
 import jakarta.validation.ConstraintViolationException;
+import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.context.MessageSource;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ProblemDetail;
 import org.springframework.security.access.AccessDeniedException;
@@ -9,14 +12,20 @@ import org.springframework.security.core.AuthenticationException;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
+import org.springframework.web.servlet.LocaleResolver;
 
 import java.net.URI;
 import java.time.Instant;
+import java.util.Locale;
 import java.util.stream.Collectors;
 
 @Slf4j
+@RequiredArgsConstructor
 @RestControllerAdvice
 public class GlobalExceptionHandler {
+
+    private final MessageSource messageSource;
+    private final LocaleResolver localeResolver;
 
     @ExceptionHandler(NotFoundException.class)
     public ProblemDetail handleNotFound(NotFoundException ex) {
@@ -42,8 +51,10 @@ public class GlobalExceptionHandler {
     }
 
     @ExceptionHandler(AccessDeniedException.class)
-    public ProblemDetail handleAccessDenied(AccessDeniedException ex) {
-        return problem(HttpStatus.FORBIDDEN, "Accès refusé", "forbidden");
+    public ProblemDetail handleAccessDenied(AccessDeniedException ex, HttpServletRequest req) {
+        Locale locale = resolveLocale(req);
+        String msg = messageSource.getMessage("error.access_denied", null, locale);
+        return problem(HttpStatus.FORBIDDEN, msg, "forbidden");
     }
 
     @ExceptionHandler(AuthenticationException.class)
@@ -52,9 +63,16 @@ public class GlobalExceptionHandler {
     }
 
     @ExceptionHandler(Exception.class)
-    public ProblemDetail handleGeneric(Exception ex) {
+    public ProblemDetail handleGeneric(Exception ex, HttpServletRequest req) {
         log.error("Unhandled exception", ex);
-        return problem(HttpStatus.INTERNAL_SERVER_ERROR, "Erreur interne du serveur", "internal-error");
+        Locale locale = resolveLocale(req);
+        String msg = messageSource.getMessage("error.internal", null, locale);
+        return problem(HttpStatus.INTERNAL_SERVER_ERROR, msg, "internal-error");
+    }
+
+    private Locale resolveLocale(HttpServletRequest req) {
+        try { return localeResolver.resolveLocale(req); }
+        catch (Exception e) { return Locale.FRENCH; }
     }
 
     private ProblemDetail problem(HttpStatus status, String detail, String type) {

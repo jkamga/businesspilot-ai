@@ -1,0 +1,190 @@
+{
+  "common": {
+    "or": "ou",
+    "see_all": "Voir tout",
+    "retry": "Réessayer",
+    "save": "Enregistrer",
+    "cancel": "Annuler",
+    "delete": "Supprimer",
+    "edit": "Modifier",
+    "create": "Créer",
+    "search": "Rechercher",
+    "loading": "Chargement...",
+    "empty": "Aucun élément",
+    "error_load": "Impossible de charger les données"
+  },
+  "auth": {
+    "login": {
+      "title": "Connexion",
+      "subtitle": "Accédez à votre espace BusinessPilot",
+      "email_label": "Email",
+      "email_required": "Email requis",
+      "email_invalid": "Email invalide",
+      "password_label": "Mot de passe",
+      "password_required": "Mot de passe requis",
+      "submit": "Se connecter",
+      "google": "Continuer avec Google",
+      "no_account": "Pas encore de compte ?",
+      "create_account": "Créer un compte",
+      "error_default": "Erreur de connexion"
+    },
+    "register": {
+      "title": "Créer votre compte",
+      "subtitle": "Commencez gratuitement avec BusinessPilot",
+      "first_name": "Prénom",
+      "first_name_required": "Prénom requis",
+      "last_name": "Nom",
+      "last_name_required": "Nom requis",
+      "org_name": "Nom de votre entreprise",
+      "org_name_required": "Nom de l'entreprise requis",
+      "email": "Email professionnel",
+      "email_invalid": "Email invalide",
+      "password": "Mot de passe",
+      "password_min": "8 caractères minimum",
+      "submit": "Créer mon compte",
+      "google": "Continuer avec Google",
+      "has_account": "Déjà un compte ?",
+      "sign_in": "Se connecter",
+      "error_default": "Erreur lors de la création du compte"
+    }
+  },
+  "nav": {
+    "dashboard": "Tableau de bord",
+    "prospects": "Prospects",
+    "conversations": "Conversations",
+    "knowledge": "Base de connaissances",
+    "subscriptions": "Abonnement",
+    "admin": "Administration",
+    "logout": "Déconnexion",
+    "settings": "Paramètres"
+  },
+  "dashboard": {
+    "title": "Tableau de bord",
+    "subtitle": "Vue d'ensemble de votre activité commerciale",
+    "error_load": "Impossible de charger le tableau de bord.",
+    "prospects_label": "Prospects",
+    "prospects_won": "gagnés",
+    "prospects_leads": "leads",
+    "conversations_open": "Conversations ouvertes",
+    "conversations_resolved": "résolues",
+    "conversations_total": "total",
+    "kb_active": "Entrées KB actives",
+    "kb_drafts": "brouillons",
+    "kb_total": "total",
+    "pipeline_title": "Pipeline prospects",
+    "recent_conversations": "Conversations récentes",
+    "recent_prospects": "Prospects récents",
+    "no_conversations": "Aucune conversation.",
+    "no_prospects": "Aucun prospect.",
+    "anonymous": "Anonyme",
+    "funnel": {
+      "LEAD": "Lead",
+      "CONTACTED": "Contacté",
+      "QUALIFIED": "Qualifié",
+      "PROPOSAL": "Proposition",
+      "CLOSED_WON": "Gagné",
+      "CLOSED_LOST": "Perdu"
+    }
+  },
+  "prospects": {
+    "title": "Prospects",
+    "new": "Nouveau prospect",
+    "search": "Rechercher un prospect...",
+    "empty": "Aucun prospect pour l'instant.",
+    "status": {
+      "LEAD": "Lead",
+      "CONTACTED": "Contacté",
+      "QUALIFIED": "Qualifié",
+      "PROPOSAL": "Proposition",
+      "CLOSED_WON": "Gagné",
+      "CLOSED_LOST": "Perdu"
+    },
+    "form": {
+      "first_name": "Prénom",
+      "last_name": "Nom",
+      "email": "Email",
+      "phone": "Téléphone",
+      "company": "Entreprise",
+      "status": "Statut",
+      "notes": "Notes",
+      "save": "Enregistrer"
+    }
+  },
+  "conversations": {
+    "title": "Conversations",
+    "new": "Nouvelle conversation",
+    "empty": "Aucune conversation.",
+    "status": {
+      "OPEN": "Ouverte",
+      "RESOLVED": "Résolue",
+      "CLOSED": "Fermée"
+    },
+    "placeholder": "Votre message...",
+    "send": "Envoyer"
+  },
+  "knowledge": {
+    "title": "Base de connaissances",
+    "new": "Nouvelle entrée",
+    "search": "Rechercher...",
+    "empty": "Aucune entrée dans la base de connaissances.",
+    "type": {
+      "TEXT": "Texte",
+      "URL": "URL",
+      "FAQ": "FAQ"
+    },
+    "status": {
+      "DRAFT": "Brouillon",
+      "ACTIVE": "Actif",
+      "ARCHIVED": "Archivé"
+    },
+    "form": {
+      "title": "Titre",
+      "content": "Contenu",
+      "type": "Type",
+      "question": "Question",
+      "answer": "Réponse",
+      "url": "URL",
+      "save": "Enregistrer",
+      "title_required": "Titre requis",
+      "content_required": "Contenu requis"
+    }
+  },
+  "subscriptions": {
+    "title": "Abonnement",
+    "current_plan": "Plan actuel",
+    "upgrade": "Passer au plan supérieur",
+    "billed_monthly": "Facturé mensuellement",
+    "billed_yearly": "Facturé annuellement",
+    "save_yearly": "Économisez 2 mois",
+    "free": "Gratuit",
+    "per_month": "/ mois",
+    "per_year": "/ an",
+    "features": "Fonctionnalités",
+    "current": "Plan actuel",
+    "select": "Choisir ce plan",
+    "contact_sales": "Contacter l'équipe commerciale"
+  },
+  "admin": {
+    "title": "Administration plateforme",
+    "stats": {
+      "total_orgs": "Organisations totales",
+      "active_orgs": "actives",
+      "users": "Utilisateurs",
+      "subscriptions": "Abonnements"
+    },
+    "orgs_table": {
+      "name": "Nom",
+      "email": "Email",
+      "country": "Pays",
+      "plan": "Plan",
+      "status": "Statut",
+      "created": "Créée le",
+      "active": "Active",
+      "inactive": "Inactive"
+    }
+  },
+  "lang": {
+    "switch_to_en": "Switch to English",
+    "switch_to_fr": "Passer en français"
+  }
+}
