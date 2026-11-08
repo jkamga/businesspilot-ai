@@ -6,6 +6,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 
+import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
 
@@ -17,4 +18,10 @@ public interface ConversationRepository extends JpaRepository<Conversation, UUID
     Page<Conversation> findAllByOrganizationIdAndStatus(String organizationId, ConversationStatus status, Pageable pageable);
 
     Optional<Conversation> findByIdAndOrganizationId(UUID id, String organizationId);
+
+    long countByOrganizationId(String organizationId);
+
+    long countByOrganizationIdAndStatus(String organizationId, ConversationStatus status);
+
+    List<Conversation> findTop5ByOrganizationIdOrderByUpdatedAtDesc(String organizationId);
 }

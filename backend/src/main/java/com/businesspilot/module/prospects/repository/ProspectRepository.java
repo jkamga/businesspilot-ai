@@ -8,6 +8,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 
+import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
 
@@ -25,4 +26,10 @@ public interface ProspectRepository extends JpaRepository<Prospect, UUID> {
            "OR LOWER(COALESCE(p.email,'')) LIKE LOWER(CONCAT('%',:q,'%')) " +
            "OR LOWER(COALESCE(p.company,'')) LIKE LOWER(CONCAT('%',:q,'%')))")
     Page<Prospect> search(@Param("orgId") String orgId, @Param("q") String q, Pageable pageable);
+
+    long countByOrganizationId(String organizationId);
+
+    long countByOrganizationIdAndStatus(String organizationId, ProspectStatus status);
+
+    List<Prospect> findTop5ByOrganizationIdOrderByUpdatedAtDesc(String organizationId);
 }

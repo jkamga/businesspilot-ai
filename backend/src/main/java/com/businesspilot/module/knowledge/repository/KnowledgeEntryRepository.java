@@ -36,4 +36,8 @@ public interface KnowledgeEntryRepository extends JpaRepository<KnowledgeEntry, 
         @Param("query") String query,
         @Param("limit") int limit
     );
+
+    long countByOrganizationId(String organizationId);
+
+    long countByOrganizationIdAndStatus(String organizationId, EntryStatus status);
 }

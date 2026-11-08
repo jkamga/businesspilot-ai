@@ -1,0 +1,189 @@
+<div class="dashboard">
+  <div class="page-header">
+    <h1>Tableau de bord</h1>
+    <span class="greeting">Vue d'ensemble de votre activité commerciale</span>
+  </div>
+
+  @if (loading()) {
+    <div class="loading-center"><mat-spinner diameter="48"></mat-spinner></div>
+  } @else if (data()) {
+
+    <!-- Stat cards -->
+    <div class="stats-row">
+      <div class="stat-card mat-elevation-z1">
+        <div class="stat-icon prospects-icon"><mat-icon>people</mat-icon></div>
+        <div class="stat-body">
+          <div class="stat-value">{{ data()!.prospects.total }}</div>
+          <div class="stat-label">Prospects</div>
+          <div class="stat-sub">
+            {{ data()!.prospects.byStatus['CLOSED_WON'] ?? 0 }} gagnés ·
+            {{ data()!.prospects.byStatus['LEAD'] ?? 0 }} leads
+          </div>
+        </div>
+        <a mat-icon-button routerLink="/prospects" class="stat-link"><mat-icon>arrow_forward</mat-icon></a>
+      </div>
+
+      <div class="stat-card mat-elevation-z1">
+        <div class="stat-icon conv-icon"><mat-icon>chat</mat-icon></div>
+        <div class="stat-body">
+          <div class="stat-value">{{ data()!.conversations.open }}</div>
+          <div class="stat-label">Conversations ouvertes</div>
+          <div class="stat-sub">{{ data()!.conversations.resolved }} résolues · {{ data()!.conversations.total }} total</div>
+        </div>
+        <a mat-icon-button routerLink="/conversations" class="stat-link"><mat-icon>arrow_forward</mat-icon></a>
+      </div>
+
+      <div class="stat-card mat-elevation-z1">
+        <div class="stat-icon kb-icon"><mat-icon>library_books</mat-icon></div>
+        <div class="stat-body">
+          <div class="stat-value">{{ data()!.knowledge.active }}</div>
+          <div class="stat-label">Entrées KB actives</div>
+          <div class="stat-sub">{{ data()!.knowledge.draft }} brouillons · {{ data()!.knowledge.total }} total</div>
+        </div>
+        <a mat-icon-button routerLink="/knowledge" class="stat-link"><mat-icon>arrow_forward</mat-icon></a>
+      </div>
+    </div>
+
+    <!-- Main content -->
+    <div class="main-grid">
+
+      <!-- Prospect funnel -->
+      <div class="card mat-elevation-z1">
+        <div class="card-header">
+          <h3>Pipeline prospects</h3>
+          <a mat-button routerLink="/prospects">Voir tout</a>
+        </div>
+        <div class="funnel">
+          @for (step of funnelSteps; track step.key) {
+            <div class="funnel-row">
+              <div class="funnel-label">{{ step.label }}</div>
+              <div class="funnel-bar-wrap">
+                <div class="funnel-bar"
+                     [class.won]="step.key === 'CLOSED_WON'"
+                     [class.lost]="step.key === 'CLOSED_LOST'"
+                     [style.width.%]="funnelWidth(step.key)">
+                </div>
+              </div>
+              <div class="funnel-count">{{ data()!.prospects.byStatus[step.key] ?? 0 }}</div>
+            </div>
+          }
+        </div>
+      </div>
+
+      <!-- Recent activity -->
+      <div class="activity-col">
+
+        <div class="card mat-elevation-z1">
+          <div class="card-header">
+            <h3>Conversations récentes</h3>
+            <a mat-button routerLink="/conversations">Voir tout</a>
+          </div>
+          @if (data()!.recentConversations.length === 0) {
+            <p class="empty">Aucune conversation.</p>
+          } @else {
+            <div class="activity-list">
+              @for (c of data()!.recentConversations; track c.id) {
+                <a class="activity-item" [routerLink]="['/conversations', c.id]">
+                  <mat-icon class="activity-icon">chat_bubble</mat-icon>
+                  <div class="activity-body">
+                    <span class="activity-name">{{ convName(c) }}</span>
+                    <span class="activity-meta">{{ c.status }} · {{ c.updatedAt | date:'dd/MM HH:mm' }}</span>
+                  </div>
+                </a>
+              }
+            </div>
+          }
+        </div>
+
+        <div class="card mat-elevation-z1">
+          <div class="card-header">
+            <h3>Prospects récents</h3>
+            <a mat-button routerLink="/prospects">Voir tout</a>
+          </div>
+          @if (data()!.recentProspects.length === 0) {
+            <p class="empty">Aucun prospect.</p>
+          } @else {
+            <div class="activity-list">
+              @for (p of data()!.recentProspects; track p.id) {
+                <a class="activity-item" [routerLink]="['/prospects', p.id]">
+                  <mat-icon class="activity-icon">person</mat-icon>
+                  <div class="activity-body">
+                    <span class="activity-name">{{ prospectName(p) }}{{ p.company ? ' — ' + p.company : '' }}</span>
+                    <span class="activity-meta">{{ p.status }} · {{ p.updatedAt | date:'dd/MM HH:mm' }}</span>
+                  </div>
+                </a>
+              }
+            </div>
+          }
+        </div>
+
+      </div>
+    </div>
+
+  } @else {
+    <div class="empty-dash">
+      <mat-icon>dashboard</mat-icon>
+      <p>Impossible de charger le tableau de bord.</p>
+      <button mat-stroked-button (click)="ngOnInit()">Réessayer</button>
+    </div>
+  }
+</div>
+
+<style>
+  .dashboard { padding: 24px; max-width: 1200px; margin: 0 auto; }
+  .page-header { margin-bottom: 28px; }
+  .page-header h1 { margin: 0 0 4px; }
+  .greeting { color: #757575; font-size: 14px; }
+  .loading-center { display: flex; justify-content: center; padding: 80px; }
+
+  /* Stat cards */
+  .stats-row { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin-bottom: 24px; }
+  .stat-card { display: flex; align-items: center; gap: 16px; padding: 20px; border-radius: 12px; }
+  .stat-icon { width: 48px; height: 48px; border-radius: 12px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+  .stat-icon mat-icon { font-size: 24px; height: 24px; width: 24px; color: white; }
+  .prospects-icon { background: #1976d2; }
+  .conv-icon { background: #7b1fa2; }
+  .kb-icon { background: #388e3c; }
+  .stat-body { flex: 1; }
+  .stat-value { font-size: 32px; font-weight: 700; line-height: 1; }
+  .stat-label { font-size: 14px; color: #424242; margin: 4px 0 2px; }
+  .stat-sub { font-size: 12px; color: #9e9e9e; }
+  .stat-link { color: #9e9e9e !important; }
+
+  /* Main grid */
+  .main-grid { display: grid; grid-template-columns: 1fr 380px; gap: 24px; }
+  .activity-col { display: flex; flex-direction: column; gap: 16px; }
+
+  /* Cards */
+  .card { padding: 20px; border-radius: 12px; }
+  .card-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 16px; }
+  .card-header h3 { margin: 0; font-size: 15px; font-weight: 600; }
+
+  /* Funnel */
+  .funnel { display: flex; flex-direction: column; gap: 10px; }
+  .funnel-row { display: flex; align-items: center; gap: 10px; }
+  .funnel-label { width: 90px; font-size: 13px; color: #616161; flex-shrink: 0; }
+  .funnel-bar-wrap { flex: 1; height: 20px; background: #f5f5f5; border-radius: 4px; overflow: hidden; }
+  .funnel-bar { height: 100%; background: #1976d2; border-radius: 4px; min-width: 4px; transition: width 0.4s ease; }
+  .funnel-bar.won { background: #2e7d32; }
+  .funnel-bar.lost { background: #c62828; }
+  .funnel-count { width: 32px; text-align: right; font-size: 13px; font-weight: 600; color: #424242; }
+
+  /* Activity */
+  .activity-list { display: flex; flex-direction: column; gap: 2px; }
+  .activity-item { display: flex; align-items: center; gap: 10px; padding: 8px 6px; border-radius: 8px; text-decoration: none; color: inherit; transition: background 0.15s; }
+  .activity-item:hover { background: rgba(0,0,0,0.04); }
+  .activity-icon { color: #bdbdbd; font-size: 20px; height: 20px; width: 20px; flex-shrink: 0; }
+  .activity-body { display: flex; flex-direction: column; overflow: hidden; }
+  .activity-name { font-size: 13px; font-weight: 500; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  .activity-meta { font-size: 11px; color: #9e9e9e; }
+  .empty { color: #9e9e9e; font-size: 13px; padding: 8px 0; }
+
+  .empty-dash { display: flex; flex-direction: column; align-items: center; gap: 16px; padding: 80px; color: #757575; }
+  .empty-dash mat-icon { font-size: 48px; height: 48px; width: 48px; }
+
+  @media (max-width: 900px) {
+    .stats-row { grid-template-columns: 1fr; }
+    .main-grid { grid-template-columns: 1fr; }
+  }
+</style>
