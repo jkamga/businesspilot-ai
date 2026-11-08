@@ -24,4 +24,6 @@ public interface ConversationRepository extends JpaRepository<Conversation, UUID
     long countByOrganizationIdAndStatus(String organizationId, ConversationStatus status);
 
     List<Conversation> findTop5ByOrganizationIdOrderByUpdatedAtDesc(String organizationId);
+
+    Optional<Conversation> findByOrganizationIdAndWhatsappPhone(String organizationId, String whatsappPhone);
 }

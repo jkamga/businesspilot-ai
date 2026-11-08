@@ -12,4 +12,6 @@ public interface MessageRepository extends JpaRepository<Message, UUID> {
     List<Message> findAllByConversationIdOrderByCreatedAtAsc(UUID conversationId);
 
     List<Message> findAllByConversationIdOrderByCreatedAtDesc(UUID conversationId, Pageable pageable);
+
+    boolean existsByExternalId(String externalId);
 }

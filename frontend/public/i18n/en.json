@@ -190,6 +190,22 @@
     "payment_success": "Payment successful! Your subscription is now active.",
     "payment_cancelled": "Payment cancelled. Your plan was not changed."
   },
+  "onboarding": {
+    "title": "Get started with BusinessPilot",
+    "subtitle": "Complete these 3 steps to get the most out of your AI assistant",
+    "step1_title": "Knowledge Base",
+    "step1_desc": "Add a FAQ or document — this is what the AI will use to answer questions.",
+    "step1_cta": "Create an entry",
+    "step2_title": "First conversation",
+    "step2_desc": "Test your AI assistant with a customer or a test scenario.",
+    "step2_cta": "View conversations",
+    "step3_title": "First prospect",
+    "step3_desc": "Add a prospect and start tracking your sales pipeline.",
+    "step3_cta": "Add a prospect",
+    "done": "Done ✓",
+    "dismiss": "Close guide",
+    "steps_done": "steps completed"
+  },
   "admin": {
     "title": "Platform administration",
     "stats": {

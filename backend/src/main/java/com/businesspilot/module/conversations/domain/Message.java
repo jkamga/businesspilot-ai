@@ -3,6 +3,7 @@ package com.businesspilot.module.conversations.domain;
 import jakarta.persistence.*;
 import java.time.Instant;
 import java.util.UUID;
+import com.businesspilot.module.conversations.domain.MessageSource;
 
 @Entity
 @Table(name = "messages")
@@ -25,6 +26,13 @@ public class Message {
     @Column(nullable = false, columnDefinition = "TEXT")
     private String content;
 
+    @Enumerated(EnumType.STRING)
+    @Column(nullable = false, length = 20)
+    private MessageSource source = MessageSource.WEB;
+
+    @Column(name = "external_id", length = 255)
+    private String externalId;
+
     @Column(name = "created_at", nullable = false, updatable = false)
     private Instant createdAt = Instant.now();
 
@@ -41,6 +49,12 @@ public class Message {
 
     public String getContent() { return content; }
     public void setContent(String content) { this.content = content; }
+
+    public MessageSource getSource() { return source; }
+    public void setSource(MessageSource source) { this.source = source; }
+
+    public String getExternalId() { return externalId; }
+    public void setExternalId(String externalId) { this.externalId = externalId; }
 
     public Instant getCreatedAt() { return createdAt; }
 }

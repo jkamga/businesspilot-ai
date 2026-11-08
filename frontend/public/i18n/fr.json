@@ -190,6 +190,22 @@
     "payment_success": "Paiement effectué ! Votre abonnement est maintenant actif.",
     "payment_cancelled": "Paiement annulé. Votre plan n'a pas été modifié."
   },
+  "onboarding": {
+    "title": "Démarrez avec BusinessPilot",
+    "subtitle": "Complétez ces 3 étapes pour tirer le meilleur de votre assistant IA",
+    "step1_title": "Base de connaissances",
+    "step1_desc": "Ajoutez une FAQ ou un document — c'est ce que l'IA utilisera pour répondre.",
+    "step1_cta": "Créer une entrée",
+    "step2_title": "Première conversation",
+    "step2_desc": "Testez votre assistant IA avec un client ou un scénario de test.",
+    "step2_cta": "Voir les conversations",
+    "step3_title": "Premier prospect",
+    "step3_desc": "Ajoutez un prospect et suivez votre pipeline commercial.",
+    "step3_cta": "Ajouter un prospect",
+    "done": "Terminé ✓",
+    "dismiss": "Fermer le guide",
+    "steps_done": "étapes complétées"
+  },
   "admin": {
     "title": "Administration plateforme",
     "stats": {

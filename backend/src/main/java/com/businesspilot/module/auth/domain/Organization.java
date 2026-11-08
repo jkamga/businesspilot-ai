@@ -44,6 +44,12 @@ public class Organization {
     @Column(nullable = false)
     private boolean active;
 
+    @Column(name = "whatsapp_phone_number_id", length = 50)
+    private String whatsappPhoneNumberId;
+
+    @Column(name = "stripe_customer_id", length = 255)
+    private String stripeCustomerId;
+
     @CreatedDate
     @Column(name = "created_at", updatable = false, nullable = false)
     private Instant createdAt;

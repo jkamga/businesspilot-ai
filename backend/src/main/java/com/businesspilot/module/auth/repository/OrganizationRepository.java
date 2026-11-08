@@ -11,4 +11,6 @@ public interface OrganizationRepository extends JpaRepository<Organization, UUID
     boolean existsBySlug(String slug);
     boolean existsByEmail(String email);
     long countByActiveTrue();
+
+    java.util.Optional<Organization> findByWhatsappPhoneNumberId(String whatsappPhoneNumberId);
 }

@@ -9,6 +9,7 @@ import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { MatSnackBar, MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatBadgeModule } from '@angular/material/badge';
 import { TranslateModule, TranslateService } from '@ngx-translate/core';
+import { ActivatedRoute } from '@angular/router';
 import { SubscriptionsService, PlanResponse, SubscriptionResponse } from '../subscriptions.service';
 
 @Component({
@@ -33,6 +34,7 @@ export class SubscriptionPageComponent implements OnInit {
   private svc = inject(SubscriptionsService);
   private snack = inject(MatSnackBar);
   private translate = inject(TranslateService);
+  private route = inject(ActivatedRoute);
 
   plans = signal<PlanResponse[]>([]);
   currentSub = signal<SubscriptionResponse | null>(null);
@@ -47,6 +49,22 @@ export class SubscriptionPageComponent implements OnInit {
     this.svc.getMySubscription().subscribe({
       next: (s) => { this.currentSub.set(s); this.loading.set(false); },
       error: () => this.loading.set(false),
+    });
+    this.route.queryParamMap.subscribe((params) => {
+      if (params.get('success') === 'true') {
+        this.snack.open(
+          this.translate.instant('subscriptions.payment_success'),
+          this.translate.instant('common.close'),
+          { duration: 5000, panelClass: ['snack-success'] }
+        );
+        this.svc.getMySubscription().subscribe((s) => this.currentSub.set(s));
+      } else if (params.get('cancelled') === 'true') {
+        this.snack.open(
+          this.translate.instant('subscriptions.payment_cancelled'),
+          this.translate.instant('common.close'),
+          { duration: 4000 }
+        );
+      }
     });
   }
 
@@ -77,11 +95,47 @@ export class SubscriptionPageComponent implements OnInit {
 
   selectPlan(plan: PlanResponse) {
     if (this.isCurrentPlan(plan)) return;
+
+    const billingCycle = this.yearlyBilling() ? 'YEARLY' : 'MONTHLY';
+
+    // Plan gratuit — upgrade direct sans paiement
+    if (plan.priceMonthly === null || plan.priceMonthly === 0) {
+      this.upgradeDirect(plan, billingCycle);
+      return;
+    }
+
+    // Plan enterprise — contact commercial
+    if (plan.slug === 'enterprise') {
+      window.location.href = 'mailto:sales@businesspilot.ai';
+      return;
+    }
+
+    // Plan payant — redirection Stripe Checkout
     this.upgrading.set(plan.slug);
-    this.svc.upgrade({
-      planSlug: plan.slug,
-      billingCycle: this.yearlyBilling() ? 'YEARLY' : 'MONTHLY',
-    }).subscribe({
+    this.svc.createCheckoutSession({ planSlug: plan.slug, billingCycle }).subscribe({
+      next: (resp) => {
+        this.upgrading.set(null);
+        this.snack.open(
+          this.translate.instant('subscriptions.redirecting_to_stripe'),
+          '',
+          { duration: 2000 }
+        );
+        setTimeout(() => { window.location.href = resp.checkoutUrl; }, 1500);
+      },
+      error: () => {
+        this.upgrading.set(null);
+        this.snack.open(
+          this.translate.instant('subscriptions.upgrade_error'),
+          this.translate.instant('common.close'),
+          { duration: 3000 }
+        );
+      },
+    });
+  }
+
+  private upgradeDirect(plan: PlanResponse, billingCycle: 'MONTHLY' | 'YEARLY') {
+    this.upgrading.set(plan.slug);
+    this.svc.upgrade({ planSlug: plan.slug, billingCycle }).subscribe({
       next: (sub) => {
         this.currentSub.set(sub);
         this.upgrading.set(null);

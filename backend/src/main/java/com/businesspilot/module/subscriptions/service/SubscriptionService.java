@@ -80,6 +80,24 @@ public class SubscriptionService {
         return subscriptionRepo.save(sub);
     }
 
+    @Transactional
+    public void activateFromStripe(String orgId, String planSlug, BillingCycle billingCycle,
+                                   String stripeSessionId) {
+        Plan plan = planRepo.findBySlug(planSlug)
+                .orElseThrow(() -> new NotFoundException("Plan not found: " + planSlug));
+
+        Subscription sub = subscriptionRepo.findByOrganizationId(orgId)
+                .orElseGet(() -> createFreeSub(orgId));
+
+        sub.setPlanId(plan.getId());
+        sub.setBillingCycle(billingCycle);
+        sub.setStatus(SubscriptionStatus.ACTIVE);
+        sub.setCurrentPeriodStart(Instant.now());
+        sub.setCurrentPeriodEnd(periodEnd(billingCycle));
+        sub.setStripeSubscriptionId(stripeSessionId);
+        subscriptionRepo.save(sub);
+    }
+
     private Instant periodEnd(BillingCycle cycle) {
         return cycle == BillingCycle.YEARLY
                 ? Instant.now().plus(365, ChronoUnit.DAYS)

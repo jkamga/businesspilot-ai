@@ -6,11 +6,12 @@ import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { DatePipe } from '@angular/common';
 import { TranslateModule, TranslateService } from '@ngx-translate/core';
 import { DashboardService, DashboardData } from './dashboard.service';
+import { OnboardingCardComponent } from './onboarding-card/onboarding-card.component';
 
 @Component({
   selector: 'bp-dashboard',
   standalone: true,
-  imports: [RouterLink, DatePipe, TranslateModule, MatIconModule, MatButtonModule, MatProgressSpinnerModule],
+  imports: [RouterLink, DatePipe, TranslateModule, MatIconModule, MatButtonModule, MatProgressSpinnerModule, OnboardingCardComponent],
   templateUrl: './dashboard.component.html'
 })
 export class DashboardComponent implements OnInit {

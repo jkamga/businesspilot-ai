@@ -31,6 +31,10 @@ export interface UpgradeRequest {
   billingCycle: 'MONTHLY' | 'YEARLY';
 }
 
+export interface CheckoutSessionResponse {
+  checkoutUrl: string;
+}
+
 @Injectable({ providedIn: 'root' })
 export class SubscriptionsService {
   private http = inject(HttpClient);
@@ -46,5 +50,9 @@ export class SubscriptionsService {
 
   upgrade(request: UpgradeRequest): Observable<SubscriptionResponse> {
     return this.http.post<SubscriptionResponse>(`${this.base}/subscriptions/upgrade`, request);
+  }
+
+  createCheckoutSession(request: UpgradeRequest): Observable<CheckoutSessionResponse> {
+    return this.http.post<CheckoutSessionResponse>(`${this.base}/subscriptions/checkout`, request);
   }
 }
