@@ -207,6 +207,13 @@
     "steps_done": "étapes complétées"
   },
   "settings": {
+    "ai": {
+      "title": "Paramètres IA",
+      "subtitle": "Personnalisez le comportement de votre assistant IA",
+      "system_prompt_label": "Instructions système",
+      "system_prompt_hint": "Définissez la personnalité, le ton et les règles de votre assistant. Laissez vide pour utiliser le prompt par défaut.",
+      "system_prompt_placeholder": "Ex: Tu es un assistant commercial pour [Entreprise]. Tu réponds toujours en français, avec un ton professionnel..."
+    },
     "widget": {
       "title": "Widget de chat",
       "subtitle": "Intégrez un assistant IA sur votre site web",

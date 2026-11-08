@@ -61,6 +61,7 @@ app:
     provider-url: ${AI_PROVIDER_URL:https://api.openai.com}
     model: ${AI_MODEL:gpt-4o-mini}
     max-tokens: ${AI_MAX_TOKENS:2048}
+    fallback-message: ${AI_FALLBACK_MESSAGE:L'assistant IA n'est pas configuré. Contactez votre administrateur.}
   cors:
     allowed-origins: ${CORS_ALLOWED_ORIGINS:http://localhost:4200}
   whatsapp:

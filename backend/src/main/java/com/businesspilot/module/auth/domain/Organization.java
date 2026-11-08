@@ -53,6 +53,9 @@ public class Organization {
     @Column(name = "widget_token", nullable = false, updatable = false)
     private java.util.UUID widgetToken;
 
+    @Column(name = "system_prompt", columnDefinition = "TEXT")
+    private String systemPrompt;
+
     @CreatedDate
     @Column(name = "created_at", updatable = false, nullable = false)
     private Instant createdAt;

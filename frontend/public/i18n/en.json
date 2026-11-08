@@ -207,6 +207,13 @@
     "steps_done": "steps completed"
   },
   "settings": {
+    "ai": {
+      "title": "AI Settings",
+      "subtitle": "Customize your AI assistant's behavior",
+      "system_prompt_label": "System instructions",
+      "system_prompt_hint": "Define your assistant's personality, tone and business rules. Leave empty to use the default prompt.",
+      "system_prompt_placeholder": "E.g.: You are a sales assistant for [Company]. Always reply in English with a professional tone..."
+    },
     "widget": {
       "title": "Chat Widget",
       "subtitle": "Embed an AI assistant on your website",

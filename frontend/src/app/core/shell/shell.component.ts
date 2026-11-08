@@ -37,7 +37,7 @@ export class ShellComponent {
     { path: '/conversations',  icon: 'chat',            key: 'nav.conversations' },
     { path: '/knowledge',      icon: 'library_books',   key: 'nav.knowledge' },
     { path: '/subscriptions',  icon: 'workspace_premium', key: 'nav.subscriptions' },
-    { path: '/settings',       icon: 'code',              key: 'nav.settings' },
+    { path: '/settings/ai',    icon: 'smart_toy',         key: 'nav.settings' },
   ];
 
   logout(): void {
