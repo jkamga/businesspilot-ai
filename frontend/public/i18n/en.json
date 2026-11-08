@@ -185,7 +185,10 @@
     "kb_entries": "KB entries",
     "users": "users",
     "plan_activated": "Plan {{name}} activated!",
-    "upgrade_error": "Error switching plan"
+    "upgrade_error": "Error switching plan",
+    "redirecting_to_stripe": "Redirecting to secure payment...",
+    "payment_success": "Payment successful! Your subscription is now active.",
+    "payment_cancelled": "Payment cancelled. Your plan was not changed."
   },
   "admin": {
     "title": "Platform administration",

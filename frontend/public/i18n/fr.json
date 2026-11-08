@@ -185,7 +185,10 @@
     "kb_entries": "entrées KB",
     "users": "utilisateurs",
     "plan_activated": "Plan {{name}} activé !",
-    "upgrade_error": "Erreur lors du changement de plan"
+    "upgrade_error": "Erreur lors du changement de plan",
+    "redirecting_to_stripe": "Redirection vers le paiement sécurisé...",
+    "payment_success": "Paiement effectué ! Votre abonnement est maintenant actif.",
+    "payment_cancelled": "Paiement annulé. Votre plan n'a pas été modifié."
   },
   "admin": {
     "title": "Administration plateforme",
