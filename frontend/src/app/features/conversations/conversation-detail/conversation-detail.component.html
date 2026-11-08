@@ -1,0 +1,85 @@
+<div class="chat-container">
+  <div class="chat-header">
+    <a mat-icon-button routerLink="/conversations">
+      <mat-icon>arrow_back</mat-icon>
+    </a>
+    @if (detail()) {
+      <div class="header-info">
+        <span class="prospect-name">{{ detail()!.conversation.prospectName ?? 'Conversation anonyme' }}</span>
+        @if (detail()!.conversation.prospectEmail) {
+          <span class="prospect-email">{{ detail()!.conversation.prospectEmail }}</span>
+        }
+      </div>
+      <mat-chip [color]="detail()!.conversation.status === 'OPEN' ? 'primary' : 'default'" highlighted>
+        {{ detail()!.conversation.status }}
+      </mat-chip>
+    }
+  </div>
+
+  <div class="messages-area">
+    @if (loading()) {
+      <div class="loading-center"><mat-spinner diameter="40"></mat-spinner></div>
+    } @else if (detail()!.messages.length === 0) {
+      <div class="empty-messages">
+        <mat-icon>chat</mat-icon>
+        <p>Aucun message. Commencez la conversation ci-dessous.</p>
+      </div>
+    } @else {
+      @for (msg of detail()!.messages; track msg.id) {
+        <div class="message-row" [class.user-row]="isUser(msg)" [class.ai-row]="!isUser(msg)">
+          <div class="message-bubble" [class.user-bubble]="isUser(msg)" [class.ai-bubble]="!isUser(msg)">
+            <div class="bubble-role">{{ isUser(msg) ? 'Prospect' : 'Assistant IA' }}</div>
+            <div class="bubble-content">{{ msg.content }}</div>
+            <div class="bubble-time">{{ msg.createdAt | date:'HH:mm' }}</div>
+          </div>
+        </div>
+      }
+      <div #messagesEnd></div>
+    }
+  </div>
+
+  <div class="input-area">
+    @if (detail()?.conversation?.status === 'OPEN') {
+      <mat-form-field appearance="outline" class="message-field">
+        <mat-label>Votre message</mat-label>
+        <textarea matInput [formControl]="messageCtrl" rows="2"
+                  (keydown)="onKeydown($event)"
+                  placeholder="Tapez un message... (Entrée pour envoyer, Shift+Entrée pour saut de ligne)"></textarea>
+      </mat-form-field>
+      <button mat-fab color="primary" (click)="sendMessage()" [disabled]="sending() || messageCtrl.invalid">
+        @if (sending()) {
+          <mat-spinner diameter="24"></mat-spinner>
+        } @else {
+          <mat-icon>send</mat-icon>
+        }
+      </button>
+    } @else {
+      <div class="resolved-banner">
+        <mat-icon>check_circle</mat-icon>
+        Cette conversation est résolue.
+      </div>
+    }
+  </div>
+</div>
+
+<style>
+  .chat-container { display: flex; flex-direction: column; height: calc(100vh - 64px); max-width: 900px; margin: 0 auto; }
+  .chat-header { display: flex; align-items: center; gap: 12px; padding: 12px 16px; border-bottom: 1px solid rgba(0,0,0,0.12); flex-shrink: 0; }
+  .header-info { flex: 1; display: flex; flex-direction: column; }
+  .prospect-name { font-weight: 600; font-size: 16px; }
+  .prospect-email { font-size: 13px; color: #757575; }
+  .messages-area { flex: 1; overflow-y: auto; padding: 16px; display: flex; flex-direction: column; gap: 12px; }
+  .loading-center, .empty-messages { display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 12px; height: 100%; color: #757575; }
+  .message-row { display: flex; }
+  .user-row { justify-content: flex-end; }
+  .ai-row { justify-content: flex-start; }
+  .message-bubble { max-width: 70%; padding: 10px 14px; border-radius: 12px; }
+  .user-bubble { background: #1976d2; color: white; border-bottom-right-radius: 2px; }
+  .ai-bubble { background: #f5f5f5; color: #212121; border-bottom-left-radius: 2px; }
+  .bubble-role { font-size: 11px; font-weight: 600; opacity: 0.7; margin-bottom: 4px; }
+  .bubble-content { white-space: pre-wrap; line-height: 1.5; }
+  .bubble-time { font-size: 11px; opacity: 0.6; margin-top: 4px; text-align: right; }
+  .input-area { display: flex; align-items: flex-end; gap: 8px; padding: 12px 16px; border-top: 1px solid rgba(0,0,0,0.12); flex-shrink: 0; }
+  .message-field { flex: 1; }
+  .resolved-banner { display: flex; align-items: center; gap: 8px; padding: 12px; color: #757575; width: 100%; justify-content: center; }
+</style>
