@@ -1,251 +1,300 @@
-{
-  "common": {
-    "or": "ou",
-    "see_all": "Voir tout",
-    "retry": "Réessayer",
-    "save": "Enregistrer",
-    "cancel": "Annuler",
-    "close": "Fermer",
-    "delete": "Supprimer",
-    "edit": "Modifier",
-    "create": "Créer",
-    "search": "Rechercher",
-    "loading": "Chargement...",
-    "empty": "Aucun élément",
-    "error_load": "Impossible de charger les données"
-  },
-  "auth": {
-    "login": {
-      "title": "Connexion",
-      "subtitle": "Accédez à votre espace BusinessPilot",
-      "email_label": "Email",
-      "email_required": "Email requis",
-      "email_invalid": "Email invalide",
-      "password_label": "Mot de passe",
-      "password_required": "Mot de passe requis",
-      "submit": "Se connecter",
-      "google": "Continuer avec Google",
-      "no_account": "Pas encore de compte ?",
-      "create_account": "Créer un compte",
-      "error_default": "Erreur de connexion"
-    },
-    "register": {
-      "title": "Créer votre compte",
-      "subtitle": "Commencez gratuitement avec BusinessPilot",
-      "first_name": "Prénom",
-      "first_name_required": "Prénom requis",
-      "last_name": "Nom",
-      "last_name_required": "Nom requis",
-      "org_name": "Nom de votre entreprise",
-      "org_name_required": "Nom de l'entreprise requis",
-      "email": "Email professionnel",
-      "email_invalid": "Email invalide",
-      "password": "Mot de passe",
-      "password_min": "8 caractères minimum",
-      "submit": "Créer mon compte",
-      "google": "Continuer avec Google",
-      "has_account": "Déjà un compte ?",
-      "sign_in": "Se connecter",
-      "error_default": "Erreur lors de la création du compte"
-    }
-  },
-  "nav": {
-    "dashboard": "Tableau de bord",
-    "prospects": "Prospects",
-    "conversations": "Conversations",
-    "knowledge": "Base de connaissances",
-    "subscriptions": "Abonnement",
-    "admin": "Administration",
-    "logout": "Déconnexion",
-    "settings": "Paramètres"
-  },
-  "dashboard": {
-    "title": "Tableau de bord",
-    "subtitle": "Vue d'ensemble de votre activité commerciale",
-    "error_load": "Impossible de charger le tableau de bord.",
-    "prospects_label": "Prospects",
-    "prospects_won": "gagnés",
-    "prospects_leads": "leads",
-    "conversations_open": "Conversations ouvertes",
-    "conversations_resolved": "résolues",
-    "conversations_total": "total",
-    "kb_active": "Entrées KB actives",
-    "kb_drafts": "brouillons",
-    "kb_total": "total",
-    "pipeline_title": "Pipeline prospects",
-    "recent_conversations": "Conversations récentes",
-    "recent_prospects": "Prospects récents",
-    "no_conversations": "Aucune conversation.",
-    "no_prospects": "Aucun prospect.",
-    "anonymous": "Anonyme",
-    "funnel": {
-      "LEAD": "Lead",
-      "CONTACTED": "Contacté",
-      "QUALIFIED": "Qualifié",
-      "PROPOSAL": "Proposition",
-      "CLOSED_WON": "Gagné",
-      "CLOSED_LOST": "Perdu"
-    }
-  },
-  "prospects": {
-    "title": "Prospects",
-    "new": "Nouveau prospect",
-    "search": "Rechercher un prospect...",
-    "empty": "Aucun prospect pour l'instant.",
-    "status": {
-      "LEAD": "Lead",
-      "CONTACTED": "Contacté",
-      "QUALIFIED": "Qualifié",
-      "PROPOSAL": "Proposition",
-      "CLOSED_WON": "Gagné",
-      "CLOSED_LOST": "Perdu"
-    },
-    "form": {
-      "first_name": "Prénom",
-      "last_name": "Nom",
-      "email": "Email",
-      "phone": "Téléphone",
-      "company": "Entreprise",
-      "status": "Statut",
-      "notes": "Notes",
-      "save": "Enregistrer"
-    }
-  },
-  "conversations": {
-    "title": "Conversations",
-    "new": "Nouvelle conversation",
-    "empty": "Aucune conversation.",
-    "empty_chat": "Aucun message. Commencez la conversation ci-dessous.",
-    "anonymous": "Conversation anonyme",
-    "role_prospect": "Prospect",
-    "role_ai": "Assistant IA",
-    "status": {
-      "OPEN": "Ouverte",
-      "RESOLVED": "Résolue",
-      "CLOSED": "Fermée",
-      "ARCHIVED": "Archivée"
-    },
-    "placeholder": "Votre message...",
-    "input_hint": "Tapez un message... (Entrée pour envoyer, Shift+Entrée pour saut de ligne)",
-    "send": "Envoyer",
-    "resolved_banner": "Cette conversation est résolue."
-  },
-  "knowledge": {
-    "title": "Base de connaissances",
-    "new": "Nouvelle entrée",
-    "search": "Rechercher...",
-    "empty": "Aucune entrée dans la base de connaissances.",
-    "type": {
-      "TEXT": "Texte",
-      "URL": "URL",
-      "FAQ": "FAQ"
-    },
-    "status": {
-      "DRAFT": "Brouillon",
-      "ACTIVE": "Actif",
-      "ARCHIVED": "Archivé"
-    },
-    "form": {
-      "title": "Titre",
-      "title_placeholder": "Ex: Politique de retour",
-      "title_required": "Titre requis",
-      "title_maxlength": "255 caractères maximum",
-      "content": "Contenu",
-      "content_placeholder": "Saisissez le contenu que l'assistant devra connaître...",
-      "content_required": "Contenu requis",
-      "type": "Type de contenu",
-      "question": "Question",
-      "answer": "Réponse",
-      "url": "URL",
-      "save": "Enregistrer"
-    }
-  },
-  "subscriptions": {
-    "title": "Abonnement",
-    "subtitle": "Choisissez le plan qui correspond à vos besoins",
-    "current_plan": "Plan actuel",
-    "upgrade": "Passer au plan supérieur",
-    "monthly": "Mensuel",
-    "yearly": "Annuel",
-    "billed_monthly": "Facturé mensuellement",
-    "billed_yearly": "Facturé annuellement",
-    "save_yearly": "Économisez 2 mois",
-    "popular": "Populaire",
-    "free": "Gratuit",
-    "on_quote": "Sur devis",
-    "unlimited": "Illimité",
-    "per_month": "/ mois",
-    "per_year": "/ an",
-    "features": "Fonctionnalités",
-    "current": "Plan actuel",
-    "select": "Choisir ce plan",
-    "choose_plan": "Choisir ce plan",
-    "contact_us": "Nous contacter",
-    "contact_sales": "Contacter l'équipe commerciale",
-    "kb_entries": "entrées KB",
-    "users": "utilisateurs",
-    "plan_activated": "Plan {{name}} activé !",
-    "upgrade_error": "Erreur lors du changement de plan",
-    "redirecting_to_stripe": "Redirection vers le paiement sécurisé...",
-    "payment_success": "Paiement effectué ! Votre abonnement est maintenant actif.",
-    "payment_cancelled": "Paiement annulé. Votre plan n'a pas été modifié."
-  },
-  "onboarding": {
-    "title": "Démarrez avec BusinessPilot",
-    "subtitle": "Complétez ces 3 étapes pour tirer le meilleur de votre assistant IA",
-    "step1_title": "Base de connaissances",
-    "step1_desc": "Ajoutez une FAQ ou un document — c'est ce que l'IA utilisera pour répondre.",
-    "step1_cta": "Créer une entrée",
-    "step2_title": "Première conversation",
-    "step2_desc": "Testez votre assistant IA avec un client ou un scénario de test.",
-    "step2_cta": "Voir les conversations",
-    "step3_title": "Premier prospect",
-    "step3_desc": "Ajoutez un prospect et suivez votre pipeline commercial.",
-    "step3_cta": "Ajouter un prospect",
-    "done": "Terminé ✓",
-    "dismiss": "Fermer le guide",
-    "steps_done": "étapes complétées"
-  },
-  "settings": {
-    "ai": {
-      "title": "Paramètres IA",
-      "subtitle": "Personnalisez le comportement de votre assistant IA",
-      "system_prompt_label": "Instructions système",
-      "system_prompt_hint": "Définissez la personnalité, le ton et les règles de votre assistant. Laissez vide pour utiliser le prompt par défaut.",
-      "system_prompt_placeholder": "Ex: Tu es un assistant commercial pour [Entreprise]. Tu réponds toujours en français, avec un ton professionnel..."
-    },
-    "widget": {
-      "title": "Widget de chat",
-      "subtitle": "Intégrez un assistant IA sur votre site web",
-      "embed_code": "Code d'intégration",
-      "embed_hint": "Copiez ce code et collez-le avant la balise </body> de votre site.",
-      "token_label": "Token public du widget"
-    }
-  },
-  "admin": {
-    "title": "Administration plateforme",
-    "stats": {
-      "total_orgs": "Organisations totales",
-      "active_orgs": "actives",
-      "active": "actives",
-      "users": "Utilisateurs",
-      "subscriptions": "Abonnements"
-    },
-    "orgs_table": {
-      "title": "Organisations",
-      "name": "Nom",
-      "email": "Email",
-      "country": "Pays",
-      "plan": "Plan",
-      "status": "Statut",
-      "created": "Créée le",
-      "created_at": "Créée le",
-      "active": "Active",
-      "inactive": "Inactive"
-    }
-  },
-  "lang": {
-    "switch_to_en": "Switch to English",
-    "switch_to_fr": "Passer en français"
-  }
+﻿{
+    "common":  {
+                   "or":  "ou",
+                   "see_all":  "Voir tout",
+                   "retry":  "RÃ©essayer",
+                   "save":  "Enregistrer",
+                   "cancel":  "Annuler",
+                   "close":  "Fermer",
+                   "delete":  "Supprimer",
+                   "edit":  "Modifier",
+                   "create":  "CrÃ©er",
+                   "search":  "Rechercher",
+                   "loading":  "Chargement...",
+                   "empty":  "Aucun Ã©lÃ©ment",
+                   "error_load":  "Impossible de charger les donnÃ©es"
+               },
+    "auth":  {
+                 "login":  {
+                               "title":  "Connexion",
+                               "subtitle":  "AccÃ©dez Ã  votre espace BusinessPilot",
+                               "email_label":  "Email",
+                               "email_required":  "Email requis",
+                               "email_invalid":  "Email invalide",
+                               "password_label":  "Mot de passe",
+                               "password_required":  "Mot de passe requis",
+                               "submit":  "Se connecter",
+                               "google":  "Continuer avec Google",
+                               "no_account":  "Pas encore de compte ?",
+                               "create_account":  "CrÃ©er un compte",
+                               "error_default":  "Erreur de connexion"
+                           },
+                 "register":  {
+                                  "title":  "CrÃ©er votre compte",
+                                  "subtitle":  "Commencez gratuitement avec BusinessPilot",
+                                  "first_name":  "PrÃ©nom",
+                                  "first_name_required":  "PrÃ©nom requis",
+                                  "last_name":  "Nom",
+                                  "last_name_required":  "Nom requis",
+                                  "org_name":  "Nom de votre entreprise",
+                                  "org_name_required":  "Nom de l\u0027entreprise requis",
+                                  "email":  "Email professionnel",
+                                  "email_invalid":  "Email invalide",
+                                  "password":  "Mot de passe",
+                                  "password_min":  "8 caractÃ¨res minimum",
+                                  "submit":  "CrÃ©er mon compte",
+                                  "google":  "Continuer avec Google",
+                                  "has_account":  "DÃ©jÃ  un compte ?",
+                                  "sign_in":  "Se connecter",
+                                  "error_default":  "Erreur lors de la crÃ©ation du compte"
+                              }
+             },
+    "nav":  {
+                "dashboard":  "Tableau de bord",
+                "prospects":  "Prospects",
+                "conversations":  "Conversations",
+                "knowledge":  "Base de connaissances",
+                "subscriptions":  "Abonnement",
+                "admin":  "Administration",
+                "logout":  "DÃ©connexion",
+                "settings":  "ParamÃ¨tres",
+                "team":  "Équipe",
+                "webhooks":  "Webhooks"
+            },
+    "dashboard":  {
+                      "title":  "Tableau de bord",
+                      "subtitle":  "Vue d\u0027ensemble de votre activitÃ© commerciale",
+                      "error_load":  "Impossible de charger le tableau de bord.",
+                      "prospects_label":  "Prospects",
+                      "prospects_won":  "gagnÃ©s",
+                      "prospects_leads":  "leads",
+                      "conversations_open":  "Conversations ouvertes",
+                      "conversations_resolved":  "rÃ©solues",
+                      "conversations_total":  "total",
+                      "kb_active":  "EntrÃ©es KB actives",
+                      "kb_drafts":  "brouillons",
+                      "kb_total":  "total",
+                      "pipeline_title":  "Pipeline prospects",
+                      "recent_conversations":  "Conversations rÃ©centes",
+                      "recent_prospects":  "Prospects rÃ©cents",
+                      "no_conversations":  "Aucune conversation.",
+                      "no_prospects":  "Aucun prospect.",
+                      "anonymous":  "Anonyme",
+                      "funnel":  {
+                                     "LEAD":  "Lead",
+                                     "CONTACTED":  "ContactÃ©",
+                                     "QUALIFIED":  "QualifiÃ©",
+                                     "PROPOSAL":  "Proposition",
+                                     "CLOSED_WON":  "GagnÃ©",
+                                     "CLOSED_LOST":  "Perdu"
+                                 }
+                  },
+    "prospects":  {
+                      "title":  "Prospects",
+                      "new":  "Nouveau prospect",
+                      "search":  "Rechercher un prospect...",
+                      "empty":  "Aucun prospect pour l\u0027instant.",
+                      "status":  {
+                                     "LEAD":  "Lead",
+                                     "CONTACTED":  "ContactÃ©",
+                                     "QUALIFIED":  "QualifiÃ©",
+                                     "PROPOSAL":  "Proposition",
+                                     "CLOSED_WON":  "GagnÃ©",
+                                     "CLOSED_LOST":  "Perdu"
+                                 },
+                      "form":  {
+                                   "first_name":  "PrÃ©nom",
+                                   "last_name":  "Nom",
+                                   "email":  "Email",
+                                   "phone":  "TÃ©lÃ©phone",
+                                   "company":  "Entreprise",
+                                   "status":  "Statut",
+                                   "notes":  "Notes",
+                                   "save":  "Enregistrer"
+                               }
+                  },
+    "conversations":  {
+                          "title":  "Conversations",
+                          "new":  "Nouvelle conversation",
+                          "empty":  "Aucune conversation.",
+                          "empty_chat":  "Aucun message. Commencez la conversation ci-dessous.",
+                          "anonymous":  "Conversation anonyme",
+                          "role_prospect":  "Prospect",
+                          "role_ai":  "Assistant IA",
+                          "status":  {
+                                         "OPEN":  "Ouverte",
+                                         "RESOLVED":  "RÃ©solue",
+                                         "CLOSED":  "FermÃ©e",
+                                         "ARCHIVED":  "ArchivÃ©e"
+                                     },
+                          "placeholder":  "Votre message...",
+                          "input_hint":  "Tapez un message... (EntrÃ©e pour envoyer, Shift+EntrÃ©e pour saut de ligne)",
+                          "send":  "Envoyer",
+                          "resolved_banner":  "Cette conversation est rÃ©solue."
+                      },
+    "knowledge":  {
+                      "title":  "Base de connaissances",
+                      "new":  "Nouvelle entrÃ©e",
+                      "search":  "Rechercher...",
+                      "empty":  "Aucune entrÃ©e dans la base de connaissances.",
+                      "type":  {
+                                   "TEXT":  "Texte",
+                                   "URL":  "URL",
+                                   "FAQ":  "FAQ"
+                               },
+                      "status":  {
+                                     "DRAFT":  "Brouillon",
+                                     "ACTIVE":  "Actif",
+                                     "ARCHIVED":  "ArchivÃ©"
+                                 },
+                      "form":  {
+                                   "title":  "Titre",
+                                   "title_placeholder":  "Ex: Politique de retour",
+                                   "title_required":  "Titre requis",
+                                   "title_maxlength":  "255 caractÃ¨res maximum",
+                                   "content":  "Contenu",
+                                   "content_placeholder":  "Saisissez le contenu que l\u0027assistant devra connaÃ®tre...",
+                                   "content_required":  "Contenu requis",
+                                   "type":  "Type de contenu",
+                                   "question":  "Question",
+                                   "answer":  "RÃ©ponse",
+                                   "url":  "URL",
+                                   "save":  "Enregistrer"
+                               }
+                  },
+    "subscriptions":  {
+                          "title":  "Abonnement",
+                          "subtitle":  "Choisissez le plan qui correspond Ã  vos besoins",
+                          "current_plan":  "Plan actuel",
+                          "upgrade":  "Passer au plan supÃ©rieur",
+                          "monthly":  "Mensuel",
+                          "yearly":  "Annuel",
+                          "billed_monthly":  "FacturÃ© mensuellement",
+                          "billed_yearly":  "FacturÃ© annuellement",
+                          "save_yearly":  "Ã‰conomisez 2 mois",
+                          "popular":  "Populaire",
+                          "free":  "Gratuit",
+                          "on_quote":  "Sur devis",
+                          "unlimited":  "IllimitÃ©",
+                          "per_month":  "/ mois",
+                          "per_year":  "/ an",
+                          "features":  "FonctionnalitÃ©s",
+                          "current":  "Plan actuel",
+                          "select":  "Choisir ce plan",
+                          "choose_plan":  "Choisir ce plan",
+                          "contact_us":  "Nous contacter",
+                          "contact_sales":  "Contacter l\u0027Ã©quipe commerciale",
+                          "kb_entries":  "entrÃ©es KB",
+                          "users":  "utilisateurs",
+                          "plan_activated":  "Plan {{name}} activÃ© !",
+                          "upgrade_error":  "Erreur lors du changement de plan",
+                          "redirecting_to_stripe":  "Redirection vers le paiement sÃ©curisÃ©...",
+                          "payment_success":  "Paiement effectuÃ© ! Votre abonnement est maintenant actif.",
+                          "payment_cancelled":  "Paiement annulÃ©. Votre plan n\u0027a pas Ã©tÃ© modifiÃ©."
+                      },
+    "onboarding":  {
+                       "title":  "DÃ©marrez avec BusinessPilot",
+                       "subtitle":  "ComplÃ©tez ces 3 Ã©tapes pour tirer le meilleur de votre assistant IA",
+                       "step1_title":  "Base de connaissances",
+                       "step1_desc":  "Ajoutez une FAQ ou un document â€” c\u0027est ce que l\u0027IA utilisera pour rÃ©pondre.",
+                       "step1_cta":  "CrÃ©er une entrÃ©e",
+                       "step2_title":  "PremiÃ¨re conversation",
+                       "step2_desc":  "Testez votre assistant IA avec un client ou un scÃ©nario de test.",
+                       "step2_cta":  "Voir les conversations",
+                       "step3_title":  "Premier prospect",
+                       "step3_desc":  "Ajoutez un prospect et suivez votre pipeline commercial.",
+                       "step3_cta":  "Ajouter un prospect",
+                       "done":  "TerminÃ© âœ“",
+                       "dismiss":  "Fermer le guide",
+                       "steps_done":  "Ã©tapes complÃ©tÃ©es"
+                   },
+    "settings":  {
+                     "ai":  {
+                                "title":  "ParamÃ¨tres IA",
+                                "subtitle":  "Personnalisez le comportement de votre assistant IA",
+                                "system_prompt_label":  "Instructions systÃ¨me",
+                                "system_prompt_hint":  "DÃ©finissez la personnalitÃ©, le ton et les rÃ¨gles de votre assistant. Laissez vide pour utiliser le prompt par dÃ©faut.",
+                                "system_prompt_placeholder":  "Ex: Tu es un assistant commercial pour [Entreprise]. Tu rÃ©ponds toujours en franÃ§ais, avec un ton professionnel..."
+                            },
+                     "widget":  {
+                                    "title":  "Widget de chat",
+                                    "subtitle":  "IntÃ©grez un assistant IA sur votre site web",
+                                    "embed_code":  "Code d\u0027intÃ©gration",
+                                    "embed_hint":  "Copiez ce code et collez-le avant la balise \u003c/body\u003e de votre site.",
+                                    "token_label":  "Token public du widget"
+                                },
+                     "team":  {
+                                  "title":  "Equipe",
+                                  "subtitle":  "Invitez des collaborateurs",
+                                  "members_title":  "Membres",
+                                  "invitations_title":  "Invitations en attente",
+                                  "invite_btn":  "Inviter",
+                                  "invite_email":  "Email",
+                                  "invite_role":  "Role",
+                                  "invite_send":  "Envoyer",
+                                  "invite_success":  "Invitation envoyee",
+                                  "role_OWNER":  "Proprietaire",
+                                  "role_ADMIN":  "Admin",
+                                  "role_MEMBER":  "Membre",
+                                  "role_VIEWER":  "Lecteur",
+                                  "remove":  "Retirer",
+                                  "cancel_invite":  "Annuler",
+                                  "expires":  "Expire le",
+                                  "empty_members":  "Aucun membre",
+                                  "empty_invites":  "Aucune invitation en attente"
+                              },
+                     "webhooks":  {
+                                      "title":  "Webhooks",
+                                      "subtitle":  "Notifications evenements",
+                                      "add_btn":  "Ajouter",
+                                      "url_label":  "URL de destination",
+                                      "events_label":  "Evenements (vide = tous)",
+                                      "events_placeholder":  "conversation.message.created, ...",
+                                      "secret_label":  "Secret",
+                                      "active_label":  "Actif",
+                                      "save":  "Enregistrer",
+                                      "delete":  "Supprimer",
+                                      "empty":  "Aucun webhook configure",
+                                      "created":  "Webhook cree",
+                                      "deleted":  "Webhook supprime"
+                                  }
+                 },
+    "admin":  {
+                  "title":  "Administration plateforme",
+                  "stats":  {
+                                "total_orgs":  "Organisations totales",
+                                "active_orgs":  "actives",
+                                "active":  "actives",
+                                "users":  "Utilisateurs",
+                                "subscriptions":  "Abonnements"
+                            },
+                  "orgs_table":  {
+                                     "title":  "Organisations",
+                                     "name":  "Nom",
+                                     "email":  "Email",
+                                     "country":  "Pays",
+                                     "plan":  "Plan",
+                                     "status":  "Statut",
+                                     "created":  "CrÃ©Ã©e le",
+                                     "created_at":  "CrÃ©Ã©e le",
+                                     "active":  "Active",
+                                     "inactive":  "Inactive"
+                                 }
+              },
+    "lang":  {
+                 "switch_to_en":  "Switch to English",
+                 "switch_to_fr":  "Passer en franÃ§ais"
+             },
+    "invite":  {
+                   "title":  "Rejoindre l\u0027organisation",
+                   "invited_you":  "vous invite (",
+                   "as_role":  ") avec le rôle",
+                   "accept_btn":  "Accepter l\u0027invitation",
+                   "must_be_logged":  "Vous devez être connecté pour accepter.",
+                   "accepted_title":  "Invitation acceptée !",
+                   "accepted_msg":  "Vous êtes maintenant membre de l\u0027organisation.",
+                   "go_home":  "Accueil",
+                   "go_login":  "Se connecter",
+                   "error_title":  "Lien invalide"
+               }
 }

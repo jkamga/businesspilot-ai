@@ -11,6 +11,7 @@ import com.businesspilot.module.conversations.domain.MessageRole;
 import com.businesspilot.module.conversations.dto.*;
 import com.businesspilot.module.conversations.repository.ConversationRepository;
 import com.businesspilot.module.conversations.repository.MessageRepository;
+import com.businesspilot.module.webhooks.service.WebhookService;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
@@ -28,15 +29,18 @@ public class ConversationService {
     private final MessageRepository messageRepo;
     private final AiService aiService;
     private final PlanLimitService planLimitService;
+    private final WebhookService webhookService;
 
     public ConversationService(ConversationRepository conversationRepo,
                                MessageRepository messageRepo,
                                AiService aiService,
-                               PlanLimitService planLimitService) {
+                               PlanLimitService planLimitService,
+                               WebhookService webhookService) {
         this.conversationRepo = conversationRepo;
         this.messageRepo = messageRepo;
         this.aiService = aiService;
         this.planLimitService = planLimitService;
+        this.webhookService = webhookService;
     }
 
     @Transactional(readOnly = true)
@@ -95,6 +99,10 @@ public class ConversationService {
         aiMsg.setRole(MessageRole.ASSISTANT);
         aiMsg.setContent(aiText);
         messageRepo.save(aiMsg);
+
+        webhookService.dispatch(orgId, "conversation.message.created",
+            java.util.Map.of("conversationId", conversationId.toString(),
+                "role", "ASSISTANT", "content", aiText));
 
         return List.of(MessageResponse.from(userMsg), MessageResponse.from(aiMsg));
     }

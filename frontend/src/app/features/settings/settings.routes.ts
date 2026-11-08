@@ -13,5 +13,13 @@ export const SETTINGS_ROUTES: Routes = [
   {
     path: 'widget',
     loadComponent: () => import('./widget-settings/widget-settings.component').then(m => m.WidgetSettingsComponent)
+  },
+  {
+    path: 'team',
+    loadComponent: () => import('./team-settings/team-settings.component').then(m => m.TeamSettingsComponent)
+  },
+  {
+    path: 'webhooks',
+    loadComponent: () => import('./webhook-settings/webhook-settings.component').then(m => m.WebhookSettingsComponent)
   }
 ];

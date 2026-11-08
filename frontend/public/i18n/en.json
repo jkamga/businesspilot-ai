@@ -1,251 +1,300 @@
-{
-  "common": {
-    "or": "or",
-    "see_all": "See all",
-    "retry": "Retry",
-    "save": "Save",
-    "cancel": "Cancel",
-    "close": "Close",
-    "delete": "Delete",
-    "edit": "Edit",
-    "create": "Create",
-    "search": "Search",
-    "loading": "Loading...",
-    "empty": "No items",
-    "error_load": "Unable to load data"
-  },
-  "auth": {
-    "login": {
-      "title": "Sign in",
-      "subtitle": "Access your BusinessPilot workspace",
-      "email_label": "Email",
-      "email_required": "Email is required",
-      "email_invalid": "Invalid email",
-      "password_label": "Password",
-      "password_required": "Password is required",
-      "submit": "Sign in",
-      "google": "Continue with Google",
-      "no_account": "Don't have an account?",
-      "create_account": "Create an account",
-      "error_default": "Sign-in error"
-    },
-    "register": {
-      "title": "Create your account",
-      "subtitle": "Get started for free with BusinessPilot",
-      "first_name": "First name",
-      "first_name_required": "First name is required",
-      "last_name": "Last name",
-      "last_name_required": "Last name is required",
-      "org_name": "Company name",
-      "org_name_required": "Company name is required",
-      "email": "Professional email",
-      "email_invalid": "Invalid email",
-      "password": "Password",
-      "password_min": "Minimum 8 characters",
-      "submit": "Create my account",
-      "google": "Continue with Google",
-      "has_account": "Already have an account?",
-      "sign_in": "Sign in",
-      "error_default": "Account creation error"
-    }
-  },
-  "nav": {
-    "dashboard": "Dashboard",
-    "prospects": "Prospects",
-    "conversations": "Conversations",
-    "knowledge": "Knowledge base",
-    "subscriptions": "Subscription",
-    "admin": "Administration",
-    "logout": "Sign out",
-    "settings": "Settings"
-  },
-  "dashboard": {
-    "title": "Dashboard",
-    "subtitle": "Overview of your business activity",
-    "error_load": "Unable to load dashboard.",
-    "prospects_label": "Prospects",
-    "prospects_won": "won",
-    "prospects_leads": "leads",
-    "conversations_open": "Open conversations",
-    "conversations_resolved": "resolved",
-    "conversations_total": "total",
-    "kb_active": "Active KB entries",
-    "kb_drafts": "drafts",
-    "kb_total": "total",
-    "pipeline_title": "Prospect pipeline",
-    "recent_conversations": "Recent conversations",
-    "recent_prospects": "Recent prospects",
-    "no_conversations": "No conversations yet.",
-    "no_prospects": "No prospects yet.",
-    "anonymous": "Anonymous",
-    "funnel": {
-      "LEAD": "Lead",
-      "CONTACTED": "Contacted",
-      "QUALIFIED": "Qualified",
-      "PROPOSAL": "Proposal",
-      "CLOSED_WON": "Won",
-      "CLOSED_LOST": "Lost"
-    }
-  },
-  "prospects": {
-    "title": "Prospects",
-    "new": "New prospect",
-    "search": "Search a prospect...",
-    "empty": "No prospects yet.",
-    "status": {
-      "LEAD": "Lead",
-      "CONTACTED": "Contacted",
-      "QUALIFIED": "Qualified",
-      "PROPOSAL": "Proposal",
-      "CLOSED_WON": "Won",
-      "CLOSED_LOST": "Lost"
-    },
-    "form": {
-      "first_name": "First name",
-      "last_name": "Last name",
-      "email": "Email",
-      "phone": "Phone",
-      "company": "Company",
-      "status": "Status",
-      "notes": "Notes",
-      "save": "Save"
-    }
-  },
-  "conversations": {
-    "title": "Conversations",
-    "new": "New conversation",
-    "empty": "No conversations yet.",
-    "empty_chat": "No messages yet. Start the conversation below.",
-    "anonymous": "Anonymous conversation",
-    "role_prospect": "Prospect",
-    "role_ai": "AI Assistant",
-    "status": {
-      "OPEN": "Open",
-      "RESOLVED": "Resolved",
-      "CLOSED": "Closed",
-      "ARCHIVED": "Archived"
-    },
-    "placeholder": "Your message...",
-    "input_hint": "Type a message... (Enter to send, Shift+Enter for new line)",
-    "send": "Send",
-    "resolved_banner": "This conversation is resolved."
-  },
-  "knowledge": {
-    "title": "Knowledge base",
-    "new": "New entry",
-    "search": "Search...",
-    "empty": "No entries in the knowledge base.",
-    "type": {
-      "TEXT": "Text",
-      "URL": "URL",
-      "FAQ": "FAQ"
-    },
-    "status": {
-      "DRAFT": "Draft",
-      "ACTIVE": "Active",
-      "ARCHIVED": "Archived"
-    },
-    "form": {
-      "title": "Title",
-      "title_placeholder": "E.g.: Return policy",
-      "title_required": "Title is required",
-      "title_maxlength": "255 characters maximum",
-      "content": "Content",
-      "content_placeholder": "Enter the content the assistant should know...",
-      "content_required": "Content is required",
-      "type": "Content type",
-      "question": "Question",
-      "answer": "Answer",
-      "url": "URL",
-      "save": "Save"
-    }
-  },
-  "subscriptions": {
-    "title": "Subscription",
-    "subtitle": "Choose the plan that fits your needs",
-    "current_plan": "Current plan",
-    "upgrade": "Upgrade",
-    "monthly": "Monthly",
-    "yearly": "Yearly",
-    "billed_monthly": "Billed monthly",
-    "billed_yearly": "Billed annually",
-    "save_yearly": "Save 2 months",
-    "popular": "Popular",
-    "free": "Free",
-    "on_quote": "Custom pricing",
-    "unlimited": "Unlimited",
-    "per_month": "/ month",
-    "per_year": "/ year",
-    "features": "Features",
-    "current": "Current plan",
-    "select": "Choose this plan",
-    "choose_plan": "Choose this plan",
-    "contact_us": "Contact us",
-    "contact_sales": "Contact sales",
-    "kb_entries": "KB entries",
-    "users": "users",
-    "plan_activated": "Plan {{name}} activated!",
-    "upgrade_error": "Error switching plan",
-    "redirecting_to_stripe": "Redirecting to secure payment...",
-    "payment_success": "Payment successful! Your subscription is now active.",
-    "payment_cancelled": "Payment cancelled. Your plan was not changed."
-  },
-  "onboarding": {
-    "title": "Get started with BusinessPilot",
-    "subtitle": "Complete these 3 steps to get the most out of your AI assistant",
-    "step1_title": "Knowledge Base",
-    "step1_desc": "Add a FAQ or document — this is what the AI will use to answer questions.",
-    "step1_cta": "Create an entry",
-    "step2_title": "First conversation",
-    "step2_desc": "Test your AI assistant with a customer or a test scenario.",
-    "step2_cta": "View conversations",
-    "step3_title": "First prospect",
-    "step3_desc": "Add a prospect and start tracking your sales pipeline.",
-    "step3_cta": "Add a prospect",
-    "done": "Done ✓",
-    "dismiss": "Close guide",
-    "steps_done": "steps completed"
-  },
-  "settings": {
-    "ai": {
-      "title": "AI Settings",
-      "subtitle": "Customize your AI assistant's behavior",
-      "system_prompt_label": "System instructions",
-      "system_prompt_hint": "Define your assistant's personality, tone and business rules. Leave empty to use the default prompt.",
-      "system_prompt_placeholder": "E.g.: You are a sales assistant for [Company]. Always reply in English with a professional tone..."
-    },
-    "widget": {
-      "title": "Chat Widget",
-      "subtitle": "Embed an AI assistant on your website",
-      "embed_code": "Embed code",
-      "embed_hint": "Copy this snippet and paste it before the </body> tag on your site.",
-      "token_label": "Widget public token"
-    }
-  },
-  "admin": {
-    "title": "Platform administration",
-    "stats": {
-      "total_orgs": "Total organizations",
-      "active_orgs": "active",
-      "active": "active",
-      "users": "Users",
-      "subscriptions": "Subscriptions"
-    },
-    "orgs_table": {
-      "title": "Organizations",
-      "name": "Name",
-      "email": "Email",
-      "country": "Country",
-      "plan": "Plan",
-      "status": "Status",
-      "created": "Created",
-      "created_at": "Created",
-      "active": "Active",
-      "inactive": "Inactive"
-    }
-  },
-  "lang": {
-    "switch_to_en": "Switch to English",
-    "switch_to_fr": "Passer en français"
-  }
+﻿{
+    "common":  {
+                   "or":  "or",
+                   "see_all":  "See all",
+                   "retry":  "Retry",
+                   "save":  "Save",
+                   "cancel":  "Cancel",
+                   "close":  "Close",
+                   "delete":  "Delete",
+                   "edit":  "Edit",
+                   "create":  "Create",
+                   "search":  "Search",
+                   "loading":  "Loading...",
+                   "empty":  "No items",
+                   "error_load":  "Unable to load data"
+               },
+    "auth":  {
+                 "login":  {
+                               "title":  "Sign in",
+                               "subtitle":  "Access your BusinessPilot workspace",
+                               "email_label":  "Email",
+                               "email_required":  "Email is required",
+                               "email_invalid":  "Invalid email",
+                               "password_label":  "Password",
+                               "password_required":  "Password is required",
+                               "submit":  "Sign in",
+                               "google":  "Continue with Google",
+                               "no_account":  "Don\u0027t have an account?",
+                               "create_account":  "Create an account",
+                               "error_default":  "Sign-in error"
+                           },
+                 "register":  {
+                                  "title":  "Create your account",
+                                  "subtitle":  "Get started for free with BusinessPilot",
+                                  "first_name":  "First name",
+                                  "first_name_required":  "First name is required",
+                                  "last_name":  "Last name",
+                                  "last_name_required":  "Last name is required",
+                                  "org_name":  "Company name",
+                                  "org_name_required":  "Company name is required",
+                                  "email":  "Professional email",
+                                  "email_invalid":  "Invalid email",
+                                  "password":  "Password",
+                                  "password_min":  "Minimum 8 characters",
+                                  "submit":  "Create my account",
+                                  "google":  "Continue with Google",
+                                  "has_account":  "Already have an account?",
+                                  "sign_in":  "Sign in",
+                                  "error_default":  "Account creation error"
+                              }
+             },
+    "nav":  {
+                "dashboard":  "Dashboard",
+                "prospects":  "Prospects",
+                "conversations":  "Conversations",
+                "knowledge":  "Knowledge base",
+                "subscriptions":  "Subscription",
+                "admin":  "Administration",
+                "logout":  "Sign out",
+                "settings":  "Settings",
+                "team":  "Team",
+                "webhooks":  "Webhooks"
+            },
+    "dashboard":  {
+                      "title":  "Dashboard",
+                      "subtitle":  "Overview of your business activity",
+                      "error_load":  "Unable to load dashboard.",
+                      "prospects_label":  "Prospects",
+                      "prospects_won":  "won",
+                      "prospects_leads":  "leads",
+                      "conversations_open":  "Open conversations",
+                      "conversations_resolved":  "resolved",
+                      "conversations_total":  "total",
+                      "kb_active":  "Active KB entries",
+                      "kb_drafts":  "drafts",
+                      "kb_total":  "total",
+                      "pipeline_title":  "Prospect pipeline",
+                      "recent_conversations":  "Recent conversations",
+                      "recent_prospects":  "Recent prospects",
+                      "no_conversations":  "No conversations yet.",
+                      "no_prospects":  "No prospects yet.",
+                      "anonymous":  "Anonymous",
+                      "funnel":  {
+                                     "LEAD":  "Lead",
+                                     "CONTACTED":  "Contacted",
+                                     "QUALIFIED":  "Qualified",
+                                     "PROPOSAL":  "Proposal",
+                                     "CLOSED_WON":  "Won",
+                                     "CLOSED_LOST":  "Lost"
+                                 }
+                  },
+    "prospects":  {
+                      "title":  "Prospects",
+                      "new":  "New prospect",
+                      "search":  "Search a prospect...",
+                      "empty":  "No prospects yet.",
+                      "status":  {
+                                     "LEAD":  "Lead",
+                                     "CONTACTED":  "Contacted",
+                                     "QUALIFIED":  "Qualified",
+                                     "PROPOSAL":  "Proposal",
+                                     "CLOSED_WON":  "Won",
+                                     "CLOSED_LOST":  "Lost"
+                                 },
+                      "form":  {
+                                   "first_name":  "First name",
+                                   "last_name":  "Last name",
+                                   "email":  "Email",
+                                   "phone":  "Phone",
+                                   "company":  "Company",
+                                   "status":  "Status",
+                                   "notes":  "Notes",
+                                   "save":  "Save"
+                               }
+                  },
+    "conversations":  {
+                          "title":  "Conversations",
+                          "new":  "New conversation",
+                          "empty":  "No conversations yet.",
+                          "empty_chat":  "No messages yet. Start the conversation below.",
+                          "anonymous":  "Anonymous conversation",
+                          "role_prospect":  "Prospect",
+                          "role_ai":  "AI Assistant",
+                          "status":  {
+                                         "OPEN":  "Open",
+                                         "RESOLVED":  "Resolved",
+                                         "CLOSED":  "Closed",
+                                         "ARCHIVED":  "Archived"
+                                     },
+                          "placeholder":  "Your message...",
+                          "input_hint":  "Type a message... (Enter to send, Shift+Enter for new line)",
+                          "send":  "Send",
+                          "resolved_banner":  "This conversation is resolved."
+                      },
+    "knowledge":  {
+                      "title":  "Knowledge base",
+                      "new":  "New entry",
+                      "search":  "Search...",
+                      "empty":  "No entries in the knowledge base.",
+                      "type":  {
+                                   "TEXT":  "Text",
+                                   "URL":  "URL",
+                                   "FAQ":  "FAQ"
+                               },
+                      "status":  {
+                                     "DRAFT":  "Draft",
+                                     "ACTIVE":  "Active",
+                                     "ARCHIVED":  "Archived"
+                                 },
+                      "form":  {
+                                   "title":  "Title",
+                                   "title_placeholder":  "E.g.: Return policy",
+                                   "title_required":  "Title is required",
+                                   "title_maxlength":  "255 characters maximum",
+                                   "content":  "Content",
+                                   "content_placeholder":  "Enter the content the assistant should know...",
+                                   "content_required":  "Content is required",
+                                   "type":  "Content type",
+                                   "question":  "Question",
+                                   "answer":  "Answer",
+                                   "url":  "URL",
+                                   "save":  "Save"
+                               }
+                  },
+    "subscriptions":  {
+                          "title":  "Subscription",
+                          "subtitle":  "Choose the plan that fits your needs",
+                          "current_plan":  "Current plan",
+                          "upgrade":  "Upgrade",
+                          "monthly":  "Monthly",
+                          "yearly":  "Yearly",
+                          "billed_monthly":  "Billed monthly",
+                          "billed_yearly":  "Billed annually",
+                          "save_yearly":  "Save 2 months",
+                          "popular":  "Popular",
+                          "free":  "Free",
+                          "on_quote":  "Custom pricing",
+                          "unlimited":  "Unlimited",
+                          "per_month":  "/ month",
+                          "per_year":  "/ year",
+                          "features":  "Features",
+                          "current":  "Current plan",
+                          "select":  "Choose this plan",
+                          "choose_plan":  "Choose this plan",
+                          "contact_us":  "Contact us",
+                          "contact_sales":  "Contact sales",
+                          "kb_entries":  "KB entries",
+                          "users":  "users",
+                          "plan_activated":  "Plan {{name}} activated!",
+                          "upgrade_error":  "Error switching plan",
+                          "redirecting_to_stripe":  "Redirecting to secure payment...",
+                          "payment_success":  "Payment successful! Your subscription is now active.",
+                          "payment_cancelled":  "Payment cancelled. Your plan was not changed."
+                      },
+    "onboarding":  {
+                       "title":  "Get started with BusinessPilot",
+                       "subtitle":  "Complete these 3 steps to get the most out of your AI assistant",
+                       "step1_title":  "Knowledge Base",
+                       "step1_desc":  "Add a FAQ or document â€” this is what the AI will use to answer questions.",
+                       "step1_cta":  "Create an entry",
+                       "step2_title":  "First conversation",
+                       "step2_desc":  "Test your AI assistant with a customer or a test scenario.",
+                       "step2_cta":  "View conversations",
+                       "step3_title":  "First prospect",
+                       "step3_desc":  "Add a prospect and start tracking your sales pipeline.",
+                       "step3_cta":  "Add a prospect",
+                       "done":  "Done âœ“",
+                       "dismiss":  "Close guide",
+                       "steps_done":  "steps completed"
+                   },
+    "settings":  {
+                     "ai":  {
+                                "title":  "AI Settings",
+                                "subtitle":  "Customize your AI assistant\u0027s behavior",
+                                "system_prompt_label":  "System instructions",
+                                "system_prompt_hint":  "Define your assistant\u0027s personality, tone and business rules. Leave empty to use the default prompt.",
+                                "system_prompt_placeholder":  "E.g.: You are a sales assistant for [Company]. Always reply in English with a professional tone..."
+                            },
+                     "widget":  {
+                                    "title":  "Chat Widget",
+                                    "subtitle":  "Embed an AI assistant on your website",
+                                    "embed_code":  "Embed code",
+                                    "embed_hint":  "Copy this snippet and paste it before the \u003c/body\u003e tag on your site.",
+                                    "token_label":  "Widget public token"
+                                },
+                     "team":  {
+                                  "title":  "Team",
+                                  "subtitle":  "Invite collaborators",
+                                  "members_title":  "Members",
+                                  "invitations_title":  "Pending invitations",
+                                  "invite_btn":  "Invite",
+                                  "invite_email":  "Email",
+                                  "invite_role":  "Role",
+                                  "invite_send":  "Send invitation",
+                                  "invite_success":  "Invitation sent",
+                                  "role_OWNER":  "Owner",
+                                  "role_ADMIN":  "Admin",
+                                  "role_MEMBER":  "Member",
+                                  "role_VIEWER":  "Viewer",
+                                  "remove":  "Remove",
+                                  "cancel_invite":  "Cancel",
+                                  "expires":  "Expires",
+                                  "empty_members":  "No members",
+                                  "empty_invites":  "No pending invitations"
+                              },
+                     "webhooks":  {
+                                      "title":  "Webhooks",
+                                      "subtitle":  "Receive notifications when events occur",
+                                      "add_btn":  "Add webhook",
+                                      "url_label":  "Destination URL",
+                                      "events_label":  "Events (leave empty = all)",
+                                      "events_placeholder":  "conversation.message.created, ...",
+                                      "secret_label":  "Signing secret",
+                                      "active_label":  "Active",
+                                      "save":  "Save",
+                                      "delete":  "Delete",
+                                      "empty":  "No webhooks configured",
+                                      "created":  "Webhook created",
+                                      "deleted":  "Webhook deleted"
+                                  }
+                 },
+    "admin":  {
+                  "title":  "Platform administration",
+                  "stats":  {
+                                "total_orgs":  "Total organizations",
+                                "active_orgs":  "active",
+                                "active":  "active",
+                                "users":  "Users",
+                                "subscriptions":  "Subscriptions"
+                            },
+                  "orgs_table":  {
+                                     "title":  "Organizations",
+                                     "name":  "Name",
+                                     "email":  "Email",
+                                     "country":  "Country",
+                                     "plan":  "Plan",
+                                     "status":  "Status",
+                                     "created":  "Created",
+                                     "created_at":  "Created",
+                                     "active":  "Active",
+                                     "inactive":  "Inactive"
+                                 }
+              },
+    "lang":  {
+                 "switch_to_en":  "Switch to English",
+                 "switch_to_fr":  "Passer en franÃ§ais"
+             },
+    "invite":  {
+                   "title":  "Join the organization",
+                   "invited_you":  "invites you (",
+                   "as_role":  ") as",
+                   "accept_btn":  "Accept invitation",
+                   "must_be_logged":  "You must be logged in to accept.",
+                   "accepted_title":  "Invitation accepted!",
+                   "accepted_msg":  "You are now a member of the organization.",
+                   "go_home":  "Go to dashboard",
+                   "go_login":  "Sign in",
+                   "error_title":  "Invalid link"
+               }
 }
