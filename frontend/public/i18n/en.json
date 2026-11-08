@@ -115,13 +115,20 @@
     "title": "Conversations",
     "new": "New conversation",
     "empty": "No conversations yet.",
+    "empty_chat": "No messages yet. Start the conversation below.",
+    "anonymous": "Anonymous conversation",
+    "role_prospect": "Prospect",
+    "role_ai": "AI Assistant",
     "status": {
       "OPEN": "Open",
       "RESOLVED": "Resolved",
-      "CLOSED": "Closed"
+      "CLOSED": "Closed",
+      "ARCHIVED": "Archived"
     },
     "placeholder": "Your message...",
-    "send": "Send"
+    "input_hint": "Type a message... (Enter to send, Shift+Enter for new line)",
+    "send": "Send",
+    "resolved_banner": "This conversation is resolved."
   },
   "knowledge": {
     "title": "Knowledge base",

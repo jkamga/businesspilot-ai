@@ -115,13 +115,20 @@
     "title": "Conversations",
     "new": "Nouvelle conversation",
     "empty": "Aucune conversation.",
+    "empty_chat": "Aucun message. Commencez la conversation ci-dessous.",
+    "anonymous": "Conversation anonyme",
+    "role_prospect": "Prospect",
+    "role_ai": "Assistant IA",
     "status": {
       "OPEN": "Ouverte",
       "RESOLVED": "Résolue",
-      "CLOSED": "Fermée"
+      "CLOSED": "Fermée",
+      "ARCHIVED": "Archivée"
     },
     "placeholder": "Votre message...",
-    "send": "Envoyer"
+    "input_hint": "Tapez un message... (Entrée pour envoyer, Shift+Entrée pour saut de ligne)",
+    "send": "Envoyer",
+    "resolved_banner": "Cette conversation est résolue."
   },
   "knowledge": {
     "title": "Base de connaissances",

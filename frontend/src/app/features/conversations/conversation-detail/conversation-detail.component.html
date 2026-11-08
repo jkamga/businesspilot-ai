@@ -5,13 +5,13 @@
     </a>
     @if (detail()) {
       <div class="header-info">
-        <span class="prospect-name">{{ detail()!.conversation.prospectName ?? 'Conversation anonyme' }}</span>
+        <span class="prospect-name">{{ detail()!.conversation.prospectName ?? ('conversations.anonymous' | translate) }}</span>
         @if (detail()!.conversation.prospectEmail) {
           <span class="prospect-email">{{ detail()!.conversation.prospectEmail }}</span>
         }
       </div>
       <mat-chip [color]="detail()!.conversation.status === 'OPEN' ? 'primary' : 'default'" highlighted>
-        {{ detail()!.conversation.status }}
+        {{ 'conversations.status.' + detail()!.conversation.status | translate }}
       </mat-chip>
     }
   </div>
@@ -22,13 +22,15 @@
     } @else if (detail()!.messages.length === 0) {
       <div class="empty-messages">
         <mat-icon>chat</mat-icon>
-        <p>Aucun message. Commencez la conversation ci-dessous.</p>
+        <p>{{ 'conversations.empty_chat' | translate }}</p>
       </div>
     } @else {
       @for (msg of detail()!.messages; track msg.id) {
         <div class="message-row" [class.user-row]="isUser(msg)" [class.ai-row]="!isUser(msg)">
           <div class="message-bubble" [class.user-bubble]="isUser(msg)" [class.ai-bubble]="!isUser(msg)">
-            <div class="bubble-role">{{ isUser(msg) ? 'Prospect' : 'Assistant IA' }}</div>
+            <div class="bubble-role">
+              {{ (isUser(msg) ? 'conversations.role_prospect' : 'conversations.role_ai') | translate }}
+            </div>
             <div class="bubble-content">{{ msg.content }}</div>
             <div class="bubble-time">{{ msg.createdAt | date:'HH:mm' }}</div>
           </div>
@@ -41,10 +43,10 @@
   <div class="input-area">
     @if (detail()?.conversation?.status === 'OPEN') {
       <mat-form-field appearance="outline" class="message-field">
-        <mat-label>Votre message</mat-label>
+        <mat-label>{{ 'conversations.placeholder' | translate }}</mat-label>
         <textarea matInput [formControl]="messageCtrl" rows="2"
                   (keydown)="onKeydown($event)"
-                  placeholder="Tapez un message... (Entrée pour envoyer, Shift+Entrée pour saut de ligne)"></textarea>
+                  [placeholder]="'conversations.input_hint' | translate"></textarea>
       </mat-form-field>
       <button mat-fab color="primary" (click)="sendMessage()" [disabled]="sending() || messageCtrl.invalid">
         @if (sending()) {
@@ -56,7 +58,7 @@
     } @else {
       <div class="resolved-banner">
         <mat-icon>check_circle</mat-icon>
-        Cette conversation est résolue.
+        {{ 'conversations.resolved_banner' | translate }}
       </div>
     }
   </div>

@@ -8,13 +8,14 @@ import { MatInputModule } from '@angular/material/input';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatChipsModule } from '@angular/material/chips';
 import { DatePipe } from '@angular/common';
+import { TranslateModule } from '@ngx-translate/core';
 import { ConversationsService, ConversationDetail, Message } from '../conversations.service';
 
 @Component({
   selector: 'bp-conversation-detail',
   standalone: true,
   imports: [
-    RouterLink, DatePipe, ReactiveFormsModule,
+    RouterLink, DatePipe, ReactiveFormsModule, TranslateModule,
     MatButtonModule, MatIconModule, MatFormFieldModule, MatInputModule,
     MatProgressSpinnerModule, MatChipsModule
   ],
