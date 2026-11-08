@@ -43,6 +43,9 @@ public class User {
     @Column(nullable = false)
     private boolean active;
 
+    @Column(name = "is_super_admin", nullable = false)
+    private boolean superAdmin;
+
     @CreatedDate
     @Column(name = "created_at", updatable = false, nullable = false)
     private Instant createdAt;

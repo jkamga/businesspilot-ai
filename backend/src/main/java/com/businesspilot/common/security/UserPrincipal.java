@@ -19,11 +19,14 @@ public class UserPrincipal implements UserDetails {
     private final UUID orgId;
     private final String role;
     private final boolean onboardingRequired;
+    private final boolean superAdmin;
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        if (role == null) return List.of();
-        return List.of(new SimpleGrantedAuthority("ROLE_" + role));
+        var authorities = new java.util.ArrayList<GrantedAuthority>();
+        if (role != null) authorities.add(new SimpleGrantedAuthority("ROLE_" + role));
+        if (superAdmin) authorities.add(new SimpleGrantedAuthority("ROLE_SUPER_ADMIN"));
+        return authorities;
     }
 
     @Override

@@ -133,6 +133,7 @@ public class AuthService {
             .orgId(orgId)
             .role(role != null ? role.name() : null)
             .onboardingRequired(onboardingRequired)
+            .superAdmin(user.isSuperAdmin())
             .build();
 
         String accessToken = jwtService.generateAccessToken(principal);
@@ -156,7 +157,8 @@ public class AuthService {
             user.getLastName(),
             orgId,
             role != null ? role.name() : null,
-            onboardingRequired
+            onboardingRequired,
+            user.isSuperAdmin()
         );
     }
 

@@ -37,6 +37,7 @@ public class JwtAuthFilter extends OncePerRequestFilter {
                 String email = jwtService.extractEmail(token);
                 UUID orgId = jwtService.extractOrgId(token);
                 String role = jwtService.extractRole(token);
+                boolean superAdmin = jwtService.extractSuperAdmin(token);
 
                 UserPrincipal principal = UserPrincipal.builder()
                     .userId(userId)
@@ -44,6 +45,7 @@ public class JwtAuthFilter extends OncePerRequestFilter {
                     .orgId(orgId)
                     .role(role)
                     .onboardingRequired(false)
+                    .superAdmin(superAdmin)
                     .build();
 
                 var auth = new UsernamePasswordAuthenticationToken(

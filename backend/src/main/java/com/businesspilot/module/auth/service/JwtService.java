@@ -36,6 +36,7 @@ public class JwtService {
             .claim("orgId", principal.getOrgId() != null ? principal.getOrgId().toString() : null)
             .claim("role", principal.getRole())
             .claim("onboardingRequired", principal.isOnboardingRequired())
+            .claim("superAdmin", principal.isSuperAdmin())
             .issuedAt(new Date())
             .expiration(new Date(System.currentTimeMillis() + expiryMs))
             .signWith(secretKey)
@@ -80,5 +81,10 @@ public class JwtService {
 
     public String extractRole(String token) {
         return extractAllClaims(token).get("role", String.class);
+    }
+
+    public boolean extractSuperAdmin(String token) {
+        Boolean val = extractAllClaims(token).get("superAdmin", Boolean.class);
+        return Boolean.TRUE.equals(val);
     }
 }

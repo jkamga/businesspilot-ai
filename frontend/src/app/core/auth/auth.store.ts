@@ -7,6 +7,7 @@ export interface AuthUser {
   lastName: string;
   organizationId: string;
   role: string;
+  superAdmin?: boolean;
 }
 
 @Injectable({ providedIn: 'root' })
@@ -21,6 +22,7 @@ export class AuthStore {
   readonly token = this._token.asReadonly();
   readonly user = this._user.asReadonly();
   readonly isAuthenticated = computed(() => !!this._token());
+  readonly isSuperAdmin = computed(() => this._user()?.superAdmin ?? false);
 
   setAuth(token: string, user: AuthUser): void {
     localStorage.setItem('bp_token', token);

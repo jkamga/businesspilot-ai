@@ -1,0 +1,114 @@
+<div class="admin-page">
+  <div class="page-header">
+    <h1>
+      <mat-icon>admin_panel_settings</mat-icon>
+      Administration plateforme
+    </h1>
+  </div>
+
+  <!-- Stats cards -->
+  @if (stats()) {
+    <div class="stats-grid">
+      <mat-card class="stat-card blue">
+        <mat-card-content>
+          <div class="stat-icon"><mat-icon>business</mat-icon></div>
+          <div class="stat-body">
+            <div class="stat-value">{{ stats()!.totalOrganizations }}</div>
+            <div class="stat-label">Organisations totales</div>
+            <div class="stat-sub">{{ stats()!.activeOrganizations }} actives</div>
+          </div>
+        </mat-card-content>
+      </mat-card>
+
+      <mat-card class="stat-card purple">
+        <mat-card-content>
+          <div class="stat-icon"><mat-icon>group</mat-icon></div>
+          <div class="stat-body">
+            <div class="stat-value">{{ stats()!.totalUsers }}</div>
+            <div class="stat-label">Utilisateurs</div>
+          </div>
+        </mat-card-content>
+      </mat-card>
+
+      <mat-card class="stat-card green">
+        <mat-card-content>
+          <div class="stat-icon"><mat-icon>workspace_premium</mat-icon></div>
+          <div class="stat-body">
+            <div class="stat-value">{{ stats()!.totalOrganizations }}</div>
+            <div class="stat-label">Abonnements</div>
+            <div class="plans-breakdown">
+              @for (entry of planEntries; track entry[0]) {
+                <span class="plan-pill">{{ entry[0] }}: {{ entry[1] }}</span>
+              }
+            </div>
+          </div>
+        </mat-card-content>
+      </mat-card>
+    </div>
+  }
+
+  <!-- Orgs table -->
+  <mat-card class="table-card">
+    <mat-card-header>
+      <mat-card-title>Organisations</mat-card-title>
+    </mat-card-header>
+    <mat-card-content>
+      @if (loading()) {
+        <div class="loading-center"><mat-spinner diameter="36"></mat-spinner></div>
+      } @else {
+        <table mat-table [dataSource]="orgs()" class="orgs-table">
+
+          <ng-container matColumnDef="name">
+            <th mat-header-cell *matHeaderCellDef>Nom</th>
+            <td mat-cell *matCellDef="let org">
+              <strong>{{ org.name }}</strong>
+              <div class="slug">{{ org.slug }}</div>
+            </td>
+          </ng-container>
+
+          <ng-container matColumnDef="email">
+            <th mat-header-cell *matHeaderCellDef>Email</th>
+            <td mat-cell *matCellDef="let org">{{ org.email }}</td>
+          </ng-container>
+
+          <ng-container matColumnDef="countryCode">
+            <th mat-header-cell *matHeaderCellDef>Pays</th>
+            <td mat-cell *matCellDef="let org">{{ org.countryCode }}</td>
+          </ng-container>
+
+          <ng-container matColumnDef="plan">
+            <th mat-header-cell *matHeaderCellDef>Plan</th>
+            <td mat-cell *matCellDef="let org">
+              <mat-chip [color]="planColor(org.planSlug)" highlighted>
+                {{ org.planName }}
+              </mat-chip>
+            </td>
+          </ng-container>
+
+          <ng-container matColumnDef="status">
+            <th mat-header-cell *matHeaderCellDef>Statut</th>
+            <td mat-cell *matCellDef="let org">
+              <span class="status-dot" [class]="'dot-' + (org.active ? 'active' : 'inactive')"></span>
+              {{ org.active ? 'Active' : 'Inactive' }}
+            </td>
+          </ng-container>
+
+          <ng-container matColumnDef="createdAt">
+            <th mat-header-cell *matHeaderCellDef>Créée le</th>
+            <td mat-cell *matCellDef="let org">{{ org.createdAt | date:'dd/MM/yyyy' }}</td>
+          </ng-container>
+
+          <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+          <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+        </table>
+
+        <mat-paginator
+          [length]="totalOrgs()"
+          [pageSize]="pageSize()"
+          [pageSizeOptions]="[10, 20, 50]"
+          (page)="onPage($event)">
+        </mat-paginator>
+      }
+    </mat-card-content>
+  </mat-card>
+</div>
