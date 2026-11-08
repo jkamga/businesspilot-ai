@@ -1,5 +1,6 @@
 package com.businesspilot.module.prospects.domain;
 
+import com.businesspilot.common.entity.UuidStringConverter;
 import jakarta.persistence.*;
 import java.time.Instant;
 import java.util.UUID;
@@ -15,6 +16,7 @@ public class Interaction {
     @Column(name = "prospect_id", nullable = false)
     private UUID prospectId;
 
+    @Convert(converter = UuidStringConverter.class)
     @Column(name = "organization_id", nullable = false)
     private String organizationId;
 

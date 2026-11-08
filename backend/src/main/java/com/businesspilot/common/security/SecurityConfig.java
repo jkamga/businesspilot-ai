@@ -17,7 +17,6 @@ import org.springframework.security.config.annotation.web.configurers.AbstractHt
 import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
@@ -51,6 +50,7 @@ public class SecurityConfig {
                 .requestMatchers(
                     "/api/auth/**",
                     "/oauth2/**",
+                    "/webhook/**",
                     "/swagger-ui/**",
                     "/swagger-ui.html",
                     "/api-docs/**",
@@ -68,11 +68,6 @@ public class SecurityConfig {
     }
 
     @Bean
-    public PasswordEncoder passwordEncoder() {
-        return new BCryptPasswordEncoder(12);
-    }
-
-    @Bean
     public UserDetailsService userDetailsService() {
         return username -> {
             throw new UsernameNotFoundException("UserDetailsService not used — JWT stateless auth");
@@ -80,9 +75,9 @@ public class SecurityConfig {
     }
 
     @Bean
-    public AuthenticationManager authenticationManager(UserDetailsService uds) {
+    public AuthenticationManager authenticationManager(UserDetailsService uds, PasswordEncoder passwordEncoder) {
         DaoAuthenticationProvider provider = new DaoAuthenticationProvider(uds);
-        provider.setPasswordEncoder(passwordEncoder());
+        provider.setPasswordEncoder(passwordEncoder);
         return new ProviderManager(provider);
     }
 

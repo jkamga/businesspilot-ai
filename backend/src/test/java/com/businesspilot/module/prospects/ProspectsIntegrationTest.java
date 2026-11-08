@@ -2,6 +2,7 @@ package com.businesspilot.module.prospects;
 
 import com.businesspilot.module.auth.dto.AuthResponse;
 import com.businesspilot.module.auth.dto.RegisterRequest;
+import java.util.UUID;
 import com.businesspilot.module.prospects.dto.InteractionRequest;
 import com.businesspilot.module.prospects.dto.ProspectRequest;
 import com.businesspilot.module.prospects.dto.StatusUpdateRequest;
@@ -59,7 +60,8 @@ class ProspectsIntegrationTest {
     }
 
     private String register(String email, String orgName) throws Exception {
-        var req = new RegisterRequest("Test", "User", email, "password123!", orgName);
+        String uniqueEmail = email.replace("@", "." + UUID.randomUUID().toString().substring(0, 8) + "@");
+        var req = new RegisterRequest(uniqueEmail, "password123!", "Test", "User", orgName);
         MvcResult res = mvc.perform(post("/api/auth/register")
                         .contentType(MediaType.APPLICATION_JSON)
                         .content(mapper.writeValueAsString(req)))

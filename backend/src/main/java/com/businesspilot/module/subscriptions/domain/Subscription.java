@@ -1,5 +1,6 @@
 package com.businesspilot.module.subscriptions.domain;
 
+import com.businesspilot.common.entity.UuidStringConverter;
 import jakarta.persistence.*;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedDate;
@@ -17,6 +18,7 @@ public class Subscription {
     @GeneratedValue(strategy = GenerationType.UUID)
     private UUID id;
 
+    @Convert(converter = UuidStringConverter.class)
     @Column(name = "organization_id", nullable = false, unique = true)
     private String organizationId;
 
@@ -36,6 +38,12 @@ public class Subscription {
 
     @Column(name = "current_period_end")
     private Instant currentPeriodEnd;
+
+    @Column(name = "stripe_subscription_id", length = 255)
+    private String stripeSubscriptionId;
+
+    @Column(name = "stripe_customer_id", length = 255)
+    private String stripeCustomerId;
 
     @CreatedDate
     @Column(name = "created_at", updatable = false, nullable = false)
@@ -64,6 +72,12 @@ public class Subscription {
 
     public Instant getCurrentPeriodEnd() { return currentPeriodEnd; }
     public void setCurrentPeriodEnd(Instant currentPeriodEnd) { this.currentPeriodEnd = currentPeriodEnd; }
+
+    public String getStripeSubscriptionId() { return stripeSubscriptionId; }
+    public void setStripeSubscriptionId(String id) { this.stripeSubscriptionId = id; }
+
+    public String getStripeCustomerId() { return stripeCustomerId; }
+    public void setStripeCustomerId(String id) { this.stripeCustomerId = id; }
 
     public Instant getCreatedAt() { return createdAt; }
     public Instant getUpdatedAt() { return updatedAt; }

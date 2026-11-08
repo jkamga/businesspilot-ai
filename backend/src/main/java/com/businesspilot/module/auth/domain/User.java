@@ -46,6 +46,7 @@ public class User {
     @Column(name = "is_super_admin", nullable = false)
     private boolean superAdmin;
 
+    @Builder.Default
     @Column(name = "preferred_locale", nullable = false, length = 5)
     private String preferredLocale = "fr";
 

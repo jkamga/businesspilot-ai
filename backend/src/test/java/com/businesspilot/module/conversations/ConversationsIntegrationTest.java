@@ -2,6 +2,7 @@ package com.businesspilot.module.conversations;
 
 import com.businesspilot.module.auth.dto.AuthResponse;
 import com.businesspilot.module.auth.dto.RegisterRequest;
+import java.util.UUID;
 import com.businesspilot.module.conversations.dto.ConversationRequest;
 import com.businesspilot.module.conversations.dto.MessageRequest;
 import com.businesspilot.module.conversations.service.AiService;
@@ -10,7 +11,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.boot.test.mock.mockito.MockBean;
+import org.springframework.test.context.bean.override.mockito.MockitoBean;
 import org.springframework.http.MediaType;
 import org.springframework.security.test.web.servlet.setup.SecurityMockMvcConfigurers;
 import org.springframework.test.context.DynamicPropertyRegistry;
@@ -48,7 +49,7 @@ class ConversationsIntegrationTest {
 
     @Autowired WebApplicationContext wac;
     @Autowired ObjectMapper mapper;
-    @MockBean AiService aiService;
+    @MockitoBean AiService aiService;
 
     MockMvc mvc;
     String tokenOrg1;
@@ -68,7 +69,8 @@ class ConversationsIntegrationTest {
     }
 
     private String register(String email, String orgName) throws Exception {
-        var req = new RegisterRequest("Test", "User", email, "password123!", orgName);
+        String uniqueEmail = email.replace("@", "." + UUID.randomUUID().toString().substring(0, 8) + "@");
+        var req = new RegisterRequest(uniqueEmail, "password123!", "Test", "User", orgName);
         MvcResult result = mvc.perform(post("/api/auth/register")
                         .contentType(MediaType.APPLICATION_JSON)
                         .content(mapper.writeValueAsString(req)))

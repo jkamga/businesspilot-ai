@@ -21,6 +21,7 @@ public abstract class TenantAwareEntity {
     @Column(updatable = false, nullable = false)
     private UUID id;
 
+    @Convert(converter = UuidStringConverter.class)
     @Column(name = "organization_id", nullable = false, updatable = false)
     private String organizationId;
 

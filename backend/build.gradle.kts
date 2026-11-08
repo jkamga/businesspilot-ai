@@ -26,6 +26,7 @@ repositories {
 val jjwtVersion = "0.12.6"
 val springdocVersion = "2.8.0"
 val testcontainersVersion = "1.20.4"
+val stripeVersion = "25.1.0"
 
 dependencies {
     // Web
@@ -46,7 +47,9 @@ dependencies {
     // PostgreSQL
     runtimeOnly("org.postgresql:postgresql")
 
-    // Flyway
+    // Autoconfigure modules extracted from spring-boot-autoconfigure in Spring Boot 4.x
+    implementation("org.springframework.boot:spring-boot-flyway")
+    implementation("org.springframework.boot:spring-boot-jackson2") // ObjectMapper bean (Jackson 2.x compat)
     implementation("org.flywaydb:flyway-core")
     implementation("org.flywaydb:flyway-database-postgresql")
 
@@ -57,6 +60,9 @@ dependencies {
 
     // OAuth2 Client (Google)
     implementation("org.springframework.boot:spring-boot-starter-oauth2-client")
+
+    // Stripe
+    implementation("com.stripe:stripe-java:$stripeVersion")
 
     // Swagger / OpenAPI
     implementation("org.springdoc:springdoc-openapi-starter-webmvc-ui:$springdocVersion")
