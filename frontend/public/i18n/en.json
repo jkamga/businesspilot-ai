@@ -206,6 +206,15 @@
     "dismiss": "Close guide",
     "steps_done": "steps completed"
   },
+  "settings": {
+    "widget": {
+      "title": "Chat Widget",
+      "subtitle": "Embed an AI assistant on your website",
+      "embed_code": "Embed code",
+      "embed_hint": "Copy this snippet and paste it before the </body> tag on your site.",
+      "token_label": "Widget public token"
+    }
+  },
   "admin": {
     "title": "Platform administration",
     "stats": {

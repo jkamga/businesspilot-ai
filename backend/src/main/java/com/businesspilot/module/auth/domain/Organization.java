@@ -50,6 +50,9 @@ public class Organization {
     @Column(name = "stripe_customer_id", length = 255)
     private String stripeCustomerId;
 
+    @Column(name = "widget_token", nullable = false, updatable = false)
+    private java.util.UUID widgetToken;
+
     @CreatedDate
     @Column(name = "created_at", updatable = false, nullable = false)
     private Instant createdAt;

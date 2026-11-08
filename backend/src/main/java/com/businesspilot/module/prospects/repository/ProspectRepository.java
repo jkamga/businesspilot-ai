@@ -29,6 +29,12 @@ public interface ProspectRepository extends JpaRepository<Prospect, UUID> {
 
     long countByOrganizationId(String organizationId);
 
+    @Query("SELECT p FROM Prospect p WHERE p.status IN :statuses AND p.updatedAt < :threshold")
+    List<Prospect> findStaleProspects(
+        @Param("statuses") List<ProspectStatus> statuses,
+        @Param("threshold") java.time.Instant threshold
+    );
+
     long countByOrganizationIdAndStatus(String organizationId, ProspectStatus status);
 
     List<Prospect> findTop5ByOrganizationIdOrderByUpdatedAtDesc(String organizationId);

@@ -1,6 +1,8 @@
 package com.businesspilot.module.prospects.service;
 
 import com.businesspilot.common.exception.NotFoundException;
+import com.businesspilot.common.plan.PlanLimitService;
+import com.businesspilot.common.plan.PlanResource;
 import com.businesspilot.common.tenant.TenantContext;
 import com.businesspilot.module.prospects.domain.Interaction;
 import com.businesspilot.module.prospects.domain.Prospect;
@@ -22,10 +24,13 @@ public class ProspectService {
 
     private final ProspectRepository prospectRepo;
     private final InteractionRepository interactionRepo;
+    private final PlanLimitService planLimitService;
 
-    public ProspectService(ProspectRepository prospectRepo, InteractionRepository interactionRepo) {
+    public ProspectService(ProspectRepository prospectRepo, InteractionRepository interactionRepo,
+                           PlanLimitService planLimitService) {
         this.prospectRepo = prospectRepo;
         this.interactionRepo = interactionRepo;
+        this.planLimitService = planLimitService;
     }
 
     @Transactional(readOnly = true)
@@ -56,6 +61,7 @@ public class ProspectService {
 
     public ProspectResponse create(ProspectRequest request) {
         String orgId = TenantContext.getCurrentTenant();
+        planLimitService.checkLimit(orgId, PlanResource.PROSPECT, prospectRepo.countByOrganizationId(orgId));
         Prospect p = new Prospect();
         p.setOrganizationId(orgId);
         applyRequest(p, request);

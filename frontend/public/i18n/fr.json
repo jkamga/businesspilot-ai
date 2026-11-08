@@ -206,6 +206,15 @@
     "dismiss": "Fermer le guide",
     "steps_done": "étapes complétées"
   },
+  "settings": {
+    "widget": {
+      "title": "Widget de chat",
+      "subtitle": "Intégrez un assistant IA sur votre site web",
+      "embed_code": "Code d'intégration",
+      "embed_hint": "Copiez ce code et collez-le avant la balise </body> de votre site.",
+      "token_label": "Token public du widget"
+    }
+  },
   "admin": {
     "title": "Administration plateforme",
     "stats": {

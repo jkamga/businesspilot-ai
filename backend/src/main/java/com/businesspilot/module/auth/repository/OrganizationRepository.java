@@ -13,4 +13,6 @@ public interface OrganizationRepository extends JpaRepository<Organization, UUID
     long countByActiveTrue();
 
     java.util.Optional<Organization> findByWhatsappPhoneNumberId(String whatsappPhoneNumberId);
+
+    Optional<Organization> findByWidgetToken(UUID widgetToken);
 }

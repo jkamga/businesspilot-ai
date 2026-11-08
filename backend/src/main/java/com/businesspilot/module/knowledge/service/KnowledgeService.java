@@ -1,6 +1,8 @@
 package com.businesspilot.module.knowledge.service;
 
 import com.businesspilot.common.exception.NotFoundException;
+import com.businesspilot.common.plan.PlanLimitService;
+import com.businesspilot.common.plan.PlanResource;
 import com.businesspilot.common.tenant.TenantContext;
 import com.businesspilot.module.knowledge.domain.EntryStatus;
 import com.businesspilot.module.knowledge.domain.EntryType;
@@ -22,6 +24,7 @@ import java.util.UUID;
 public class KnowledgeService {
 
     private final KnowledgeEntryRepository repository;
+    private final PlanLimitService planLimitService;
 
     @Transactional(readOnly = true)
     public KnowledgePageResponse list(int page, int size, EntryStatus status, EntryType type) {
@@ -53,6 +56,8 @@ public class KnowledgeService {
 
     @Transactional
     public KnowledgeEntryResponse create(KnowledgeEntryRequest req) {
+        String orgId = currentOrgId();
+        planLimitService.checkLimit(orgId, PlanResource.KNOWLEDGE_ENTRY, repository.countByOrganizationId(orgId));
         KnowledgeEntry entry = KnowledgeEntry.builder()
             .title(req.title())
             .content(req.content())
@@ -60,7 +65,7 @@ public class KnowledgeService {
             .status(EntryStatus.DRAFT)
             .wordCount(countWords(req.content()))
             .build();
-        entry.setOrganizationId(currentOrgId());
+        entry.setOrganizationId(orgId);
         return KnowledgeEntryResponse.from(repository.save(entry));
     }
 

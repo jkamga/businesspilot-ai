@@ -37,6 +37,13 @@ public class GlobalExceptionHandler {
         return problem(HttpStatus.UNPROCESSABLE_ENTITY, ex.getMessage(), "business-error");
     }
 
+    @ExceptionHandler(PlanLimitExceededException.class)
+    public ProblemDetail handlePlanLimit(PlanLimitExceededException ex) {
+        ProblemDetail pd = problem(HttpStatus.PAYMENT_REQUIRED, ex.getMessage(), "plan-limit-exceeded");
+        pd.setProperty("limit", ex.getLimit());
+        return pd;
+    }
+
     @ExceptionHandler(MethodArgumentNotValidException.class)
     public ProblemDetail handleValidation(MethodArgumentNotValidException ex) {
         String detail = ex.getBindingResult().getFieldErrors().stream()

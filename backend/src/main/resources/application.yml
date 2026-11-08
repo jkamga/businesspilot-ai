@@ -73,6 +73,9 @@ app:
     webhook-secret: ${STRIPE_WEBHOOK_SECRET:}
     success-url: ${STRIPE_SUCCESS_URL:http://localhost:4200/subscription?success=true}
     cancel-url: ${STRIPE_CANCEL_URL:http://localhost:4200/subscription?cancelled=true}
+  alerts:
+    cron: ${ALERTS_CRON:0 0 9 * * *}
+    stale-threshold-days: ${ALERTS_STALE_THRESHOLD_DAYS:7}
 
 ---
 spring:

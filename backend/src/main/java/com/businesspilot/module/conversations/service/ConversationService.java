@@ -1,6 +1,8 @@
 package com.businesspilot.module.conversations.service;
 
 import com.businesspilot.common.exception.NotFoundException;
+import com.businesspilot.common.plan.PlanLimitService;
+import com.businesspilot.common.plan.PlanResource;
 import com.businesspilot.common.tenant.TenantContext;
 import com.businesspilot.module.conversations.domain.Conversation;
 import com.businesspilot.module.conversations.domain.ConversationStatus;
@@ -25,13 +27,16 @@ public class ConversationService {
     private final ConversationRepository conversationRepo;
     private final MessageRepository messageRepo;
     private final AiService aiService;
+    private final PlanLimitService planLimitService;
 
     public ConversationService(ConversationRepository conversationRepo,
                                MessageRepository messageRepo,
-                               AiService aiService) {
+                               AiService aiService,
+                               PlanLimitService planLimitService) {
         this.conversationRepo = conversationRepo;
         this.messageRepo = messageRepo;
         this.aiService = aiService;
+        this.planLimitService = planLimitService;
     }
 
     @Transactional(readOnly = true)
@@ -58,6 +63,7 @@ public class ConversationService {
 
     public ConversationResponse create(ConversationRequest request) {
         String orgId = TenantContext.getCurrentTenant();
+        planLimitService.checkLimit(orgId, PlanResource.CONVERSATION, conversationRepo.countByOrganizationId(orgId));
         Conversation conv = new Conversation();
         conv.setOrganizationId(orgId);
         conv.setProspectName(request.prospectName());
