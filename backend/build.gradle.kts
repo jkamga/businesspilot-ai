@@ -55,6 +55,9 @@ dependencies {
     runtimeOnly("io.jsonwebtoken:jjwt-impl:$jjwtVersion")
     runtimeOnly("io.jsonwebtoken:jjwt-jackson:$jjwtVersion")
 
+    // OAuth2 Client (Google)
+    implementation("org.springframework.boot:spring-boot-starter-oauth2-client")
+
     // Swagger / OpenAPI
     implementation("org.springdoc:springdoc-openapi-starter-webmvc-ui:$springdocVersion")
 
