@@ -32,6 +32,11 @@ export const routes: Routes = [
     loadChildren: () => import('./features/knowledge/knowledge.routes').then(m => m.KNOWLEDGE_ROUTES)
   },
   {
+    path: 'subscriptions',
+    canActivate: [authGuard],
+    loadChildren: () => import('./features/subscriptions/subscriptions.routes').then(m => m.SUBSCRIPTIONS_ROUTES)
+  },
+  {
     path: 'settings',
     canActivate: [authGuard],
     loadChildren: () => import('./features/settings/settings.routes').then(m => m.SETTINGS_ROUTES)

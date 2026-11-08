@@ -1,0 +1,125 @@
+<div class="subscription-page">
+  <div class="page-header">
+    <h1>Abonnement</h1>
+    <p class="subtitle">Choisissez le plan qui correspond à vos besoins</p>
+  </div>
+
+  @if (loading()) {
+    <div class="loading-center">
+      <mat-spinner diameter="40"></mat-spinner>
+    </div>
+  } @else {
+
+    <!-- Current plan banner -->
+    @if (currentSub()) {
+      <mat-card class="current-plan-banner">
+        <mat-card-content>
+          <div class="banner-content">
+            <mat-icon color="primary">verified</mat-icon>
+            <div>
+              <strong>Plan actuel : {{ currentSub()!.plan.name }}</strong>
+              <span class="status-chip" [class]="'status-' + currentSub()!.status.toLowerCase()">
+                {{ currentSub()!.status }}
+              </span>
+            </div>
+          </div>
+        </mat-card-content>
+      </mat-card>
+    }
+
+    <!-- Billing toggle -->
+    <div class="billing-toggle">
+      <span [class.inactive]="yearlyBilling()">Mensuel</span>
+      <mat-slide-toggle
+        [checked]="yearlyBilling()"
+        (change)="toggleBilling($event.checked)"
+        color="primary">
+      </mat-slide-toggle>
+      <span [class.inactive]="!yearlyBilling()">
+        Annuel
+        <span class="savings-badge">-15%</span>
+      </span>
+    </div>
+
+    <!-- Plan cards -->
+    <div class="plans-grid">
+      @for (plan of plans(); track plan.id) {
+        <mat-card
+          class="plan-card"
+          [class.current]="isCurrentPlan(plan)"
+          [class.popular]="plan.slug === 'professional'">
+
+          @if (plan.slug === 'professional') {
+            <div class="popular-badge">Populaire</div>
+          }
+
+          <mat-card-header>
+            <mat-card-title>{{ plan.name }}</mat-card-title>
+          </mat-card-header>
+
+          <mat-card-content>
+            <div class="price-block">
+              <span class="price">{{ getPrice(plan) }}</span>
+              @if (plan.priceMonthly !== null && plan.priceMonthly > 0) {
+                <span class="period">{{ getPeriodLabel() }}</span>
+              }
+            </div>
+
+            <div class="limits">
+              <div class="limit-row">
+                <mat-icon>people</mat-icon>
+                <span>{{ formatLimit(plan.maxProspects) }} prospects</span>
+              </div>
+              <div class="limit-row">
+                <mat-icon>chat</mat-icon>
+                <span>{{ formatLimit(plan.maxConversations) }} conversations</span>
+              </div>
+              <div class="limit-row">
+                <mat-icon>library_books</mat-icon>
+                <span>{{ formatLimit(plan.maxKnowledgeEntries) }} entrées KB</span>
+              </div>
+              <div class="limit-row">
+                <mat-icon>group</mat-icon>
+                <span>{{ formatLimit(plan.maxUsers) }} utilisateurs</span>
+              </div>
+            </div>
+
+            <ul class="features-list">
+              @for (feature of plan.features; track $index) {
+                <li>
+                  <mat-icon class="check-icon">check_circle</mat-icon>
+                  {{ feature }}
+                </li>
+              }
+            </ul>
+          </mat-card-content>
+
+          <mat-card-actions>
+            @if (isCurrentPlan(plan)) {
+              <button mat-stroked-button disabled class="full-width">
+                <mat-icon>check</mat-icon> Plan actuel
+              </button>
+            } @else if (plan.slug === 'enterprise') {
+              <button mat-stroked-button color="primary" class="full-width">
+                Nous contacter
+              </button>
+            } @else {
+              <button
+                mat-flat-button
+                color="primary"
+                class="full-width"
+                [disabled]="upgrading() === plan.slug"
+                (click)="selectPlan(plan)">
+                @if (upgrading() === plan.slug) {
+                  <mat-spinner diameter="20"></mat-spinner>
+                } @else {
+                  Choisir ce plan
+                }
+              </button>
+            }
+          </mat-card-actions>
+        </mat-card>
+      }
+    </div>
+  }
+</div>
