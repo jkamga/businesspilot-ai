@@ -8,6 +8,7 @@ import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { MatSnackBar, MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatBadgeModule } from '@angular/material/badge';
+import { TranslateModule, TranslateService } from '@ngx-translate/core';
 import { SubscriptionsService, PlanResponse, SubscriptionResponse } from '../subscriptions.service';
 
 @Component({
@@ -23,6 +24,7 @@ import { SubscriptionsService, PlanResponse, SubscriptionResponse } from '../sub
     MatSlideToggleModule,
     MatSnackBarModule,
     MatBadgeModule,
+    TranslateModule,
   ],
   templateUrl: './subscription-page.component.html',
   styleUrl: './subscription-page.component.scss',
@@ -30,6 +32,7 @@ import { SubscriptionsService, PlanResponse, SubscriptionResponse } from '../sub
 export class SubscriptionPageComponent implements OnInit {
   private svc = inject(SubscriptionsService);
   private snack = inject(MatSnackBar);
+  private translate = inject(TranslateService);
 
   plans = signal<PlanResponse[]>([]);
   currentSub = signal<SubscriptionResponse | null>(null);
@@ -52,14 +55,16 @@ export class SubscriptionPageComponent implements OnInit {
   }
 
   getPrice(plan: PlanResponse): string {
-    if (plan.priceMonthly === null) return 'Sur devis';
+    if (plan.priceMonthly === null) return this.translate.instant('subscriptions.on_quote');
     const price = this.yearlyBilling() ? plan.priceYearly : plan.priceMonthly;
-    if (!price) return 'Gratuit';
+    if (!price) return this.translate.instant('subscriptions.free');
     return `${price} $`;
   }
 
   getPeriodLabel(): string {
-    return this.yearlyBilling() ? '/ an' : '/ mois';
+    return this.yearlyBilling()
+      ? this.translate.instant('subscriptions.per_year')
+      : this.translate.instant('subscriptions.per_month');
   }
 
   isCurrentPlan(plan: PlanResponse): boolean {
@@ -67,7 +72,7 @@ export class SubscriptionPageComponent implements OnInit {
   }
 
   formatLimit(value: number): string {
-    return value === -1 ? 'Illimité' : value.toString();
+    return value === -1 ? this.translate.instant('subscriptions.unlimited') : value.toString();
   }
 
   selectPlan(plan: PlanResponse) {
@@ -80,11 +85,19 @@ export class SubscriptionPageComponent implements OnInit {
       next: (sub) => {
         this.currentSub.set(sub);
         this.upgrading.set(null);
-        this.snack.open(`Plan ${plan.name} activé !`, 'Fermer', { duration: 3000 });
+        this.snack.open(
+          this.translate.instant('subscriptions.plan_activated', { name: plan.name }),
+          this.translate.instant('common.close'),
+          { duration: 3000 }
+        );
       },
       error: () => {
         this.upgrading.set(null);
-        this.snack.open('Erreur lors du changement de plan', 'Fermer', { duration: 3000 });
+        this.snack.open(
+          this.translate.instant('subscriptions.upgrade_error'),
+          this.translate.instant('common.close'),
+          { duration: 3000 }
+        );
       },
     });
   }

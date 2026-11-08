@@ -5,6 +5,7 @@
     "retry": "Réessayer",
     "save": "Enregistrer",
     "cancel": "Annuler",
+    "close": "Fermer",
     "delete": "Supprimer",
     "edit": "Modifier",
     "create": "Créer",
@@ -139,46 +140,64 @@
     },
     "form": {
       "title": "Titre",
+      "title_placeholder": "Ex: Politique de retour",
+      "title_required": "Titre requis",
+      "title_maxlength": "255 caractères maximum",
       "content": "Contenu",
-      "type": "Type",
+      "content_placeholder": "Saisissez le contenu que l'assistant devra connaître...",
+      "content_required": "Contenu requis",
+      "type": "Type de contenu",
       "question": "Question",
       "answer": "Réponse",
       "url": "URL",
-      "save": "Enregistrer",
-      "title_required": "Titre requis",
-      "content_required": "Contenu requis"
+      "save": "Enregistrer"
     }
   },
   "subscriptions": {
     "title": "Abonnement",
+    "subtitle": "Choisissez le plan qui correspond à vos besoins",
     "current_plan": "Plan actuel",
     "upgrade": "Passer au plan supérieur",
+    "monthly": "Mensuel",
+    "yearly": "Annuel",
     "billed_monthly": "Facturé mensuellement",
     "billed_yearly": "Facturé annuellement",
     "save_yearly": "Économisez 2 mois",
+    "popular": "Populaire",
     "free": "Gratuit",
+    "on_quote": "Sur devis",
+    "unlimited": "Illimité",
     "per_month": "/ mois",
     "per_year": "/ an",
     "features": "Fonctionnalités",
     "current": "Plan actuel",
     "select": "Choisir ce plan",
-    "contact_sales": "Contacter l'équipe commerciale"
+    "choose_plan": "Choisir ce plan",
+    "contact_us": "Nous contacter",
+    "contact_sales": "Contacter l'équipe commerciale",
+    "kb_entries": "entrées KB",
+    "users": "utilisateurs",
+    "plan_activated": "Plan {{name}} activé !",
+    "upgrade_error": "Erreur lors du changement de plan"
   },
   "admin": {
     "title": "Administration plateforme",
     "stats": {
       "total_orgs": "Organisations totales",
       "active_orgs": "actives",
+      "active": "actives",
       "users": "Utilisateurs",
       "subscriptions": "Abonnements"
     },
     "orgs_table": {
+      "title": "Organisations",
       "name": "Nom",
       "email": "Email",
       "country": "Pays",
       "plan": "Plan",
       "status": "Statut",
       "created": "Créée le",
+      "created_at": "Créée le",
       "active": "Active",
       "inactive": "Inactive"
     }

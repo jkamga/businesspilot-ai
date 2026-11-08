@@ -7,13 +7,14 @@ import { MatInputModule } from '@angular/material/input';
 import { MatSelectModule } from '@angular/material/select';
 import { MatIconModule } from '@angular/material/icon';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { TranslateModule } from '@ngx-translate/core';
 import { KnowledgeService } from '../knowledge.service';
 
 @Component({
   selector: 'bp-knowledge-form',
   standalone: true,
   imports: [
-    ReactiveFormsModule, RouterLink,
+    ReactiveFormsModule, RouterLink, TranslateModule,
     MatButtonModule, MatFormFieldModule, MatInputModule,
     MatSelectModule, MatIconModule, MatProgressSpinnerModule
   ],

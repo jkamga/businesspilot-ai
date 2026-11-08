@@ -5,6 +5,7 @@
     "retry": "Retry",
     "save": "Save",
     "cancel": "Cancel",
+    "close": "Close",
     "delete": "Delete",
     "edit": "Edit",
     "create": "Create",
@@ -139,46 +140,64 @@
     },
     "form": {
       "title": "Title",
+      "title_placeholder": "E.g.: Return policy",
+      "title_required": "Title is required",
+      "title_maxlength": "255 characters maximum",
       "content": "Content",
-      "type": "Type",
+      "content_placeholder": "Enter the content the assistant should know...",
+      "content_required": "Content is required",
+      "type": "Content type",
       "question": "Question",
       "answer": "Answer",
       "url": "URL",
-      "save": "Save",
-      "title_required": "Title is required",
-      "content_required": "Content is required"
+      "save": "Save"
     }
   },
   "subscriptions": {
     "title": "Subscription",
+    "subtitle": "Choose the plan that fits your needs",
     "current_plan": "Current plan",
     "upgrade": "Upgrade",
+    "monthly": "Monthly",
+    "yearly": "Yearly",
     "billed_monthly": "Billed monthly",
     "billed_yearly": "Billed annually",
     "save_yearly": "Save 2 months",
+    "popular": "Popular",
     "free": "Free",
+    "on_quote": "Custom pricing",
+    "unlimited": "Unlimited",
     "per_month": "/ month",
     "per_year": "/ year",
     "features": "Features",
     "current": "Current plan",
     "select": "Choose this plan",
-    "contact_sales": "Contact sales"
+    "choose_plan": "Choose this plan",
+    "contact_us": "Contact us",
+    "contact_sales": "Contact sales",
+    "kb_entries": "KB entries",
+    "users": "users",
+    "plan_activated": "Plan {{name}} activated!",
+    "upgrade_error": "Error switching plan"
   },
   "admin": {
     "title": "Platform administration",
     "stats": {
       "total_orgs": "Total organizations",
       "active_orgs": "active",
+      "active": "active",
       "users": "Users",
       "subscriptions": "Subscriptions"
     },
     "orgs_table": {
+      "title": "Organizations",
       "name": "Name",
       "email": "Email",
       "country": "Country",
       "plan": "Plan",
       "status": "Status",
       "created": "Created",
+      "created_at": "Created",
       "active": "Active",
       "inactive": "Inactive"
     }

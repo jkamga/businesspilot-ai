@@ -1,7 +1,7 @@
 <div class="subscription-page">
   <div class="page-header">
-    <h1>Abonnement</h1>
-    <p class="subtitle">Choisissez le plan qui correspond à vos besoins</p>
+    <h1>{{ 'subscriptions.title' | translate }}</h1>
+    <p class="subtitle">{{ 'subscriptions.subtitle' | translate }}</p>
   </div>
 
   @if (loading()) {
@@ -10,14 +10,13 @@
     </div>
   } @else {
 
-    <!-- Current plan banner -->
     @if (currentSub()) {
       <mat-card class="current-plan-banner">
         <mat-card-content>
           <div class="banner-content">
             <mat-icon color="primary">verified</mat-icon>
             <div>
-              <strong>Plan actuel : {{ currentSub()!.plan.name }}</strong>
+              <strong>{{ 'subscriptions.current_plan' | translate }} : {{ currentSub()!.plan.name }}</strong>
               <span class="status-chip" [class]="'status-' + currentSub()!.status.toLowerCase()">
                 {{ currentSub()!.status }}
               </span>
@@ -27,21 +26,19 @@
       </mat-card>
     }
 
-    <!-- Billing toggle -->
     <div class="billing-toggle">
-      <span [class.inactive]="yearlyBilling()">Mensuel</span>
+      <span [class.inactive]="yearlyBilling()">{{ 'subscriptions.monthly' | translate }}</span>
       <mat-slide-toggle
         [checked]="yearlyBilling()"
         (change)="toggleBilling($event.checked)"
         color="primary">
       </mat-slide-toggle>
       <span [class.inactive]="!yearlyBilling()">
-        Annuel
+        {{ 'subscriptions.yearly' | translate }}
         <span class="savings-badge">-15%</span>
       </span>
     </div>
 
-    <!-- Plan cards -->
     <div class="plans-grid">
       @for (plan of plans(); track plan.id) {
         <mat-card
@@ -50,7 +47,7 @@
           [class.popular]="plan.slug === 'professional'">
 
           @if (plan.slug === 'professional') {
-            <div class="popular-badge">Populaire</div>
+            <div class="popular-badge">{{ 'subscriptions.popular' | translate }}</div>
           }
 
           <mat-card-header>
@@ -68,19 +65,19 @@
             <div class="limits">
               <div class="limit-row">
                 <mat-icon>people</mat-icon>
-                <span>{{ formatLimit(plan.maxProspects) }} prospects</span>
+                <span>{{ formatLimit(plan.maxProspects) }} {{ 'nav.prospects' | translate | lowercase }}</span>
               </div>
               <div class="limit-row">
                 <mat-icon>chat</mat-icon>
-                <span>{{ formatLimit(plan.maxConversations) }} conversations</span>
+                <span>{{ formatLimit(plan.maxConversations) }} {{ 'nav.conversations' | translate | lowercase }}</span>
               </div>
               <div class="limit-row">
                 <mat-icon>library_books</mat-icon>
-                <span>{{ formatLimit(plan.maxKnowledgeEntries) }} entrées KB</span>
+                <span>{{ formatLimit(plan.maxKnowledgeEntries) }} {{ 'subscriptions.kb_entries' | translate }}</span>
               </div>
               <div class="limit-row">
                 <mat-icon>group</mat-icon>
-                <span>{{ formatLimit(plan.maxUsers) }} utilisateurs</span>
+                <span>{{ formatLimit(plan.maxUsers) }} {{ 'subscriptions.users' | translate }}</span>
               </div>
             </div>
 
@@ -97,11 +94,11 @@
           <mat-card-actions>
             @if (isCurrentPlan(plan)) {
               <button mat-stroked-button disabled class="full-width">
-                <mat-icon>check</mat-icon> Plan actuel
+                <mat-icon>check</mat-icon> {{ 'subscriptions.current_plan' | translate }}
               </button>
             } @else if (plan.slug === 'enterprise') {
               <button mat-stroked-button color="primary" class="full-width">
-                Nous contacter
+                {{ 'subscriptions.contact_us' | translate }}
               </button>
             } @else {
               <button
@@ -113,7 +110,7 @@
                 @if (upgrading() === plan.slug) {
                   <mat-spinner diameter="20"></mat-spinner>
                 } @else {
-                  Choisir ce plan
+                  {{ 'subscriptions.choose_plan' | translate }}
                 }
               </button>
             }

@@ -3,7 +3,7 @@
     <a mat-icon-button routerLink="/knowledge">
       <mat-icon>arrow_back</mat-icon>
     </a>
-    <h1>{{ isEdit() ? 'Modifier' : 'Nouvelle' }} entrée</h1>
+    <h1>{{ (isEdit() ? 'common.edit' : 'knowledge.new') | translate }}</h1>
   </div>
 
   @if (loading()) {
@@ -12,31 +12,31 @@
     <form [formGroup]="form" (ngSubmit)="submit()" class="knowledge-form mat-elevation-z1">
 
       <mat-form-field appearance="outline">
-        <mat-label>Type de contenu</mat-label>
+        <mat-label>{{ 'knowledge.form.type' | translate }}</mat-label>
         <mat-select formControlName="type">
-          <mat-option value="TEXT">Texte libre</mat-option>
-          <mat-option value="FAQ">Question / Réponse</mat-option>
-          <mat-option value="URL">Lien URL</mat-option>
+          <mat-option value="TEXT">{{ 'knowledge.type.TEXT' | translate }}</mat-option>
+          <mat-option value="FAQ">{{ 'knowledge.type.FAQ' | translate }}</mat-option>
+          <mat-option value="URL">{{ 'knowledge.type.URL' | translate }}</mat-option>
         </mat-select>
       </mat-form-field>
 
       <mat-form-field appearance="outline">
-        <mat-label>Titre</mat-label>
-        <input matInput formControlName="title" placeholder="Ex: Politique de retour">
+        <mat-label>{{ 'knowledge.form.title' | translate }}</mat-label>
+        <input matInput formControlName="title" [placeholder]="'knowledge.form.title_placeholder' | translate">
         @if (form.get('title')?.hasError('required')) {
-          <mat-error>Titre requis</mat-error>
+          <mat-error>{{ 'knowledge.form.title_required' | translate }}</mat-error>
         }
         @if (form.get('title')?.hasError('maxlength')) {
-          <mat-error>255 caractères maximum</mat-error>
+          <mat-error>{{ 'knowledge.form.title_maxlength' | translate }}</mat-error>
         }
       </mat-form-field>
 
       <mat-form-field appearance="outline" class="content-field">
-        <mat-label>Contenu</mat-label>
+        <mat-label>{{ 'knowledge.form.content' | translate }}</mat-label>
         <textarea matInput formControlName="content" rows="12"
-                  placeholder="Saisissez le contenu que l'assistant devra connaître..."></textarea>
+                  [placeholder]="'knowledge.form.content_placeholder' | translate"></textarea>
         @if (form.get('content')?.hasError('required')) {
-          <mat-error>Contenu requis</mat-error>
+          <mat-error>{{ 'knowledge.form.content_required' | translate }}</mat-error>
         }
       </mat-form-field>
 
@@ -45,12 +45,12 @@
       }
 
       <div class="form-actions">
-        <a mat-stroked-button routerLink="/knowledge">Annuler</a>
+        <a mat-stroked-button routerLink="/knowledge">{{ 'common.cancel' | translate }}</a>
         <button mat-flat-button color="primary" type="submit" [disabled]="saving()">
           @if (saving()) {
             <mat-spinner diameter="20"></mat-spinner>
           } @else {
-            {{ isEdit() ? 'Enregistrer' : 'Créer' }}
+            {{ (isEdit() ? 'common.save' : 'common.create') | translate }}
           }
         </button>
       </div>

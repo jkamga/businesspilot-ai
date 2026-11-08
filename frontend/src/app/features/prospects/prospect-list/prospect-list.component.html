@@ -1,31 +1,31 @@
 <div class="page-container">
   <div class="page-header">
     <div>
-      <h1>Prospects</h1>
-      <p class="subtitle">Gérez votre pipeline commercial</p>
+      <h1>{{ 'prospects.title' | translate }}</h1>
+      <p class="subtitle">{{ 'nav.prospects' | translate }}</p>
     </div>
     <a mat-flat-button color="primary" routerLink="new">
-      <mat-icon>person_add</mat-icon> Nouveau prospect
+      <mat-icon>person_add</mat-icon> {{ 'prospects.new' | translate }}
     </a>
   </div>
 
   <div class="toolbar">
     <mat-form-field appearance="outline" class="search-field">
-      <mat-label>Rechercher</mat-label>
+      <mat-label>{{ 'common.search' | translate }}</mat-label>
       <mat-icon matPrefix>search</mat-icon>
-      <input matInput [formControl]="searchCtrl" placeholder="Nom, email, entreprise…">
+      <input matInput [formControl]="searchCtrl" [placeholder]="'prospects.search' | translate">
     </mat-form-field>
 
     <mat-form-field appearance="outline" class="filter-select">
-      <mat-label>Statut</mat-label>
+      <mat-label>{{ 'prospects.form.status' | translate }}</mat-label>
       <mat-select [(ngModel)]="statusFilter" (selectionChange)="load()">
-        <mat-option [value]="undefined">Tous</mat-option>
-        <mat-option value="LEAD">Lead</mat-option>
-        <mat-option value="CONTACTED">Contacté</mat-option>
-        <mat-option value="QUALIFIED">Qualifié</mat-option>
-        <mat-option value="PROPOSAL">Proposition</mat-option>
-        <mat-option value="CLOSED_WON">Gagné</mat-option>
-        <mat-option value="CLOSED_LOST">Perdu</mat-option>
+        <mat-option [value]="undefined">—</mat-option>
+        <mat-option value="LEAD">{{ 'prospects.status.LEAD' | translate }}</mat-option>
+        <mat-option value="CONTACTED">{{ 'prospects.status.CONTACTED' | translate }}</mat-option>
+        <mat-option value="QUALIFIED">{{ 'prospects.status.QUALIFIED' | translate }}</mat-option>
+        <mat-option value="PROPOSAL">{{ 'prospects.status.PROPOSAL' | translate }}</mat-option>
+        <mat-option value="CLOSED_WON">{{ 'prospects.status.CLOSED_WON' | translate }}</mat-option>
+        <mat-option value="CLOSED_LOST">{{ 'prospects.status.CLOSED_LOST' | translate }}</mat-option>
       </mat-select>
     </mat-form-field>
   </div>
@@ -35,14 +35,14 @@
   } @else if (page()?.content?.length === 0) {
     <div class="empty-state">
       <mat-icon>people_outline</mat-icon>
-      <p>Aucun prospect. Ajoutez votre premier contact.</p>
-      <a mat-stroked-button routerLink="new">Ajouter un prospect</a>
+      <p>{{ 'prospects.empty' | translate }}</p>
+      <a mat-stroked-button routerLink="new">{{ 'prospects.new' | translate }}</a>
     </div>
   } @else {
     <table mat-table [dataSource]="page()!.content" class="mat-elevation-z1 clickable-table">
 
       <ng-container matColumnDef="name">
-        <th mat-header-cell *matHeaderCellDef>Nom</th>
+        <th mat-header-cell *matHeaderCellDef>{{ 'prospects.form.first_name' | translate }}</th>
         <td mat-cell *matCellDef="let row">
           <div class="name-cell">
             <span class="full-name">{{ fullName(row) }}</span>
@@ -52,19 +52,21 @@
       </ng-container>
 
       <ng-container matColumnDef="company">
-        <th mat-header-cell *matHeaderCellDef>Entreprise</th>
+        <th mat-header-cell *matHeaderCellDef>{{ 'prospects.form.company' | translate }}</th>
         <td mat-cell *matCellDef="let row">{{ row.company ?? '—' }}</td>
       </ng-container>
 
       <ng-container matColumnDef="email">
-        <th mat-header-cell *matHeaderCellDef>Email</th>
+        <th mat-header-cell *matHeaderCellDef>{{ 'prospects.form.email' | translate }}</th>
         <td mat-cell *matCellDef="let row">{{ row.email ?? '—' }}</td>
       </ng-container>
 
       <ng-container matColumnDef="status">
-        <th mat-header-cell *matHeaderCellDef>Statut</th>
+        <th mat-header-cell *matHeaderCellDef>{{ 'prospects.form.status' | translate }}</th>
         <td mat-cell *matCellDef="let row">
-          <mat-chip [color]="statusColor(row.status)" highlighted>{{ statusLabel(row.status) }}</mat-chip>
+          <mat-chip [color]="statusColor(row.status)" highlighted>
+            {{ 'prospects.status.' + row.status | translate }}
+          </mat-chip>
         </td>
       </ng-container>
 
@@ -77,10 +79,10 @@
         <th mat-header-cell *matHeaderCellDef></th>
         <td mat-cell *matCellDef="let row">
           <div class="actions">
-            <a mat-icon-button [routerLink]="[row.id, 'edit']" matTooltip="Modifier" (click)="$event.stopPropagation()">
+            <a mat-icon-button [routerLink]="[row.id, 'edit']" [matTooltip]="'common.edit' | translate" (click)="$event.stopPropagation()">
               <mat-icon>edit</mat-icon>
             </a>
-            <button mat-icon-button color="warn" (click)="delete(row, $event)" matTooltip="Supprimer">
+            <button mat-icon-button color="warn" (click)="delete(row, $event)" [matTooltip]="'common.delete' | translate">
               <mat-icon>delete</mat-icon>
             </button>
           </div>

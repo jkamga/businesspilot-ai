@@ -1,22 +1,21 @@
 <div class="page-container">
   <div class="page-header">
     <div>
-      <h1>Conversations</h1>
-      <p class="subtitle">Échanges entre vos prospects et l'assistant IA</p>
+      <h1>{{ 'conversations.title' | translate }}</h1>
     </div>
     <button mat-flat-button color="primary" (click)="newConversation()">
-      <mat-icon>add</mat-icon> Nouvelle conversation
+      <mat-icon>add</mat-icon> {{ 'conversations.new' | translate }}
     </button>
   </div>
 
   <div class="filters">
     <mat-form-field appearance="outline" class="filter-select">
-      <mat-label>Statut</mat-label>
+      <mat-label>{{ 'prospects.form.status' | translate }}</mat-label>
       <mat-select [(value)]="statusFilter" (selectionChange)="load()">
-        <mat-option [value]="undefined">Toutes</mat-option>
-        <mat-option value="OPEN">Ouvertes</mat-option>
-        <mat-option value="RESOLVED">Résolues</mat-option>
-        <mat-option value="ARCHIVED">Archivées</mat-option>
+        <mat-option [value]="undefined">—</mat-option>
+        <mat-option value="OPEN">{{ 'conversations.status.OPEN' | translate }}</mat-option>
+        <mat-option value="RESOLVED">{{ 'conversations.status.RESOLVED' | translate }}</mat-option>
+        <mat-option value="ARCHIVED">{{ 'knowledge.status.ARCHIVED' | translate }}</mat-option>
       </mat-select>
     </mat-form-field>
   </div>
@@ -26,16 +25,16 @@
   } @else if (page()?.content?.length === 0) {
     <div class="empty-state">
       <mat-icon>chat_bubble_outline</mat-icon>
-      <p>Aucune conversation. Démarrez un échange avec un prospect.</p>
-      <button mat-stroked-button (click)="newConversation()">Démarrer une conversation</button>
+      <p>{{ 'conversations.empty' | translate }}</p>
+      <button mat-stroked-button (click)="newConversation()">{{ 'conversations.new' | translate }}</button>
     </div>
   } @else {
     <table mat-table [dataSource]="page()!.content" class="mat-elevation-z1 clickable-table">
       <ng-container matColumnDef="prospect">
-        <th mat-header-cell *matHeaderCellDef>Prospect</th>
+        <th mat-header-cell *matHeaderCellDef>{{ 'nav.prospects' | translate }}</th>
         <td mat-cell *matCellDef="let row">
           <div class="prospect-info">
-            <span class="prospect-name">{{ row.prospectName ?? 'Anonyme' }}</span>
+            <span class="prospect-name">{{ row.prospectName ?? ('dashboard.anonymous' | translate) }}</span>
             @if (row.prospectEmail) {
               <span class="prospect-email">{{ row.prospectEmail }}</span>
             }
@@ -44,9 +43,11 @@
       </ng-container>
 
       <ng-container matColumnDef="status">
-        <th mat-header-cell *matHeaderCellDef>Statut</th>
+        <th mat-header-cell *matHeaderCellDef>{{ 'prospects.form.status' | translate }}</th>
         <td mat-cell *matCellDef="let row">
-          <mat-chip [color]="statusColor(row.status)" highlighted>{{ row.status }}</mat-chip>
+          <mat-chip [color]="statusColor(row.status)" highlighted>
+            {{ 'conversations.status.' + row.status | translate }}
+          </mat-chip>
         </td>
       </ng-container>
 
@@ -64,7 +65,7 @@
                 <mat-icon>check_circle</mat-icon>
               </button>
             }
-            <button mat-icon-button color="warn" (click)="delete(row, $event)" matTooltip="Supprimer">
+            <button mat-icon-button color="warn" (click)="delete(row, $event)" [matTooltip]="'common.delete' | translate">
               <mat-icon>delete</mat-icon>
             </button>
           </div>
@@ -87,7 +88,6 @@
 <style>
   .page-container { padding: 24px; max-width: 1200px; margin: 0 auto; }
   .page-header { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 24px; }
-  .subtitle { color: #757575; margin: 4px 0 0; }
   .filters { margin-bottom: 16px; }
   .filter-select { width: 160px; }
   .loading-center { display: flex; justify-content: center; padding: 48px; }

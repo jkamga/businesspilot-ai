@@ -10,13 +10,14 @@ import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatSelectModule } from '@angular/material/select';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { DatePipe } from '@angular/common';
+import { TranslateModule } from '@ngx-translate/core';
 import { ConversationsService, Conversation, ConversationPage, ConversationStatus } from '../conversations.service';
 
 @Component({
   selector: 'bp-conversation-list',
   standalone: true,
   imports: [
-    RouterLink, DatePipe,
+    RouterLink, DatePipe, TranslateModule,
     MatTableModule, MatButtonModule, MatIconModule, MatChipsModule,
     MatPaginatorModule, MatTooltipModule, MatProgressSpinnerModule,
     MatSelectModule, MatFormFieldModule

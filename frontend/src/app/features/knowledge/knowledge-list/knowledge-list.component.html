@@ -1,22 +1,21 @@
 <div class="page-container">
   <div class="page-header">
     <div>
-      <h1>Base de connaissances</h1>
-      <p class="subtitle">Gérez les informations que l'assistant IA utilisera pour répondre à vos prospects</p>
+      <h1>{{ 'knowledge.title' | translate }}</h1>
     </div>
     <a mat-flat-button color="primary" routerLink="new">
-      <mat-icon>add</mat-icon> Nouvelle entrée
+      <mat-icon>add</mat-icon> {{ 'knowledge.new' | translate }}
     </a>
   </div>
 
   <div class="filters">
     <mat-form-field appearance="outline" class="filter-select">
-      <mat-label>Statut</mat-label>
+      <mat-label>{{ 'common.search' | translate }}</mat-label>
       <mat-select [(value)]="statusFilter" (selectionChange)="load()">
-        <mat-option [value]="undefined">Tous</mat-option>
-        <mat-option value="DRAFT">Brouillon</mat-option>
-        <mat-option value="ACTIVE">Publié</mat-option>
-        <mat-option value="ARCHIVED">Archivé</mat-option>
+        <mat-option [value]="undefined">—</mat-option>
+        <mat-option value="DRAFT">{{ 'knowledge.status.DRAFT' | translate }}</mat-option>
+        <mat-option value="ACTIVE">{{ 'knowledge.status.ACTIVE' | translate }}</mat-option>
+        <mat-option value="ARCHIVED">{{ 'knowledge.status.ARCHIVED' | translate }}</mat-option>
       </mat-select>
     </mat-form-field>
   </div>
@@ -26,29 +25,31 @@
   } @else if (page()?.content?.length === 0) {
     <div class="empty-state">
       <mat-icon>library_books</mat-icon>
-      <p>Aucune entrée. Créez votre première ressource pour l'assistant IA.</p>
-      <a mat-stroked-button routerLink="new">Créer une entrée</a>
+      <p>{{ 'knowledge.empty' | translate }}</p>
+      <a mat-stroked-button routerLink="new">{{ 'knowledge.new' | translate }}</a>
     </div>
   } @else {
     <table mat-table [dataSource]="page()!.content" class="mat-elevation-z1">
       <ng-container matColumnDef="title">
-        <th mat-header-cell *matHeaderCellDef>Titre</th>
+        <th mat-header-cell *matHeaderCellDef>{{ 'knowledge.form.title' | translate }}</th>
         <td mat-cell *matCellDef="let row">
           <a [routerLink]="[row.id, 'edit']" class="entry-link">{{ row.title }}</a>
         </td>
       </ng-container>
 
       <ng-container matColumnDef="type">
-        <th mat-header-cell *matHeaderCellDef>Type</th>
+        <th mat-header-cell *matHeaderCellDef>{{ 'knowledge.form.type' | translate }}</th>
         <td mat-cell *matCellDef="let row">
-          <mat-chip>{{ row.type }}</mat-chip>
+          <mat-chip>{{ 'knowledge.type.' + row.type | translate }}</mat-chip>
         </td>
       </ng-container>
 
       <ng-container matColumnDef="status">
-        <th mat-header-cell *matHeaderCellDef>Statut</th>
+        <th mat-header-cell *matHeaderCellDef>{{ 'prospects.form.status' | translate }}</th>
         <td mat-cell *matCellDef="let row">
-          <mat-chip [color]="statusColor(row.status)" highlighted>{{ row.status }}</mat-chip>
+          <mat-chip [color]="statusColor(row.status)" highlighted>
+            {{ 'knowledge.status.' + row.status | translate }}
+          </mat-chip>
         </td>
       </ng-container>
 
@@ -71,10 +72,10 @@
                 <mat-icon>publish</mat-icon>
               </button>
             }
-            <a mat-icon-button [routerLink]="[row.id, 'edit']" matTooltip="Modifier">
+            <a mat-icon-button [routerLink]="[row.id, 'edit']" [matTooltip]="'common.edit' | translate">
               <mat-icon>edit</mat-icon>
             </a>
-            <button mat-icon-button color="warn" (click)="delete(row)" matTooltip="Supprimer">
+            <button mat-icon-button color="warn" (click)="delete(row)" [matTooltip]="'common.delete' | translate">
               <mat-icon>delete</mat-icon>
             </button>
           </div>
@@ -97,7 +98,6 @@
 <style>
   .page-container { padding: 24px; max-width: 1200px; margin: 0 auto; }
   .page-header { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 24px; }
-  .subtitle { color: #757575; margin: 4px 0 0; }
   .filters { margin-bottom: 16px; }
   .filter-select { width: 160px; }
   .loading-center { display: flex; justify-content: center; padding: 48px; }

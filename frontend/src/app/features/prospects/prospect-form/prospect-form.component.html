@@ -1,49 +1,55 @@
 <div class="page-container">
   <div class="page-header">
     <a mat-icon-button routerLink="/prospects"><mat-icon>arrow_back</mat-icon></a>
-    <h1>{{ isEdit() ? 'Modifier' : 'Nouveau' }} prospect</h1>
+    <h1>{{ (isEdit() ? 'common.edit' : 'prospects.new') | translate }}</h1>
   </div>
 
   <form [formGroup]="form" (ngSubmit)="submit()" class="prospect-form mat-elevation-z1">
     <div class="form-row">
       <mat-form-field appearance="outline">
-        <mat-label>Prénom</mat-label>
+        <mat-label>{{ 'prospects.form.first_name' | translate }}</mat-label>
         <input matInput formControlName="firstName">
       </mat-form-field>
       <mat-form-field appearance="outline">
-        <mat-label>Nom</mat-label>
+        <mat-label>{{ 'prospects.form.last_name' | translate }}</mat-label>
         <input matInput formControlName="lastName">
       </mat-form-field>
     </div>
 
     <div class="form-row">
       <mat-form-field appearance="outline">
-        <mat-label>Email</mat-label>
+        <mat-label>{{ 'prospects.form.email' | translate }}</mat-label>
         <input matInput formControlName="email" type="email">
-        @if (form.get('email')?.hasError('email')) { <mat-error>Email invalide</mat-error> }
+        @if (form.get('email')?.hasError('email')) {
+          <mat-error>{{ 'auth.login.email_invalid' | translate }}</mat-error>
+        }
       </mat-form-field>
       <mat-form-field appearance="outline">
-        <mat-label>Téléphone</mat-label>
+        <mat-label>{{ 'prospects.form.phone' | translate }}</mat-label>
         <input matInput formControlName="phone">
       </mat-form-field>
     </div>
 
     <mat-form-field appearance="outline">
-      <mat-label>Entreprise</mat-label>
+      <mat-label>{{ 'prospects.form.company' | translate }}</mat-label>
       <input matInput formControlName="company">
     </mat-form-field>
 
     <mat-form-field appearance="outline">
-      <mat-label>Notes</mat-label>
+      <mat-label>{{ 'prospects.form.notes' | translate }}</mat-label>
       <textarea matInput formControlName="notes" rows="4"></textarea>
     </mat-form-field>
 
     @if (error()) { <p class="form-error">{{ error() }}</p> }
 
     <div class="form-actions">
-      <a mat-stroked-button routerLink="/prospects">Annuler</a>
+      <a mat-stroked-button routerLink="/prospects">{{ 'common.cancel' | translate }}</a>
       <button mat-flat-button color="primary" type="submit" [disabled]="saving()">
-        @if (saving()) { <mat-spinner diameter="20"></mat-spinner> } @else { {{ isEdit() ? 'Enregistrer' : 'Créer' }} }
+        @if (saving()) {
+          <mat-spinner diameter="20"></mat-spinner>
+        } @else {
+          {{ 'prospects.form.save' | translate }}
+        }
       </button>
     </div>
   </form>

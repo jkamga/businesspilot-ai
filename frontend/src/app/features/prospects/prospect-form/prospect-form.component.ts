@@ -6,13 +6,14 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatIconModule } from '@angular/material/icon';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { TranslateModule } from '@ngx-translate/core';
 import { ProspectsService } from '../prospects.service';
 
 @Component({
   selector: 'bp-prospect-form',
   standalone: true,
   imports: [
-    ReactiveFormsModule, RouterLink,
+    ReactiveFormsModule, RouterLink, TranslateModule,
     MatButtonModule, MatFormFieldModule, MatInputModule, MatIconModule, MatProgressSpinnerModule
   ],
   templateUrl: './prospect-form.component.html'

@@ -13,13 +13,14 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { DatePipe } from '@angular/common';
 import { debounceTime, distinctUntilChanged } from 'rxjs';
+import { TranslateModule } from '@ngx-translate/core';
 import { ProspectsService, Prospect, ProspectPage, ProspectStatus } from '../prospects.service';
 
 @Component({
   selector: 'bp-prospect-list',
   standalone: true,
   imports: [
-    RouterLink, DatePipe, ReactiveFormsModule, FormsModule,
+    RouterLink, DatePipe, ReactiveFormsModule, FormsModule, TranslateModule,
     MatTableModule, MatButtonModule, MatIconModule, MatChipsModule,
     MatPaginatorModule, MatTooltipModule, MatProgressSpinnerModule,
     MatSelectModule, MatFormFieldModule, MatInputModule

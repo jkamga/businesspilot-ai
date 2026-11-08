@@ -7,6 +7,7 @@ import { MatChipsModule } from '@angular/material/chips';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatPaginatorModule, PageEvent } from '@angular/material/paginator';
 import { MatBadgeModule } from '@angular/material/badge';
+import { TranslateModule } from '@ngx-translate/core';
 import { AdminService, AdminStats, AdminOrg } from '../admin.service';
 
 @Component({
@@ -21,6 +22,7 @@ import { AdminService, AdminStats, AdminOrg } from '../admin.service';
     MatProgressSpinnerModule,
     MatPaginatorModule,
     MatBadgeModule,
+    TranslateModule,
   ],
   templateUrl: './admin-dashboard.component.html',
   styleUrl: './admin-dashboard.component.scss',
